@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file. See [standa
 <a name="2.3.0"></a>
 # 2.3.0 (2018-06-10)
 
+*Note: this release note contains old missing commit message.*
 
 ### Bug Fixes
 
