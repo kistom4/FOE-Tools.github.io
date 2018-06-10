@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.0"></a>
+# 2.3.0 (2018-06-10)
+
+
+### Bug Fixes
+
+* :bug: Fix bad i18n key for permalink in About ([695caf6](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/695caf6)), closes [#31](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/31)
+* :bug: Fix bad redirect in english in gb-investment ([83bc37f](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/83bc37f)), closes [#34](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/34)
+* :bug: Fix copy button not working on iOS ([0b0c6ab](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/0b0c6ab)), closes [#40](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/40)
+* **foe-data:** Fix bad level cost for level 82 of Arctic Future ([ca7d704](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/ca7d704))
+* :bug: Fix From input in "Forecast cost GB" ([9b48859](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/9b48859)), closes [#39](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/39)
+* :bug: Fix Graph is show in gb-forecast-cost when we estimate a single level bug ([dcc67d7](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/dcc67d7)), closes [#35](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/35)
+* :bug: Fix issue in "Forecast cost GB" when "From" input is empty ([9c9b2d6](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/9c9b2d6))
+* :bug: Fix table overflow ([297d954](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/297d954)), closes [#33](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/33)
+* ArcticFuture corrected reward value for cost 120 ([2892edf](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/2892edf))
+* **gb-investment:** :bug: Fix wrong rounding of reward in gb-investment ([5b13f32](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/5b13f32)), closes [#42](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/42)
+* **gb-statistics:** :bug: Fix gb-statistcs crash for high levels ([931dd67](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/931dd67))
+
+
+### Features
+
+* Externalize markdown component and add support of emoji in markdown ([4ce7046](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/4ce7046)), closes [#52](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/52)
+
+
+
 <a name="2.2.0"></a>
 # 2.2.0 (2018-05-27)
 
