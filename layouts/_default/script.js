@@ -36,7 +36,8 @@ export default {
         secure_position: this.$store.state.routes.secure_position,
         cf_calculator: this.$store.state.routes.cf_calculator,
         gb_statistics: this.$store.state.routes.gb_statistics,
-        gb_forecast_cost: this.$store.state.routes.gb_forecast_cost
+        gb_forecast_cost: this.$store.state.routes.gb_forecast_cost,
+        trade: this.$store.state.routes.trade
       },
       footerLinks: [
         this.$store.state.routes.about,

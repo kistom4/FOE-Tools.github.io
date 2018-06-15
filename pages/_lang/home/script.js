@@ -32,6 +32,11 @@ export default {
                 title: "tools.cf_calculator.title",
                 subtitle: "tools.cf_calculator.subtitle",
                 link: this.$store.state.routes.cf_calculator.link
+              },
+              {
+                title: "tools.trade.title",
+                subtitle: "tools.trade.subtitle",
+                link: this.$store.state.routes.trade.link
               }
             ],
             2,

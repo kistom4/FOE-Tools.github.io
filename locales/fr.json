@@ -6,7 +6,8 @@
       "secure_position": "$t(routes.secure_position.hero.title)",
       "cf_calculator": "$t(routes.cf_calculator.hero.title)",
       "gb_statistics": "$t(routes.gb_statistics.hero.title)",
-      "gb_forecast_cost": "$t(routes.gb_forecast_cost.hero.title)"
+      "gb_forecast_cost": "$t(routes.gb_forecast_cost.hero.title)",
+      "trade": "$t(routes.trade.hero.title)"
     },
     "footer_menu": {
       "about": "À propos",
@@ -169,6 +170,21 @@
           "unknown": "inconnu"
         }
       },
+      "simple_trade": {
+        "title": "Version tableau",
+        "table": {
+          "thead": {
+            "th1": "Âge",
+            "th2": "Marchandise",
+            "th3": "$t(components.trade.label.i_want)",
+            "th4": "Réslutat",
+            "split": "Division",
+            "ratio": "Ratio"
+          }
+        },
+        "slpit": "Diviser les offres ?",
+        "show_ratio": "Afficher le ratio"
+      },
       "site_layout": {
         "hero": {
           "title": "$t(common:site_title)",
@@ -182,6 +198,24 @@
         "footer": {
           "license_html": "Code source sous licence $t(common:links.mit)",
           "version": "Version {{version}}"
+        }
+      },
+      "trade": {
+        "title": "Version formulaire",
+        "label": {
+          "i_have": "J'ai",
+          "i_want": "Je veux",
+          "amount": "Quantité"
+        },
+        "split_value": "Taille maximale d'une offre (max {{count}})",
+        "split_message": {
+          "msg": "{{valueFrom}} {{ageFrom}} pour {{valueTo}} {{ageTo}}",
+          "common": "{{count}} × ($t(components.trade.split_message.msg, { 'valueFrom': '{{valueFrom}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueTo}}', 'ageTo': '{{ageTo}}' }))",
+          "multi": "$t(components.trade.split_message.common, { 'valueFrom': '{{valueFrom}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueTo}}', 'ageTo': '{{ageTo}}' }) et $t(components.trade.split_message.common, { 'count': 1, 'valueFrom': '{{valueFromSingle}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueToSingle}}', 'ageTo': '{{ageTo}}' })"
+        },
+        "message": {
+          "result": "Pour {{to}} {{ageTo}}, il vous faut {{from}} {{ageFrom}} avec des offres de taille maximal {{count}} :",
+          "total": "(total: {{amount}} {{key}})"
         }
       }
     },
@@ -284,6 +318,23 @@
           "subtitle": "Cet outil permet de calculer le nombre de PF qu'un joueur doit mettre sur un GM pour bloquer sa place."
         }
       },
+      "trade": {
+        "title": "$t(routes.trade.hero.title) | $t(common:site_title)",
+        "hero": {
+          "title": "Commerce",
+          "subtitle": "Cet outil permet de faciliter votre commerce en vous proposant les meilleurs taux suivant votre façon de commercer."
+        },
+        "tab": {
+          "trade_2_1": {
+            "title": "2:1",
+            "message": "Simple commerce, ratio 1 pour 1 pour des ressources de même âge et 1 pour 2 pour des ressources avec un âge d'écart."
+          },
+          "fair_trade": {
+            "title": "Commerce Équitable",
+            "message": "Ce type de commerce prend en compte le coût de fabrication d'une ressource (pièce d'or et marchandise) pour déterminer les taux entre les ressources."
+          }
+        }
+      },
       "error": {
         "404": {
           "title": "Page non trouvée | $t(common:site_title)",
@@ -310,6 +361,24 @@
         "TheFuture": "Ère du Futur",
         "ArcticFuture": "Futur Arctique",
         "OceanicFuture": "Futur Océanique"
+      },
+      "age_short": {
+        "NoAge": "SA",
+        "BronzeAge": "ABD",
+        "IronAge": "ADF",
+        "EarlyMiddleAges": "HMA",
+        "HighMiddleAges": "MAC",
+        "LateMiddleAges": "REN",
+        "ColonialAge": "COL",
+        "IndustrialAge": "IND",
+        "ProgressiveEra": "PROG",
+        "ModernEra": "MOD",
+        "PostmodernEra": "PMOD",
+        "ContemporaryEra": "CONT",
+        "Tomorrow": "DEM",
+        "TheFuture": "FUT",
+        "ArcticFuture": "ARC",
+        "OceanicFuture": "OCE"
       },
       "gb": {
         "Observatory": "Observatoire",
@@ -347,6 +416,83 @@
         "Atlantis_Museum": "Musée de l'Atlantide",
         "The_Kraken": "Le Kraken",
         "The_Blue_Galaxy": "La Galaxie Bleue"
+      },
+      "goods": {
+        "dye": "Teinture",
+        "lumber": "Bois",
+        "marble": "Marbre",
+        "stone": "Pierre",
+        "wine": "Vin",
+        "cloth": "Tissu",
+        "ebony": "Bois d'ébène",
+        "iron": "Fer",
+        "jewelry": "Bijoux",
+        "limestone": "Calcaire",
+        "alabaster": "Albâtre",
+        "copper": "Cuivre",
+        "gold": "Or",
+        "granite": "Granite",
+        "honey": "Miel",
+        "brick": "Brique",
+        "dried_herbs": "Herbes séchées",
+        "glass": "Verre",
+        "rope": "Corde",
+        "salt": "Sel",
+        "basalt": "Basalte",
+        "brass": "Laiton",
+        "gunpowder": "Poudre à canon",
+        "silk": "Soie",
+        "talc_powder": "Poudre à talquer",
+        "coffee": "Café",
+        "porcelain": "Porcelaine",
+        "paper": "Papier",
+        "tar": "Goudron",
+        "wire": "Fil",
+        "coke": "Coke",
+        "fertilizer": "Engrais",
+        "rubber": "Caoutchouc",
+        "textiles": "Textile",
+        "whale_oil": "Huile de baleine",
+        "asbestos": "Amiante",
+        "explosives": "Explosif",
+        "gasoline": "Essence",
+        "machine_parts": "Pièce détachée",
+        "tinplate": "Fer-blanc",
+        "convenience_food": "Plats cuisinés",
+        "ferroconcrete": "Béton armé",
+        "flavorants": "Arômes",
+        "luxury_materials": "Produits de luxe",
+        "packaging": "Emballage",
+        "genome_data": "Données génétiques",
+        "industrial_filters": "Filtres industriels",
+        "renewable_resources": "Ressources renouvelables",
+        "semiconductors": "Semi-conducteurs",
+        "steel": "Acier",
+        "bionics_data": "Données bioniques",
+        "electromagnets": "Électro-aimants",
+        "gas": "Gaz",
+        "plastics": "Plastiques",
+        "robots": "Robots",
+        "nutrition_research": "Recherche en nutrition",
+        "papercrete": "Liant papier",
+        "preservatives": "Conservateurs",
+        "smart_materials": "Matériaux intelligents",
+        "translucent_concrete": "Béton translucide",
+        "algae": "Algues",
+        "biogeochemical_data": "Données biogéochimiques",
+        "nanoparticles": "Nanoparticules",
+        "purified_water": "Eau purifiée",
+        "superconductors": "Supraconducteurs",
+        "ai_data": "Données d'I.A.",
+        "bioplastics": "Bioplastiques",
+        "nanowire": "Nanocâble",
+        "paper_batteries": "Piles en papier",
+        "transester_gas": "Gaz transester",
+        "artificial_scales": "Écailles artificielles",
+        "biolight": "Substance bioluminescente",
+        "corals": "Coraux",
+        "pearls": "Perles",
+        "plankton": "Plancton"
       }
     },
     "utils": {

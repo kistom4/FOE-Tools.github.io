@@ -235,5 +235,25 @@ export default {
     const G = parseInt(f[1], 10);
     const B = parseInt(f[2], 10);
     return `rgb(${Math.round((t - R) * p) + R},${Math.round((t - G) * p) + G},${Math.round((t - B) * p) + B})`;
+  },
+
+  /**
+   * Round a number to n digits.
+   * Copyed here: https://stackoverflow.com/a/12830454
+   * @param num Number to round
+   * @param scale Number of digits
+   * @returns {number} Return the number rounded
+   */
+  roundTo(num, scale) {
+    if (!("" + num).includes("e")) {
+      return +(Math.round(num + "e+" + scale) + "e-" + scale);
+    } else {
+      let arr = ("" + num).split("e");
+      let sig = "";
+      if (+arr[1] + scale > 0) {
+        sig = "+";
+      }
+      return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+    }
   }
 };

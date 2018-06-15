@@ -66,6 +66,7 @@
     "cookie-universal-nuxt": "^1.0.14",
     "enumify": "^1.0.4",
     "i18next": "^11.2.3",
+    "js-priority-queue": "^0.1.5",
     "jsdom": "^11.10.0",
     "moment": "^2.22.1",
     "moment-duration-format": "^2.2.2",

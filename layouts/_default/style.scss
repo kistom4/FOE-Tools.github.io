@@ -58,3 +58,11 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 section.hero.is-dark-blue .subtitle a:hover {
   color: $info;
 }
+
+.content li + li {
+  margin-top: 0;
+}
+
+.image-inherit {
+  display: inherit;
+}
