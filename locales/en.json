@@ -6,7 +6,8 @@
       "secure_position": "$t(routes.secure_position.hero.title)",
       "cf_calculator": "$t(routes.cf_calculator.hero.title)",
       "gb_statistics": "$t(routes.gb_statistics.hero.title)",
-      "gb_forecast_cost": "$t(routes.gb_forecast_cost.hero.title)"
+      "gb_forecast_cost": "$t(routes.gb_forecast_cost.hero.title)",
+      "trade": "$t(routes.trade.hero.title)"
     },
     "footer_menu": {
       "about": "About",
@@ -166,6 +167,21 @@
           "unknown": "unknown"
         }
       },
+      "simple_trade": {
+        "title": "Table version",
+        "table": {
+          "thead": {
+            "th1": "Age",
+            "th2": "Goods",
+            "th3": "$t(components.trade.label.i_want)",
+            "th4": "Reslut",
+            "split": "Split",
+            "ratio": "Ratio"
+          }
+        },
+        "slpit": "Split the offers ?",
+        "show_ratio": "Display ratio"
+      },
       "site_layout": {
         "hero": {
           "title": "$t(common:site_title)",
@@ -179,6 +195,24 @@
         "footer": {
           "license_html": "Source code under $t(common:links.mit) license",
           "version": "Version {{version}}"
+        }
+      },
+      "trade": {
+        "title": "Form version",
+        "label": {
+          "i_have": "I have",
+          "i_want": "I want",
+          "amount": "Amount"
+        },
+        "split_value": "Maximum size of an offer (max {{count}})",
+        "split_message": {
+          "msg": "{{valueFrom}} {{ageFrom}} for {{valueTo}} {{ageTo}}",
+          "common": "{{count}} × ($t(components.trade.split_message.msg, { 'valueFrom': '{{valueFrom}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueTo}}', 'ageTo': '{{ageTo}}' }))",
+          "multi": "$t(components.trade.split_message.common, { 'valueFrom': '{{valueFrom}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueTo}}', 'ageTo': '{{ageTo}}' }) and $t(components.trade.split_message.common, { 'count': 1, 'valueFrom': '{{valueFromSingle}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueToSingle}}', 'ageTo': '{{ageTo}}' })"
+        },
+        "message": {
+          "result": "For {{to}} {{ageTo}}, you need {{from}} {{ageFrom}} with offers up to {{count}}:",
+          "total": "(total: {{amount}} {{key}})"
         }
       }
     },
@@ -281,6 +315,23 @@
           "subtitle": "This tool calculates the number of FP that a player must put on a GB to block his place."
         }
       },
+      "trade": {
+        "title": "$t(routes.trade.hero.title) | $t(common:site_title)",
+        "hero": {
+          "title": "Trade",
+          "subtitle": "This tool facilitates your business by offering you the best rates according to your way of trading."
+        },
+        "tab": {
+          "trade_2_1": {
+            "title": "2:1",
+            "message": "Simple trade, ratio 1 for 1 with resources of the same age and 1 for 2 in order to get resources with one gap age."
+          },
+          "fair_trade": {
+            "title": "Fair Trade",
+            "message": "This type of trade takes into account the cost of manufacturing a good (coins and resources) to determine the rates between the goods."
+          }
+        }
+      },
       "error": {
         "404": {
           "title": "Page not found | $t(common:site_title)",
@@ -307,6 +358,24 @@
         "TheFuture": "The Future",
         "ArcticFuture": "Arctic Future",
         "OceanicFuture": "Oceanic Future"
+      },
+      "age_short": {
+        "NoAge": "NA",
+        "BronzeAge": "BA",
+        "IronAge": "IA",
+        "EarlyMiddleAges": "EMA",
+        "HighMiddleAges": "HMA",
+        "LateMiddleAges": "LMA",
+        "ColonialAge": "CA",
+        "IndustrialAge": "InA",
+        "ProgressiveEra": "PE",
+        "ModernEra": "ME",
+        "PostmodernEra": "PME",
+        "ContemporaryEra": "CE",
+        "Tomorrow": "TE",
+        "TheFuture": "TF",
+        "ArcticFuture": "AF",
+        "OceanicFuture": "OF"
       },
       "gb": {
         "Observatory": "Observatory",
@@ -344,6 +413,83 @@
         "Atlantis_Museum": "Atlantis Museum",
         "The_Kraken": "The Kraken",
         "The_Blue_Galaxy": "The Blue Galaxy"
+      },
+      "goods": {
+        "dye": "Dye",
+        "lumber": "Lumber",
+        "marble": "Marble",
+        "stone": "Stone",
+        "wine": "Wine",
+        "cloth": "Cloth",
+        "ebony": "Ebony",
+        "iron": "Iron",
+        "jewelry": "Jewelry",
+        "limestone": "Limestone",
+        "alabaster": "Alabaster",
+        "copper": "Copper",
+        "gold": "Gold",
+        "granite": "Granite",
+        "honey": "Honey",
+        "brick": "Brick",
+        "dried_herbs": "Dried Herbs",
+        "glass": "Glass",
+        "rope": "Rope",
+        "salt": "Salt",
+        "basalt": "Basalt",
+        "brass": "Brass",
+        "gunpowder": "Gunpowder",
+        "silk": "Silk",
+        "talc_powder": "Talc Powder",
+        "coffee": "Coffee",
+        "porcelain": "Porcelain",
+        "paper": "Paper",
+        "tar": "Tar",
+        "wire": "Wire",
+        "coke": "Coke",
+        "fertilizer": "Fertilizer",
+        "rubber": "Rubber",
+        "textiles": "Textiles",
+        "whale_oil": "Whale Oil",
+        "asbestos": "Asbestos",
+        "explosives": "Explosives",
+        "gasoline": "Gasoline",
+        "machine_parts": "Machine Parts",
+        "tinplate": "Tinplate",
+        "convenience_food": "Convenience Food",
+        "ferroconcrete": "Ferroconcrete",
+        "flavorants": "Flavorants",
+        "luxury_materials": "Luxury Materials",
+        "packaging": "Packaging",
+        "genome_data": "Genome Data",
+        "industrial_filters": "Industrial Filters",
+        "renewable_resources": "Renewable Resources",
+        "semiconductors": "Semiconductors",
+        "steel": "Steel",
+        "bionics_data": "Bionics Data",
+        "electromagnets": "Electromagnets",
+        "gas": "Gas",
+        "plastics": "Plastics",
+        "robots": "Robots",
+        "nutrition_research": "Nutrition Research",
+        "papercrete": "Papercrete",
+        "preservatives": "Preservatives",
+        "smart_materials": "Smart Materials",
+        "translucent_concrete": "Translucent Concrete",
+        "algae": "Algae",
+        "biogeochemical_data": "Biogeochemical Data",
+        "nanoparticles": "Nanoparticles",
+        "purified_water": "Purified Water",
+        "superconductors": "Superconductors",
+        "ai_data": "A.I. Data",
+        "bioplastics": "Bioplastics",
+        "nanowire": "Nanowire",
+        "paper_batteries": "Paper Batteries",
+        "transester_gas": "Transester Gas",
+        "artificial_scales": "Artificial Scales",
+        "biolight": "Biolight",
+        "corals": "Corals",
+        "pearls": "Pearls",
+        "plankton": "Plankton"
       }
     },
     "utils": {

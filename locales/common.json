@@ -32,6 +32,10 @@
       "cf_calculator": {
         "title": "$t(routes.cf_calculator.hero.title)",
         "subtitle": "$t(routes.cf_calculator.hero.subtitle)"
+      },
+      "trade": {
+        "title": "$t(routes.trade.hero.title)",
+        "subtitle": "$t(routes.trade.hero.subtitle)"
       }
     },
     "statistics": {

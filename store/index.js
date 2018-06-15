@@ -20,7 +20,8 @@ export const state = () => ({
     contributors: { key: "contributors", link: "contributors" },
     changelog: { key: "changelog", link: "changelog" },
     gb_statistics: { key: "gb_statistics", link: "gb-statistics" },
-    gb_forecast_cost: { key: "gb_forecast_cost", link: "gb-forecast-cost" }
+    gb_forecast_cost: { key: "gb_forecast_cost", link: "gb-forecast-cost" },
+    trade: { key: "trade", link: "trade" }
   },
 
   /**
