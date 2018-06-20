@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.3.0...v2.4.0) (2018-06-20)
+
+
+### Bug Fixes
+
+* **l10n:** Fix numeral for "special" locales ([20e8240](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/20e8240))
+
+
+### Features
+
+* **lang:** added dutch language ([b4fb542](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/b4fb542))
+* **lang:** added dutch language ([7cca4f9](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/7cca4f9))
+
+
+
 <a name="2.3.0"></a>
 # 2.3.0 (2018-06-10)
 
