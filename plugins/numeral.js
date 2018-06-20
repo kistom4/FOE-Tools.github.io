@@ -1,4 +1,5 @@
 import numeral from "numeral";
+import { numeralSpecialLocales } from "~/scripts/i18n";
 import "numeral/min/locales.min";
 
 const VueNumeral = {
@@ -10,8 +11,12 @@ const VueNumeral = {
      * @return {string} Return formated string
      */
     Vue.prototype.$formatNumber = (value, lng) => {
-      if (lng !== null) {
-        numeral.locale(lng);
+      if (lng) {
+        if (numeralSpecialLocales[lng]) {
+          numeral.locale(numeralSpecialLocales[lng]);
+        } else {
+          numeral.locale(lng);
+        }
       }
       return numeral(value).format("0,0");
     };
@@ -25,7 +30,11 @@ const VueNumeral = {
       if (lng === null) {
         return numeral.locale();
       }
-      numeral.locale(lng);
+      if (numeralSpecialLocales[lng]) {
+        numeral.locale(numeralSpecialLocales[lng]);
+      } else {
+        numeral.locale(lng);
+      }
     };
   }
 };
