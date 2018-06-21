@@ -148,6 +148,9 @@
           "fp_to_complete_level_plural": "Number of FPs remaining to complete the level: {{count, number}}",
           "your_arc_bonus": "Your Arc bonus",
           "fp_target_reward": "FP of the targeted place",
+          "target_reward": "Targeted place",
+          "place": "{{place}} ({{count, number}} FP)",
+          "place_plural": "{{place}} ({{count, number}} FPs)",
           "result": {
             "error": "One or more values are not valid.",
             "already_blocked": "Your place is blocked.",

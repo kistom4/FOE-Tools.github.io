@@ -24,9 +24,9 @@ const inputComparator = {
 export default {
   name: "SecurePosition",
   props: {
-    propLevelCost: {
-      type: Number,
-      default: -1
+    levelData: {
+      type: Object,
+      default: null
     },
     canPermalink: {
       type: Boolean,
@@ -39,7 +39,7 @@ export default {
       fp: 0,
       yourParticipation: 0,
       otherParticipation: 0,
-      levelCost: this.haveInputLevelCost() ? this.$props.propLevelCost : 0,
+      levelCost: this.haveInputLevelCost() ? this.$props.levelData.cost : 0,
       currentDeposits: 0,
       yourArcBonus: this.$cookies.get("yourArcBonus") === undefined ? 0 : this.$cookies.get("yourArcBonus"),
       fpTargetReward: 0,
@@ -97,9 +97,9 @@ export default {
     }
   },
   watch: {
-    propLevelCost(val) {
+    levelData(val) {
       this.$data.change = true;
-      this.$data.levelCost = val;
+      this.$data.levelCost = val.cost;
     },
     levelCost(val, oldVal) {
       this.$data.change = true;
@@ -157,7 +157,9 @@ export default {
     },
     otherParticipation(val, oldVal) {
       this.$data.change = true;
-      if (
+      if (val === "") {
+        this.$data.otherParticipation = 0;
+      } else if (
         Utils.handlerForm(
           this,
           "otherParticipation",
@@ -196,6 +198,18 @@ export default {
     },
     fpTargetReward(val, oldVal) {
       this.$data.change = true;
+      if (this.haveInputLevelCost()) {
+        if (this.$props.levelData.investment.map(k => k.reward).indexOf(val) >= 0) {
+          this.$data.errors.fpTargetReward = false;
+          this.$store.commit("UPDATE_URL_QUERY", {
+            key: queryKey.fpTargetReward,
+            value: val
+          });
+          this.calculate();
+        } else {
+          this.$data.errors.fpTargetReward = true;
+        }
+      }
       if (
         Utils.handlerForm(
           this,
@@ -215,7 +229,7 @@ export default {
   },
   methods: {
     haveInputLevelCost() {
-      return this.$props.propLevelCost > -1;
+      return this.$props.levelData !== null;
     },
 
     getNumberOfRemainingPoints() {
