@@ -246,7 +246,7 @@ export default {
         this.$data.investorPercentageCustom,
         this.$props.gb.levels
       );
-      this.$emit("updateLevelCost", this.$data.result.cost);
+      this.$emit("updateLevelData", this.$data.result);
     },
     getPromo(key) {
       return this.$data[key];

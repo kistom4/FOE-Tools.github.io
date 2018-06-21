@@ -33,7 +33,7 @@ export default {
 
     return {
       i18nPrefix: i18nPrefix,
-      levelCost: 0
+      levelData: null
     };
   },
   components: {
