@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.5.0"></a>
+# [2.5.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.4.0...v2.5.0) (2018-06-24)
+
+
+### Bug Fixes
+
+* **l10n:** Fix numeral for "special" locales ([db4c76a](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/db4c76a))
+
+
+### Features
+
+* :sparkles: Add "Trade" tool ([ef6e6e8](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/ef6e6e8)), closes [#49](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/49)
+* **foe-data:** Add campaign cost data ([8ba969b](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/8ba969b))
+* **gb-investment:** Select the place for secure-position reward ([c08b933](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/c08b933)), closes [#58](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/58)
+* **l10n:** :globe_with_meridians: Update ru ([ccbd45b](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/ccbd45b))
+* **lang:** added dutch language ([de5a92a](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/de5a92a))
+* **lang:** added dutch language ([46152c3](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/46152c3))
+* **seo:** Improve l10n SEO ([6083b94](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/6083b94)), closes [#56](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/56)
+* Add new tool: "campaign cost" ([7f81663](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/7f81663)), closes [#48](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/48)
+
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.3.0...v2.4.0) (2018-06-20)
 
