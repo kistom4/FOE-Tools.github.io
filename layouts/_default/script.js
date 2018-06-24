@@ -37,7 +37,8 @@ export default {
         cf_calculator: this.$store.state.routes.cf_calculator,
         gb_statistics: this.$store.state.routes.gb_statistics,
         gb_forecast_cost: this.$store.state.routes.gb_forecast_cost,
-        trade: this.$store.state.routes.trade
+        trade: this.$store.state.routes.trade,
+        campaign_cost: this.$store.state.routes.campaign_cost
       },
       footerLinks: [
         this.$store.state.routes.about,

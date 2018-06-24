@@ -7,7 +7,8 @@
       "cf_calculator": "$t(routes.cf_calculator.hero.title)",
       "gb_statistics": "$t(routes.gb_statistics.hero.title)",
       "gb_forecast_cost": "$t(routes.gb_forecast_cost.hero.title)",
-      "trade": "$t(routes.trade.hero.title)"
+      "trade": "$t(routes.trade.hero.title)",
+      "campaign_cost": "$t(routes.campaign_cost.hero.title)"
     },
     "footer_menu": {
       "about": "À propos",
@@ -15,6 +16,10 @@
       "changelog": "Changelog"
     },
     "components": {
+      "campaign_cost": {
+        "title": "$t(routes.campaign_cost.hero.title)",
+        "choose_province": "Choissisez une province"
+      },
       "cf_calculator": {
         "block_cfc": {
           "title": "$t(routes.cf_calculator.hero.title)",
@@ -28,7 +33,7 @@
           "second_rq": "Seconde quête récurrente ?",
           "supplies_gathered": "Marchandises produites",
           "table_reward": {
-            "title": "Récompenses",
+            "title": "$t(utils.Rewards)",
             "thead": {
               "th1": "Plan",
               "th2": "Médaille",
@@ -246,6 +251,13 @@
           "p2_html": "Le développement se fait en Node.js à l'aide de $t(common:links.framework). Le style est réalisé à l'aide de $t(common:links.style).",
           "p3_html": "Une idée de fonctionnalité ? Un problème ? N'hésitez pas à créer une issue sur GitHub ou à m'envoyer un mail à $t(common:links.contact_foe_tools).",
           "message_info_github_issue": "<b>Note :</b> Concernant les issues sur GitHub, veuillez veiller à les rédiger en anglais pour faciliter la compréhension pour le plus grand nombre."
+        }
+      },
+      "campaign_cost": {
+        "title": "$t(routes.campaign_cost.hero.title) | $t(common:site_title)",
+        "hero": {
+          "title": "Coût de la campagne",
+          "subtitle": "Cet outil permet de prévoir le coût d'un secteur ou d'une province."
         }
       },
       "cf_calculator": {
@@ -495,7 +507,400 @@
         "biolight": "Substance bioluminescente",
         "corals": "Coraux",
         "pearls": "Perles",
-        "plankton": "Plancton"
+        "plankton": "Plancton",
+        "promethium": "Prométhium",
+        "orichalcum": "Orichalque"
+      },
+      "province": {
+        "Dunarsund": "Dunarsund",
+        "Fel_Dranghyr": "Fel Dranghyr",
+        "Tyr": "Tyr",
+        "Hymir": "Hymir",
+        "Badakus": "Badakus",
+        "Paruuch": "Paruuch",
+        "Ruug": "Ruug",
+        "Karchagu": "Karchagu",
+        "East_Nagach": "East-Nagach",
+        "West_Nagach": "West-Nagach",
+        "Maktaba": "Maktaba",
+        "Pfefferberg": "Pfefferberg",
+        "Dunkelwald": "Dunkelwald",
+        "Griefental": "Griefental",
+        "Sturmhohen": "Sturmhohen",
+        "Kaltenweiher": "Kaltenweiher",
+        "Teufelsfurt": "Teufelsfurt",
+        "Felssenke": "Felssenke",
+        "Galgenschlucht": "Galgenschlucht",
+        "Todepass": "Todepass",
+        "Steilsturz": "Steilsturz",
+        "Tarmelmann": "Tarmelmann",
+        "Breturia": "Breturia",
+        "Canturia": "Canturia",
+        "Veletrites": "Veletrites",
+        "Frathia": "Frathia",
+        "Mons_Suiry": "Mont Suiry",
+        "Jaims": "Jaims",
+        "Moravaria": "Moravaria",
+        "Cragshire": "Cragshire",
+        "Eldenborough": "Eldenborough",
+        "Cuttingham": "Cuttingham",
+        "Spearth": "Spearth",
+        "Wolvhampton": "Wolvhampton",
+        "FourGallows": "FourGallows",
+        "Mount_Killmore": "Mount Killmore",
+        "RavensCreek": "RavensCreek",
+        "Houndsmoor": "Houndsmoor",
+        "Zaldon_on_Sea": "Zaldon-on-Sea",
+        "Grand_Cap": "Grand Cap",
+        "Northcastle": "Northcastle",
+        "Queenshope": "Queenshope",
+        "Ashcrook": "Ashcrook",
+        "Narcien": "Narcien",
+        "Lavignon": "Lavignon",
+        "Troulope": "Troulope",
+        "Deuxerres": "Deuxerres",
+        "Lombardeaux": "Lombardeaux",
+        "Pisterrac": "Pisterrac",
+        "Varseille": "Varseille",
+        "Haulenois": "Haulenois",
+        "NewCragshire": "NewCragshire",
+        "Okahe": "Okahe",
+        "Rantford": "Rantford",
+        "Desperation": "Desperation",
+        "St_Marque": "St.Marque",
+        "Las_Penas": "Las Penas",
+        "DragonCity": "DragonCity",
+        "Garrincton": "Garrincton",
+        "ElFuego": "ElFuego",
+        "SantaCatalina": "SantaCatalina",
+        "Dorango": "Dorango",
+        "Nevarrone": "Nevarrone",
+        "Embruniez": "Embruniez",
+        "Gabordeaux": "Gabordeaux",
+        "Ydine": "Ydine",
+        "Wenoevre": "Wenoevre",
+        "Havre": "Havre",
+        "Omoien": "Omoien",
+        "Uxrow": "Uxrow",
+        "Gaelford": "Gaelford",
+        "Sud": "Sud",
+        "Kriegreich": "Kriegreich",
+        "Ostrand": "Ostrand",
+        "Langenreich": "Langenreich",
+        "Uceria": "Uceria",
+        "Gorski": "Gorski",
+        "Inashu": "Inashu",
+        "Natsuishu": "Natsuishu",
+        "Chigikawa": "Chigikawa",
+        "Igujima": "Igujima",
+        "Kyushima": "Kyushima",
+        "Igioka": "Igioka",
+        "Igamoto": "Igamoto",
+        "Higematsu": "Higematsu",
+        "Kibakuguchi": "Kibakuguchi",
+        "Hiromaguchi": "Hiromaguchi",
+        "Toimuro": "Toimuro",
+        "CaiChetNui": "CaiChetNui",
+        "SotDamLay": "SotDamLay",
+        "DayDuAo": "DayDuAo",
+        "TrungDoi": "TrungDoi",
+        "KhayHuyenBayGio": "KhayHuyenBayGio",
+        "RungTrai": "RungTrai",
+        "RungChienDau": "RungChienDau",
+        "GiaiCuuBinhMinh": "GiaiCuuBinhMinh",
+        "PhucKich": "PhucKich",
+        "MauMatDat": "MauMatDat",
+        "DongBangSong": "DongBangSong",
+        "OngChuCuoiCung": "OngChuCuoiCung",
+        "Amaryah_City": "Amaryah City",
+        "Khail": "Khail",
+        "Batif": "Batif",
+        "Hafar_Al_Karak": "Hafar Al Karak",
+        "Al_Shadyra": "Al-Shadyra",
+        "Salfah": "Salfah",
+        "Ain_Al_Khansa": "Ain Al-Khansa",
+        "Suqqah": "Suqqah",
+        "Shayhour": "Shayhour",
+        "Kardad": "Kardad",
+        "Qumeira": "Qumeira",
+        "Jandahar": "Jandahar",
+        "Torrinhos": "Torrinhos",
+        "Villabaja": "Villabaja",
+        "Itabarai": "Itabarai",
+        "Bajatai": "Bajatai",
+        "Villariba": "Villariba",
+        "Rio_Roxo": "Rio Roxo",
+        "Sierra_Torrido": "Sierra Torrido",
+        "Santa_Nerea": "Santa Nerea",
+        "La_Huega": "La Huega",
+        "Jamenez": "Jamenez",
+        "Falsa_Cruz": "Falsa Cruz",
+        "Desierto_de_la_Muerte": "Desierto de la Muerte",
+        "Sao_Malvado": "Sao Malvado",
+        "Agadar": "Agadar",
+        "Esan_Ewu": "Esan-Ewu",
+        "Omogba": "Omogba",
+        "Owopele": "Owopele",
+        "Jak": "Jak",
+        "Pala": "Pala",
+        "Kolabourg": "Kolabourg",
+        "Bontaville": "Bontaville",
+        "Botuku": "Botuku",
+        "Kalabuye": "Kalabuye",
+        "Bisoraba": "Bisoraba",
+        "Fort_Buntu": "Fort Buntu",
+        "Nutarniq": "Nutarniq",
+        "Iluliaq": "Iluliaq",
+        "Aurora_s_Dale": "Vallée de l'aurore",
+        "Cold_Bay": "Baie gelée",
+        "Arctic_Horizon": "Horizon arctique",
+        "Tuklavik": "Tuklavik",
+        "Ananevut": "Ananevut",
+        "Qaniit": "Qaniit",
+        "White_Gate": "Porte blanche",
+        "Snowdrifts": "Congères",
+        "Median_Waters": "Eaux centrales",
+        "Frosty_Mountain": "Montagne givrée",
+        "Southern_Valley": "Vallée méridionale",
+        "Ilug": "Ilug",
+        "Chugiak": "Chugiak",
+        "Kesukavut": "Kesukavut",
+        "Adlartok": "Adlartok",
+        "Northern_Passage": "Passage septentrional",
+        "Avalanche": "Avalanche",
+        "Manirak": "Manirak",
+        "Tundra_Rock": "Toundra rocheuse",
+        "Patuktuq": "Patuktuq",
+        "Summit_Ice": "Sommet glacé",
+        "Kilalurak": "Kilalurak",
+        "Nilak": "Nilak",
+        "Chulyin": "Chulyin",
+        "Tattilgat": "Tattilgat",
+        "Atka": "Atka",
+        "Pimniq": "Pimniq",
+        "Anyu": "Anyu",
+        "Glacial_Peak": "Pic glacé",
+        "Nunataq": "Nunataq",
+        "Nanuq": "Nanuq",
+        "Precipice": "Précipice",
+        "Unalaq": "Unalaq",
+        "Neural_Rites": "Rites neuraux",
+        "Frozen_Steppe": "Steppes gelées",
+        "The_Grotto": "La grotte",
+        "Temple_Floe": "Banquise du temple",
+        "Spirit_Plane": "Plaine spirituelle",
+        "Murky_Waters": "Eaux troubles",
+        "Cursed_Current": "Courant maudit",
+        "Coral_Depths": "Profondeurs coralliennes",
+        "Rough_Expanse": "Étendue irrégulière",
+        "Strong_Tide": "Forte marée",
+        "Dark_Abyss": "Abîme ténébreux",
+        "Fresh_Flow": "Courant frais",
+        "Tideless_Deep": "Profondeur sans marée",
+        "Glimmering_Surf": "Ressac scintillant",
+        "Serene_Waves": "Vagues sereines",
+        "Red_Sea": "Mer rouge",
+        "Wondering_Ocean": "Océan émerveillé",
+        "Foam_Ceiling": "Plafond d'écume",
+        "Walled_Gulf": "Golfe fortifié",
+        "Lower_Grotto": "Grotte inférieure",
+        "Silver_Swarms": "Bancs argentés",
+        "Upper_Grotto": "Grotte supérieure",
+        "Rocky_Domain": "Domaine rocheux",
+        "Nautical_Parlay": "Parlement nautique",
+        "Restless_Buoy": "Bouée agitée",
+        "Ripped_Sails": "Voiles déchirées",
+        "Nautilus_Mirage": "Mirage du Nautilus",
+        "Ravenous_Tides": "Marées voraces",
+        "Deep_Dive": "Plongeon en profondeur",
+        "Furious_Storm": "Tempête déchaînée",
+        "Silver_Crest": "Crête en argent",
+        "Grey_Clouds": "Nuages gris",
+        "Translucent_Algae": "Algue translucide",
+        "Treacherous_Surf": "Glissade traître",
+        "Single_Wave": "Vague unique",
+        "Cursed_Lip": "Lèvre maudite",
+        "Coral_Kingdom": "Royaume corallien",
+        "Telescopic_Barrel": "Fût télescopique",
+        "Sponge_Sands": "Sables spongieux",
+        "Seagull_Domain": "Domaine des mouettes",
+        "Tangled_Fins": "Nageoires entremêlées",
+        "Scuba_Bay": "Baie de plongée",
+        "Tide_Ascent": "Marée montante",
+        "Breakwater_Wharf": "Quai de Brise-lames",
+        "Adrift_Liner": "Paquebot à la dérive",
+        "Bermuda_Quay": "Quai des Bermudes",
+        "Sextant_Mast": "Mât de sextant",
+        "Grog_Wash": "Embruns de grog",
+        "R_lyeh_Reef": "Récif de R'lyeh",
+        "Capricorn_Waterway": "Voie navigable Capricorne",
+        "Barnacle_Deck": "Pont de barnacle",
+        "Ahab_s_Tomb": "Tombe d'Ahab",
+        "Galley_Commodore": "Galère Commodore",
+        "Adamastor": "Adamastor",
+        "Deadeye_Admiral": "Amiral Œil de mort",
+        "Monkey_s_Fist": "Poing de singe",
+        "Dagon_s_Dagger": "Dague de Dragon",
+        "Sunken_Leviathan": "Léviathan englouti",
+        "Raging_Tides": "Marées déchaînées",
+        "Buccaneer_Plateau": "Plateau du boucanier",
+        "Craggy_Cay": "Ilot escarpé",
+        "Behemoth": "Béhémoth",
+        "Privateer_Helm": "Gouvernail de corsaire",
+        "Medusa_Cove": "Crique de la méduse",
+        "Man_O_War": "Méduse",
+        "Nemo_s_Dock": "Dock de Nemo",
+        "Anchorage_Ruin": "Ruines d'ancrage",
+        "Ahoy_Alee": "Ahoy Alee",
+        "Ursula_s_Valley": "Vallée d'Ursula",
+        "Dungbie_Trough": "Creux du sillon",
+        "Idlers_Range": "Tanière des matelots",
+        "Wherry_Gap": "Brèche des voiles à corne",
+        "Nock_s_Turn": "Virage des voiles",
+        "Scuttle_Ridge": "Crête des coques percées",
+        "Ghost_Trench": "Tranchée fantôme",
+        "Scurvy_Atoll": "Vil atoll",
+        "Capsize_Lagoon": "Lagon chaviré",
+        "Undertow_Bank": "Rive du contre-courant",
+        "Neptune_s_Galleon": "Galion de Neptune",
+        "Seafarer_s_Current": "Courant du marin",
+        "Blackwater_Cape": "Cap des eaux noires",
+        "Leviathan_Wreck": "Épave du Léviathan",
+        "Typhoon_Peninsula": "Péninsule du typhon",
+        "Corsair_s_Skerry": "Skerry du corsaire",
+        "Mutiny_Canyon": "Gorge de la mutinerie"
+      },
+      "bonus": {
+        "coin": {
+          "name": "Pièces d'or"
+        },
+        "supply": {
+          "name": "Marchandises"
+        },
+        "good": {
+          "name": "Ressources"
+        },
+        "special_good": {
+          "name": "Ressources spécials"
+        },
+        "good_bonus": {
+          "name": "Dépôt de ressources"
+        },
+        "expansion": {
+          "name": "Expansion"
+        },
+        "medal": {
+          "name": "Médailles"
+        },
+        "diamond": {
+          "name": "diamant"
+        },
+        "pvp_tower": {
+          "name": "Tour JcJ"
+        },
+        "blueprint": {
+          "name": "Plan"
+        },
+        "military_boost": {
+          "name": "Amélioration militaire",
+          "gb_description": "Augmente le bonus d'attaque et de défense pour votre armée d'attaque, s'ajoute à celui des bâtiments."
+        },
+        "fierce_resistance": {
+          "name": "Résistance féroce",
+          "gb_description": "Augmente le bonus d'attaque et de défense pour votre armée de défense et augmente le bonus de réserve de soutien, s'ajoute à celui des bâtiments."
+        },
+        "coin_boost": {
+          "name": "Amélioration relative aux pièces",
+          "gb_description": "Augmente les revenus de vos habitations en complément de votre niveau de satisfaction et des motivations reçues."
+        },
+        "supply_boost": {
+          "name": "Amélioration relative aux marchandises",
+          "gb_description": "Augmente la production de vos bâtiments de marchandises en complément de votre niveau de satisfaction et des motivations reçues."
+        },
+        "good_production": {
+          "name": "Production de ressources",
+          "gb_description": "Produit toutes les 24 heures une quantité de ressources de l'âge dans lequel vous vous trouvez. À partir de l'Ère Moderne, produit le double de ressources non raffinées."
+        },
+        "medal_production": {
+          "name": "Production de médailles",
+          "gb_description": "Produit toutes les 24 heures une quantité de médailles."
+        },
+        "research": {
+          "name": "Recherches",
+          "gb_description": "Produit toutes les 24 heures une quantité de points Forge."
+        },
+        "coin_production": {
+          "name": "Production de pièces",
+          "gb_description": "Produit toutes les 24 heures une quantité de pièces d'or."
+        },
+        "supply_production": {
+          "name": "Production de marchandises",
+          "gb_description": "Produit toutes les 24 heures une quantité de marchandises."
+        },
+        "population": {
+          "name": "Population",
+          "gb_description": "Ajoute de façon permanente un bonus de population."
+        },
+        "happiness": {
+          "name": "Satisfaction",
+          "gb_description": "Ajoute de façon permanente un bonus de satisfaction."
+        },
+        "quest_reward_boost": {
+          "name": "Amélioration relative aux récompenses de quête",
+          "gb_description": "Augmente uniquement vos gains de pièces d'or, marchandises, ressources, médailles ou diamants reçus lors d'une quête."
+        },
+        "penal_unit": {
+          "name": "Production d'unités",
+          "gb_description": "Produit toutes les 24 heures des unités sans rattachement choisies au hasard parmi toutes celles que vous pouvez produire dans votre cité."
+        },
+        "guild_goods": {
+          "name": "Ressources de la guilde",
+          "gb_description": "Produit toutes les 24 heures une quantité de ressources de l'âge dans lequel vous vous trouvez et qui va directement dans la trésorerie de guilde."
+        },
+        "support_pool_bonus": {
+          "name": "Bonus de réserve de soutien",
+          "gb_description": "Augmente le bonus de réserve de soutien de votre guilde, s'ajoute à celui des bâtiments."
+        },
+        "aid_goods": {
+          "name": "Ressources d'entraide",
+          "gb_description": "Lorsque vous aidez un bâtiment (cela fonctionne aussi avec le polissage/motivation manuel), vous recevez une ressource aléatoire de l'âge du bâtiment aidé."
+        },
+        "plunder_goods": {
+          "name": "Ressources de pillage",
+          "gb_description": "Pour les trois premiers voisins pillés, vous recevez des ressources aléatoires de l'âge du bâtiment pillé."
+        },
+        "contribution_boost": {
+          "name": "Bonus de contribution",
+          "gb_description": "Augmente le nombre de points Forge, de médailles et de plans reçus en tant que récompense de contribution."
+        },
+        "aid_blueprints": {
+          "name": "Plans d'entraide",
+          "gb_description": "Augmente la chance d'obtenir un plan lorsque vous aidez un autre joueur (les polir/motiver manuellement compte au même titre qu'aider). Par exemple avec un bonus de 100% vous doublez votre chance de trouver un plan."
+        },
+        "relic_hunt": {
+          "name": "Chasse à la relique",
+          "gb_description": "Donne un pourcentage de chance de faire apparaître une relique cachée sur la carte d'expédition de guilde après avoir résolu une rencontre. Les reliques valent le coup et peuvent avoir 3 types de rareté différents. Chaque niveau augmente la chance de trouver une relique, mais augmente aussi la chance de trouver une relique inhabituelle ou rare par rapport à une relique commune."
+        },
+        "critical_hit": {
+          "name": "Coup critique",
+          "gb_description": "Lorsqu'une unité attaque une autre unité du même âge, elle a une chance de faire 1,5 fois les dégâts attendus. Contre l'armure réactive, le coup critique fera aussi 1,5 fois plus de dégâts qu'un coup normal (donc si le dégât espéré est de 4-4, un coup critique fera un dégât de 6-6). Contre les voyous, ce bonus ne fonctionne pas au départ (il en va de même pour toutes les unités sans âge), mais dès que l'unité se transforme, elle peut utiliser/être affectée par ce bonus. Un coup critique faisant au moins 11 de dégâts va tuer l'unité en un seul coup, même avec le bonus moral. Ce bonus s'applique sur toutes les armées d'attaque ainsi que sur votre armée de défense en JcJ : le coup critique n'aura pas lieu lors des représailles de l'unité."
+        },
+        "helping_hands": {
+          "name": "Aide entre membres",
+          "gb_description": "Vous donne une chance d'obtenir une richesse au hasard lorsque vous aidez un autre joueur (les polir/motiver manuellement compte au même titre qu'aider). Vous pouvez recevoir des ressources de votre âge actuel, des marchandises, des pièces, des médailles et même des diamants."
+        },
+        "plunder_and_pillage": {
+          "name": "Pillage et saccage",
+          "gb_description": "Vous donne une chance d'obtenir le double de ce que vous pillez dans la ville d'un voisin après avoir vaincu ses défenses. Cela concerne aussi bien les points Forge que les points de prestige."
+        },
+        "first_strike": {
+          "name": "Première frappe",
+          "gb_description": "Vous donne une chance qu'au début d'un combat, une unité de l'armée de défense ennemie soit tuée immédiatement. Ne s'applique qu'à la première vague d'un combat."
+        },
+        "double_collection": {
+          "name": "Collecte doublée",
+          "gb_description": "Pour les %s premiers bâtiments que vous collectez, vous avez une chance de doubler les richesses obtenues. Ne concerne pas les bâtiments militaires et grands monuments. S'actualise à chaque collecte du bâtiment."
+        }
       }
     },
     "utils": {
@@ -508,6 +913,7 @@
         "p1": "Saisissez les différentes valeurs. Le résultat se met à jour automatiquement.",
         "p2_html": "<strong>Note</strong> : Si la mise à jour ne se fait pas automatiquement, cliquez sur « $t(utils.btn_calculate) »."
       },
+      "choose_age": "Choisissez un Âge",
       "permalink": "Lien permanent",
       "Yes": "Oui",
       "No": "Non",
@@ -519,6 +925,9 @@
       "To": "À (max {{max}})",
       "Prefix": "Préfixe",
       "Suffix": "Suffixe",
+      "Rewards": "Récompenses",
+      "Conquered": "Conquis",
+      "Total": "Total",
       "moment": {
         "year": "{{count}} an",
         "year_plural": "{{count, number}} ans",

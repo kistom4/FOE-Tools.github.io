@@ -38,6 +38,10 @@
       "trade": {
         "title": "$t(routes.trade.hero.title)",
         "subtitle": "$t(routes.trade.hero.subtitle)"
+      },
+      "campaign_cost": {
+        "title": "$t(routes.campaign_cost.hero.title)",
+        "subtitle": "$t(routes.campaign_cost.hero.subtitle)"
       }
     },
     "statistics": {

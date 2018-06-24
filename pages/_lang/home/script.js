@@ -37,6 +37,11 @@ export default {
                 title: "tools.trade.title",
                 subtitle: "tools.trade.subtitle",
                 link: this.$store.state.routes.trade.link
+              },
+              {
+                title: "tools.campaign_cost.title",
+                subtitle: "tools.campaign_cost.subtitle",
+                link: this.$store.state.routes.campaign_cost.link
               }
             ],
             2,
