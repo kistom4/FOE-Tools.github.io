@@ -192,7 +192,9 @@ const defaultRoutes = [
   { route: "/secure-position", dynamic: [] },
   { route: "/cf-calculator", dynamic: [] },
   { route: "/gb-statistics", dynamic: [] },
-  { route: "/gb-forecast-cost", dynamic: [] }
+  { route: "/gb-forecast-cost", dynamic: [] },
+  { route: "/trade", dynamic: [] },
+  { route: "/campaign-cost", dynamic: [] }
 ];
 
 module.exports = {

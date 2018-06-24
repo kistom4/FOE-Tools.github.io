@@ -15,6 +15,10 @@
       "changelog": "Changelog"
     },
     "components": {
+      "campaign_cost": {
+        "title": "$t(routes.campaign_cost.hero.title)",
+        "choose_province": "Choose a province"
+      },
       "cf_calculator": {
         "block_cfc": {
           "title": "$t(routes.cf_calculator.hero.title)",
@@ -28,7 +32,7 @@
           "second_rq": "2nd RQ Giver ?",
           "supplies_gathered": "Supplies Gathered",
           "table_reward": {
-            "title": "Rewards",
+            "title": "$t(utils.Rewards)",
             "thead": {
               "th1": "BP's",
               "th2": "Medals",
@@ -243,6 +247,13 @@
           "p2_html": "The development is done in Node.js using $t(common:links.framework). The style is made using $t(common:links.style).",
           "p3_html": "An idea of functionality? A problem ? Feel free to create an issue on GitHub or send me an email (in English or in French) at $t(common:links.contact_foe_tools).",
           "message_info_github_issue": "<b>Note:</b> Regarding issues on GitHub, please make sure to write them in English to facilitate understanding for the greatest number."
+        }
+      },
+      "campaign_cost": {
+        "title": "$t(routes.campaign_cost.hero.title) | $t(common:site_title)",
+        "hero": {
+          "title": "Campaign cost",
+          "subtitle": "This tool predicts the cost of a sector or province."
         }
       },
       "cf_calculator": {
@@ -754,6 +765,138 @@
         "Typhoon_Peninsula": "Typhoon Peninsula",
         "Corsair_s_Skerry": "Corsair's Skerry",
         "Mutiny_Canyon": "Mutiny Canyon"
+      },
+      "bonus": {
+        "coin": {
+          "name": "Coin"
+        },
+        "supply": {
+          "name": "Supply"
+        },
+        "good": {
+          "name": "Good"
+        },
+        "special_good": {
+          "name": "Special Goods"
+        },
+        "good_bonus": {
+          "name": "Production bonus"
+        },
+        "expansion": {
+          "name": "Expansion"
+        },
+        "medal": {
+          "name": "Medal"
+        },
+        "diamond": {
+          "name": "Diamond"
+        },
+        "pvp_tower": {
+          "name": "PvP Tower"
+        },
+        "blueprint": {
+          "name": "Blueprint"
+        },
+        "military_boost": {
+          "name": "Military boost",
+          "gb_description": "Raises the attack and defense bonus for units in attacking army, adds up with every building."
+        },
+        "fierce_resistance": {
+          "name": "Fierce resistance",
+          "gb_description": "Raises the attack and defense bonus for units in defending army and increases support pool bonus, adds up with every building."
+        },
+        "coin_boost": {
+          "name": "Coin boost",
+          "gb_description": "Raises the outcome of your houses up to 90 times with each collect, adds up with productivity and motivation."
+        },
+        "supply_boost": {
+          "name": "Supply boost",
+          "gb_description": "Raises the outcome of your production buildings, adds up with productivity, motivation, and other supply boosts."
+        },
+        "good_production": {
+          "name": "Good Production",
+          "gb_description": "Produces a certain amount of goods from your current age every 24 hours. From Modern Era on, produces double the amount in unrefined goods."
+        },
+        "medal_production": {
+          "name": "Medal production",
+          "gb_description": "Produces a certain amount of medals every 24 hours."
+        },
+        "research": {
+          "name": "Research",
+          "gb_description": "Produces a small amount of forge points every 24 hours."
+        },
+        "coin_production": {
+          "name": "Coin production",
+          "gb_description": "Produces a certain amount of coins every 24 hours."
+        },
+        "supply_production": {
+          "name": "Supply production",
+          "gb_description": "Produces a certain amount of supplies every 24 hours."
+        },
+        "population": {
+          "name": "Population",
+          "gb_description": "Permanent population bonus."
+        },
+        "happiness": {
+          "name": "Happiness",
+          "gb_description": "Permanent happiness bonus."
+        },
+        "quest_reward_boost": {
+          "name": "Quest reward boost",
+          "gb_description": "Raises only your coins, supplies, goods, medals, or diamonds from quest rewards."
+        },
+        "penal_unit": {
+          "name": "Penal Unit",
+          "gb_description": "Recruits unattached units every 24 hours, randomly chosen from any military building in your city."
+        },
+        "guild_goods": {
+          "name": "Guild Goods",
+          "gb_description": "Produces current era goods which go straight to the Guild Treasury."
+        },
+        "support_pool_bonus": {
+          "name": "Support Pool Bonus",
+          "gb_description": "Raises your guild's support pool bonus, adds up with every building."
+        },
+        "aid_goods": {
+          "name": "Aid Goods",
+          "gb_description": "Produces 1 random good when aiding another player's city (manually motivating/polishing them also counts as aiding). The age of the random good corresponds to the age of the building you are aiding."
+        },
+        "plunder_goods": {
+          "name": "Plunder Goods",
+          "gb_description": "Produces random goods for up to 3 neighbors with each collect when plundering another player's city. The age of the random goods corresponds to the age of the building you are plundering."
+        },
+        "contribution_boost": {
+          "name": "Contribution Boost",
+          "gb_description": "Raises the Forge Points, Medals, and Blueprints you receive from donation rewards."
+        },
+        "aid_blueprints": {
+          "name": "Aid Blueprints",
+          "gb_description": "Raises the chance of obtaining a blueprint when aiding another player's city (manually motivating/polishing them also counts as aiding). I.E. Having a 100% bonus will double your chance of finding a blueprint."
+        },
+        "relic_hunt": {
+          "name": "Relic Hunt",
+          "gb_description": "This ability gives you the possibility to receive Relics on the Guild Expedition map whenever you successfully solve an encounter. Relics are very valuable and can appear in 3 different rarities. Each level increases the chance to find a Relic but also the odds to find an uncommon or rare Relic, as opposed to a common one."
+        },
+        "critical_hit": {
+          "name": "Critical Hit",
+          "gb_description": "Gives all units the chance of dealing 1.5 times the expected damage when attacking units of the same era. Critical hit also works against Reactive Armor (if expected damage is 4-4, a critical hit will do 6-6 damage). Rogues (and other no-age units) are not affected/cannot use this ability until they transform into another unit. A critical hit doing at least 11 damage will one-hit kill any unit, even with the morale bonus. This bonus applies to all attacking armies plus your defending army in PvP. The critical hit will not happen when a unit is retaliating."
+        },
+        "helping_hands": {
+          "name": "Helping Hands",
+          "gb_description": "Gives you a certain chance to get a random resource when aiding another player's city (manually motivating/polishing them also counts as aiding). You can recieve goods from your current age, supplies, coins, medals, or even Diamonds."
+        },
+        "plunder_and_pillage": {
+          "name": "Plunder and Pillage",
+          "gb_description": "Gives you a certain chance to get double the resources when you plunder a neighbor's city after successfully defeating their defenses. It will double all resources that you can plunder, including Forge Points and Guild Power."
+        },
+        "first_strike": {
+          "name": "First Strike",
+          "gb_description": "Gives you a chance that at the start of the next several fights, a unit from the enemy's defense army will be killed immediately. This only applies to the first wave of a battle."
+        },
+        "double_collection": {
+          "name": "Double Collection",
+          "gb_description": "Gives you a chance to get double the resources in the the first buildings collected. Excludes military and great buildings. Refreshes with each collection of this building."
+        }
       }
     },
     "utils": {
@@ -766,6 +909,7 @@
         "p1": "Enter the different values. The result is updated automatically.",
         "p2_html": "<strong>Note</strong>: If the update is not done automatically, click on \"$t(utils.btn_calculate)\"."
       },
+      "choose_age": "Choose an Age",
       "permalink": "Permalink",
       "Yes": "Yes",
       "No": "No",
@@ -777,6 +921,9 @@
       "To": "To (max {{max}})",
       "Prefix": "Prefix",
       "Suffix": "Suffix",
+      "Rewards": "Rewards",
+      "Conquered": "Conquered",
+      "Total": "Total",
       "moment": {
         "year": "{{count}} year",
         "year_plural": "{{count, number}} years",
