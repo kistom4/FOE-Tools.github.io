@@ -136,6 +136,34 @@ const modifyHtml = (page, locale) => {
   node.content = text;
   window.document.querySelector("head").appendChild(node);
 
+  // Set alternatives lang
+  for (let supportedLocale of supportedLocales) {
+    if (supportedLocale === locale) {
+      continue;
+    }
+    node = window.document.createElement("link");
+    node.rel = "alternate";
+    node.hreflang = supportedLocale;
+    if (locale === defaultLocale) {
+      node.href = `/${supportedLocale}${page.route}`;
+    } else {
+      if (supportedLocale === defaultLocale) {
+        if (page.route === `/${locale}/`) {
+          node.href = "/";
+        } else {
+          node.href = page.route.substr(locale.length + 1);
+        }
+      } else {
+        if (page.route === `/${locale}/`) {
+          node.href = `/${supportedLocale}/`;
+        } else {
+          node.href = `/${supportedLocale}${page.route.substr(locale.length + 1)}`;
+        }
+      }
+    }
+    window.document.querySelector("head").appendChild(node);
+  }
+
   return window.document.querySelector("html").outerHTML;
 };
 
@@ -164,7 +192,9 @@ const defaultRoutes = [
   { route: "/secure-position", dynamic: [] },
   { route: "/cf-calculator", dynamic: [] },
   { route: "/gb-statistics", dynamic: [] },
-  { route: "/gb-forecast-cost", dynamic: [] }
+  { route: "/gb-forecast-cost", dynamic: [] },
+  { route: "/trade", dynamic: [] },
+  { route: "/campaign-cost", dynamic: [] }
 ];
 
 module.exports = {

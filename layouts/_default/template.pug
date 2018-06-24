@@ -27,6 +27,12 @@
               nuxt-link.navbar-item(v-bind:class="{'is-active': $store.state.currentLocation === navbarLinks.cf_calculator.key}"
               v-bind:to="$i18n.path(navbarLinks.cf_calculator.link)" exact) {{$t('main_menu.' + navbarLinks.cf_calculator.key)}}
 
+              nuxt-link.navbar-item(v-bind:class="{'is-active': $store.state.currentLocation === navbarLinks.trade.key}"
+              v-bind:to="$i18n.path(navbarLinks.trade.link)" exact) {{$t('main_menu.' + navbarLinks.trade.key)}}
+
+              nuxt-link.navbar-item(v-bind:class="{'is-active': $store.state.currentLocation === navbarLinks.campaign_cost.key}"
+              v-bind:to="$i18n.path(navbarLinks.campaign_cost.link)" exact) {{$t('main_menu.' + navbarLinks.campaign_cost.key)}}
+
           div.navbar-item.has-dropdown.is-hoverable
             nuxt-link.navbar-link(v-bind:to="$i18n.path('#statistics')" exact) {{$t('utils.content.statistics')}}
 

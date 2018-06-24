@@ -6,7 +6,8 @@
       "secure_position": "$t(routes.secure_position.hero.title)",
       "cf_calculator": "$t(routes.cf_calculator.hero.title)",
       "gb_statistics": "$t(routes.gb_statistics.hero.title)",
-      "gb_forecast_cost": "$t(routes.gb_forecast_cost.hero.title)"
+      "gb_forecast_cost": "$t(routes.gb_forecast_cost.hero.title)",
+      "trade": "$t(routes.trade.hero.title)"
     },
     "footer_menu": {
       "about": "About",
@@ -14,6 +15,10 @@
       "changelog": "Changelog"
     },
     "components": {
+      "campaign_cost": {
+        "title": "$t(routes.campaign_cost.hero.title)",
+        "choose_province": "Choose a province"
+      },
       "cf_calculator": {
         "block_cfc": {
           "title": "$t(routes.cf_calculator.hero.title)",
@@ -27,7 +32,7 @@
           "second_rq": "2nd RQ Giver ?",
           "supplies_gathered": "Supplies Gathered",
           "table_reward": {
-            "title": "Rewards",
+            "title": "$t(utils.Rewards)",
             "thead": {
               "th1": "BP's",
               "th2": "Medals",
@@ -147,6 +152,9 @@
           "fp_to_complete_level_plural": "Number of FPs remaining to complete the level: {{count, number}}",
           "your_arc_bonus": "Your Arc bonus",
           "fp_target_reward": "FP of the targeted place",
+          "target_reward": "Targeted place",
+          "place": "{{place}} ({{count, number}} FP)",
+          "place_plural": "{{place}} ({{count, number}} FPs)",
           "result": {
             "error": "One or more values are not valid.",
             "already_blocked": "Your place is blocked.",
@@ -166,6 +174,21 @@
           "unknown": "unknown"
         }
       },
+      "simple_trade": {
+        "title": "Table version",
+        "table": {
+          "thead": {
+            "th1": "Age",
+            "th2": "Goods",
+            "th3": "$t(components.trade.label.i_want)",
+            "th4": "Reslut",
+            "split": "Split",
+            "ratio": "Ratio"
+          }
+        },
+        "slpit": "Split the offers ?",
+        "show_ratio": "Display ratio"
+      },
       "site_layout": {
         "hero": {
           "title": "$t(common:site_title)",
@@ -179,6 +202,24 @@
         "footer": {
           "license_html": "Source code under $t(common:links.mit) license",
           "version": "Version {{version}}"
+        }
+      },
+      "trade": {
+        "title": "Form version",
+        "label": {
+          "i_have": "I have",
+          "i_want": "I want",
+          "amount": "Amount"
+        },
+        "split_value": "Maximum size of an offer (max {{count}})",
+        "split_message": {
+          "msg": "{{valueFrom}} {{ageFrom}} for {{valueTo}} {{ageTo}}",
+          "common": "{{count}} × ($t(components.trade.split_message.msg, { 'valueFrom': '{{valueFrom}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueTo}}', 'ageTo': '{{ageTo}}' }))",
+          "multi": "$t(components.trade.split_message.common, { 'valueFrom': '{{valueFrom}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueTo}}', 'ageTo': '{{ageTo}}' }) and $t(components.trade.split_message.common, { 'count': 1, 'valueFrom': '{{valueFromSingle}}', 'ageFrom': '{{ageFrom}}', 'valueTo': '{{valueToSingle}}', 'ageTo': '{{ageTo}}' })"
+        },
+        "message": {
+          "result": "For {{to}} {{ageTo}}, you need {{from}} {{ageFrom}} with offers up to {{count}}:",
+          "total": "(total: {{amount}} {{key}})"
         }
       }
     },
@@ -206,6 +247,13 @@
           "p2_html": "The development is done in Node.js using $t(common:links.framework). The style is made using $t(common:links.style).",
           "p3_html": "An idea of functionality? A problem ? Feel free to create an issue on GitHub or send me an email (in English or in French) at $t(common:links.contact_foe_tools).",
           "message_info_github_issue": "<b>Note:</b> Regarding issues on GitHub, please make sure to write them in English to facilitate understanding for the greatest number."
+        }
+      },
+      "campaign_cost": {
+        "title": "$t(routes.campaign_cost.hero.title) | $t(common:site_title)",
+        "hero": {
+          "title": "Campaign cost",
+          "subtitle": "This tool predicts the cost of a sector or province."
         }
       },
       "cf_calculator": {
@@ -281,6 +329,23 @@
           "subtitle": "This tool calculates the number of FP that a player must put on a GB to block his place."
         }
       },
+      "trade": {
+        "title": "$t(routes.trade.hero.title) | $t(common:site_title)",
+        "hero": {
+          "title": "Trade",
+          "subtitle": "This tool facilitates your business by offering you the best rates according to your way of trading."
+        },
+        "tab": {
+          "trade_2_1": {
+            "title": "2:1",
+            "message": "Simple trade, ratio 1 for 1 with resources of the same age and 1 for 2 in order to get resources with one gap age."
+          },
+          "fair_trade": {
+            "title": "Fair Trade",
+            "message": "This type of trade takes into account the cost of manufacturing a good (coins and resources) to determine the rates between the goods."
+          }
+        }
+      },
       "error": {
         "404": {
           "title": "Page not found | $t(common:site_title)",
@@ -307,6 +372,24 @@
         "TheFuture": "The Future",
         "ArcticFuture": "Arctic Future",
         "OceanicFuture": "Oceanic Future"
+      },
+      "age_short": {
+        "NoAge": "NA",
+        "BronzeAge": "BA",
+        "IronAge": "IA",
+        "EarlyMiddleAges": "EMA",
+        "HighMiddleAges": "HMA",
+        "LateMiddleAges": "LMA",
+        "ColonialAge": "CA",
+        "IndustrialAge": "InA",
+        "ProgressiveEra": "PE",
+        "ModernEra": "ME",
+        "PostmodernEra": "PME",
+        "ContemporaryEra": "CE",
+        "Tomorrow": "TE",
+        "TheFuture": "TF",
+        "ArcticFuture": "AF",
+        "OceanicFuture": "OF"
       },
       "gb": {
         "Observatory": "Observatory",
@@ -344,6 +427,476 @@
         "Atlantis_Museum": "Atlantis Museum",
         "The_Kraken": "The Kraken",
         "The_Blue_Galaxy": "The Blue Galaxy"
+      },
+      "goods": {
+        "dye": "Dye",
+        "lumber": "Lumber",
+        "marble": "Marble",
+        "stone": "Stone",
+        "wine": "Wine",
+        "cloth": "Cloth",
+        "ebony": "Ebony",
+        "iron": "Iron",
+        "jewelry": "Jewelry",
+        "limestone": "Limestone",
+        "alabaster": "Alabaster",
+        "copper": "Copper",
+        "gold": "Gold",
+        "granite": "Granite",
+        "honey": "Honey",
+        "brick": "Brick",
+        "dried_herbs": "Dried Herbs",
+        "glass": "Glass",
+        "rope": "Rope",
+        "salt": "Salt",
+        "basalt": "Basalt",
+        "brass": "Brass",
+        "gunpowder": "Gunpowder",
+        "silk": "Silk",
+        "talc_powder": "Talc Powder",
+        "coffee": "Coffee",
+        "porcelain": "Porcelain",
+        "paper": "Paper",
+        "tar": "Tar",
+        "wire": "Wire",
+        "coke": "Coke",
+        "fertilizer": "Fertilizer",
+        "rubber": "Rubber",
+        "textiles": "Textiles",
+        "whale_oil": "Whale Oil",
+        "asbestos": "Asbestos",
+        "explosives": "Explosives",
+        "gasoline": "Gasoline",
+        "machine_parts": "Machine Parts",
+        "tinplate": "Tinplate",
+        "convenience_food": "Convenience Food",
+        "ferroconcrete": "Ferroconcrete",
+        "flavorants": "Flavorants",
+        "luxury_materials": "Luxury Materials",
+        "packaging": "Packaging",
+        "genome_data": "Genome Data",
+        "industrial_filters": "Industrial Filters",
+        "renewable_resources": "Renewable Resources",
+        "semiconductors": "Semiconductors",
+        "steel": "Steel",
+        "bionics_data": "Bionics Data",
+        "electromagnets": "Electromagnets",
+        "gas": "Gas",
+        "plastics": "Plastics",
+        "robots": "Robots",
+        "nutrition_research": "Nutrition Research",
+        "papercrete": "Papercrete",
+        "preservatives": "Preservatives",
+        "smart_materials": "Smart Materials",
+        "translucent_concrete": "Translucent Concrete",
+        "algae": "Algae",
+        "biogeochemical_data": "Biogeochemical Data",
+        "nanoparticles": "Nanoparticles",
+        "purified_water": "Purified Water",
+        "superconductors": "Superconductors",
+        "ai_data": "A.I. Data",
+        "bioplastics": "Bioplastics",
+        "nanowire": "Nanowire",
+        "paper_batteries": "Paper Batteries",
+        "transester_gas": "Transester Gas",
+        "artificial_scales": "Artificial Scales",
+        "biolight": "Biolight",
+        "corals": "Corals",
+        "pearls": "Pearls",
+        "plankton": "Plankton",
+        "promethium": "Promethium",
+        "orichalcum": "Orichalcum"
+      },
+      "province": {
+        "Dunarsund": "Dunarsund",
+        "Fel_Dranghyr": "Fel Dranghyr",
+        "Tyr": "Tyr",
+        "Hymir": "Hymir",
+        "Badakus": "Badakus",
+        "Paruuch": "Paruuch",
+        "Ruug": "Ruug",
+        "Karchagu": "Karchagu",
+        "East_Nagach": "East-Nagach",
+        "West_Nagach": "West-Nagach",
+        "Maktaba": "Maktaba",
+        "Pfefferberg": "Pfefferberg",
+        "Dunkelwald": "Dunkelwald",
+        "Griefental": "Griefental",
+        "Sturmhohen": "Sturmhohen",
+        "Kaltenweiher": "Kaltenweiher",
+        "Teufelsfurt": "Teufelsfurt",
+        "Felssenke": "Felssenke",
+        "Galgenschlucht": "Galgenschlucht",
+        "Todepass": "Todepass",
+        "Steilsturz": "Steilsturz",
+        "Tarmelmann": "Tarmelmann",
+        "Breturia": "Breturia",
+        "Canturia": "Canturia",
+        "Veletrites": "Veletrites",
+        "Frathia": "Frathia",
+        "Mons_Suiry": "Mons Suiry",
+        "Jaims": "Jaims",
+        "Moravaria": "Moravaria",
+        "Cragshire": "Cragshire",
+        "Eldenborough": "Eldenborough",
+        "Cuttingham": "Cuttingham",
+        "Spearth": "Spearth",
+        "Wolvhampton": "Wolvhampton",
+        "FourGallows": "FourGallows",
+        "Mount_Killmore": "Mount Killmore",
+        "RavensCreek": "RavensCreek",
+        "Houndsmoor": "Houndsmoor",
+        "Zaldon_on_Sea": "Zaldon-on-Sea",
+        "Grand_Cap": "Grand Cap",
+        "Northcastle": "Northcastle",
+        "Queenshope": "Queenshope",
+        "Ashcrook": "Ashcrook",
+        "Narcien": "Narcien",
+        "Lavignon": "Lavignon",
+        "Troulope": "Troulope",
+        "Deuxerres": "Deuxerres",
+        "Lombardeaux": "Lombardeaux",
+        "Pisterrac": "Pisterrac",
+        "Varseille": "Varseille",
+        "Haulenois": "Haulenois",
+        "NewCragshire": "NewCragshire",
+        "Okahe": "Okahe",
+        "Rantford": "Rantford",
+        "Desperation": "Desperation",
+        "St_Marque": "St.Marque",
+        "Las_Penas": "Las Penas",
+        "DragonCity": "DragonCity",
+        "Garrincton": "Garrincton",
+        "ElFuego": "ElFuego",
+        "SantaCatalina": "SantaCatalina",
+        "Dorango": "Dorango",
+        "Nevarrone": "Nevarrone",
+        "Embruniez": "Embruniez",
+        "Gabordeaux": "Gabordeaux",
+        "Ydine": "Ydine",
+        "Wenoevre": "Wenoevre",
+        "Havre": "Havre",
+        "Omoien": "Omoien",
+        "Uxrow": "Uxrow",
+        "Gaelford": "Gaelford",
+        "Sud": "Sud",
+        "Kriegreich": "Kriegreich",
+        "Ostrand": "Ostrand",
+        "Langenreich": "Langenreich",
+        "Uceria": "Uceria",
+        "Gorski": "Gorski",
+        "Inashu": "Inashu",
+        "Natsuishu": "Natsuishu",
+        "Chigikawa": "Chigikawa",
+        "Igujima": "Igujima",
+        "Kyushima": "Kyushima",
+        "Igioka": "Igioka",
+        "Igamoto": "Igamoto",
+        "Higematsu": "Higematsu",
+        "Kibakuguchi": "Kibakuguchi",
+        "Hiromaguchi": "Hiromaguchi",
+        "Toimuro": "Toimuro",
+        "CaiChetNui": "CaiChetNui",
+        "SotDamLay": "SotDamLay",
+        "DayDuAo": "DayDuAo",
+        "TrungDoi": "TrungDoi",
+        "KhayHuyenBayGio": "KhayHuyenBayGio",
+        "RungTrai": "RungTrai",
+        "RungChienDau": "RungChienDau",
+        "GiaiCuuBinhMinh": "GiaiCuuBinhMinh",
+        "PhucKich": "PhucKich",
+        "MauMatDat": "MauMatDat",
+        "DongBangSong": "DongBangSong",
+        "OngChuCuoiCung": "OngChuCuoiCung",
+        "Amaryah_City": "Amaryah City",
+        "Khail": "Khail",
+        "Batif": "Batif",
+        "Hafar_Al_Karak": "Hafar Al Karak",
+        "Al_Shadyra": "Al-Shadyra",
+        "Salfah": "Salfah",
+        "Ain_Al_Khansa": "Ain Al-Khansa",
+        "Suqqah": "Suqqah",
+        "Shayhour": "Shayhour",
+        "Kardad": "Kardad",
+        "Qumeira": "Qumeira",
+        "Jandahar": "Jandahar",
+        "Torrinhos": "Torrinhos",
+        "Villabaja": "Villabaja",
+        "Itabarai": "Itabarai",
+        "Bajatai": "Bajatai",
+        "Villariba": "Villariba",
+        "Rio_Roxo": "Rio Roxo",
+        "Sierra_Torrido": "Sierra Torrido",
+        "Santa_Nerea": "Santa Nerea",
+        "La_Huega": "La Huega",
+        "Jamenez": "Jamenez",
+        "Falsa_Cruz": "Falsa Cruz",
+        "Desierto_de_la_Muerte": "Desierto de la Muerte",
+        "Sao_Malvado": "Sao Malvado",
+        "Agadar": "Agadar",
+        "Esan_Ewu": "Esan-Ewu",
+        "Omogba": "Omogba",
+        "Owopele": "Owopele",
+        "Jak": "Jak",
+        "Pala": "Pala",
+        "Kolabourg": "Kolabourg",
+        "Bontaville": "Bontaville",
+        "Botuku": "Botuku",
+        "Kalabuye": "Kalabuye",
+        "Bisoraba": "Bisoraba",
+        "Fort_Buntu": "Fort Buntu",
+        "Nutarniq": "Nutarniq",
+        "Iluliaq": "Iluliaq",
+        "Aurora_s_Dale": "Aurora's Dale",
+        "Cold_Bay": "Cold Bay",
+        "Arctic_Horizon": "Arctic Horizon",
+        "Tuklavik": "Tuklavik",
+        "Ananevut": "Ananevut",
+        "Qaniit": "Qaniit",
+        "White_Gate": "White Gate",
+        "Snowdrifts": "Snowdrifts",
+        "Median_Waters": "Median Waters",
+        "Frosty_Mountain": "Frosty Mountain",
+        "Southern_Valley": "Southern Valley",
+        "Ilug": "Ilug",
+        "Chugiak": "Chugiak",
+        "Kesukavut": "Kesukavut",
+        "Adlartok": "Adlartok",
+        "Northern_Passage": "Northern Passage",
+        "Avalanche": "Avalanche",
+        "Manirak": "Manirak",
+        "Tundra_Rock": "Tundra Rock",
+        "Patuktuq": "Patuktuq",
+        "Summit_Ice": "Summit Ice",
+        "Kilalurak": "Kilalurak",
+        "Nilak": "Nilak",
+        "Chulyin": "Chulyin",
+        "Tattilgat": "Tattilgat",
+        "Atka": "Atka",
+        "Pimniq": "Pimniq",
+        "Anyu": "Anyu",
+        "Glacial_Peak": "Glacial Peak",
+        "Nunataq": "Nunataq",
+        "Nanuq": "Nanuq",
+        "Precipice": "Precipice",
+        "Unalaq": "Unalaq",
+        "Neural_Rites": "Neural Rites",
+        "Frozen_Steppe": "Frozen Steppe",
+        "The_Grotto": "The Grotto",
+        "Temple_Floe": "Temple Floe",
+        "Spirit_Plane": "Spirit Plane",
+        "Murky_Waters": "Murky Waters",
+        "Cursed_Current": "Cursed Current",
+        "Coral_Depths": "Coral Depths",
+        "Rough_Expanse": "Rough Expanse",
+        "Strong_Tide": "Strong Tide",
+        "Dark_Abyss": "Dark Abyss",
+        "Fresh_Flow": "Fresh Flow",
+        "Tideless_Deep": "Tideless Deep",
+        "Glimmering_Surf": "Glimmering Surf",
+        "Serene_Waves": "Serene Waves",
+        "Red_Sea": "Red Sea",
+        "Wondering_Ocean": "Wondering Ocean",
+        "Foam_Ceiling": "Foam Ceiling",
+        "Walled_Gulf": "Walled Gulf",
+        "Lower_Grotto": "Lower Grotto",
+        "Silver_Swarms": "Silver Swarms",
+        "Upper_Grotto": "Upper Grotto",
+        "Rocky_Domain": "Rocky Domain",
+        "Nautical_Parlay": "Nautical Parlay",
+        "Restless_Buoy": "Restless Buoy",
+        "Ripped_Sails": "Ripped Sails",
+        "Nautilus_Mirage": "Nautilus Mirage",
+        "Ravenous_Tides": "Ravenous Tides",
+        "Deep_Dive": "Deep Dive",
+        "Furious_Storm": "Furious Storm",
+        "Silver_Crest": "Silver Crest",
+        "Grey_Clouds": "Grey Clouds",
+        "Translucent_Algae": "Translucent Algae",
+        "Treacherous_Surf": "Treacherous Surf",
+        "Single_Wave": "Single Wave",
+        "Cursed_Lip": "Cursed Lip",
+        "Coral_Kingdom": "Coral Kingdom",
+        "Telescopic_Barrel": "Telescopic Barrel",
+        "Sponge_Sands": "Sponge Sands",
+        "Seagull_Domain": "Seagull Domain",
+        "Tangled_Fins": "Tangled Fins",
+        "Scuba_Bay": "Scuba Bay",
+        "Tide_Ascent": "Tide Ascent",
+        "Breakwater_Wharf": "Breakwater Wharf",
+        "Adrift_Liner": "Adrift Liner",
+        "Bermuda_Quay": "Bermuda Quay",
+        "Sextant_Mast": "Sextant Mast",
+        "Grog_Wash": "Grog Wash",
+        "R_lyeh_Reef": "R'lyeh Reef",
+        "Capricorn_Waterway": "Capricorn Waterway",
+        "Barnacle_Deck": "Barnacle Deck",
+        "Ahab_s_Tomb": "Ahab's Tomb",
+        "Galley_Commodore": "Galley Commodore",
+        "Adamastor": "Adamastor",
+        "Deadeye_Admiral": "Deadeye Admiral",
+        "Monkey_s_Fist": "Monkey's Fist",
+        "Dagon_s_Dagger": "Dagon's Dagger",
+        "Sunken_Leviathan": "Sunken Leviathan",
+        "Raging_Tides": "Raging Tides",
+        "Buccaneer_Plateau": "Buccaneer Plateau",
+        "Craggy_Cay": "Craggy Cay",
+        "Behemoth": "Behemoth",
+        "Privateer_Helm": "Privateer Helm",
+        "Medusa_Cove": "Medusa Cove",
+        "Man_O_War": "Man-O-War",
+        "Nemo_s_Dock": "Nemo's Dock",
+        "Anchorage_Ruin": "Anchorage Ruin",
+        "Ahoy_Alee": "Ahoy Alee",
+        "Ursula_s_Valley": "Ursula's Valley",
+        "Dungbie_Trough": "Dungbie Trough",
+        "Idlers_Range": "Idlers Range",
+        "Wherry_Gap": "Wherry Gap",
+        "Nock_s_Turn": "Nock's Turn",
+        "Scuttle_Ridge": "Scuttle Ridge",
+        "Ghost_Trench": "Ghost Trench",
+        "Scurvy_Atoll": "Scurvy Atoll",
+        "Capsize_Lagoon": "Capsize Lagoon",
+        "Undertow_Bank": "Undertow Bank",
+        "Neptune_s_Galleon": "Neptune's Galleon",
+        "Seafarer_s_Current": "Seafarer's Current",
+        "Blackwater_Cape": "Blackwater Cape",
+        "Leviathan_Wreck": "Leviathan Wreck",
+        "Typhoon_Peninsula": "Typhoon Peninsula",
+        "Corsair_s_Skerry": "Corsair's Skerry",
+        "Mutiny_Canyon": "Mutiny Canyon"
+      },
+      "bonus": {
+        "coin": {
+          "name": "Coin"
+        },
+        "supply": {
+          "name": "Supply"
+        },
+        "good": {
+          "name": "Good"
+        },
+        "special_good": {
+          "name": "Special Goods"
+        },
+        "good_bonus": {
+          "name": "Production bonus"
+        },
+        "expansion": {
+          "name": "Expansion"
+        },
+        "medal": {
+          "name": "Medal"
+        },
+        "diamond": {
+          "name": "Diamond"
+        },
+        "pvp_tower": {
+          "name": "PvP Tower"
+        },
+        "blueprint": {
+          "name": "Blueprint"
+        },
+        "military_boost": {
+          "name": "Military boost",
+          "gb_description": "Raises the attack and defense bonus for units in attacking army, adds up with every building."
+        },
+        "fierce_resistance": {
+          "name": "Fierce resistance",
+          "gb_description": "Raises the attack and defense bonus for units in defending army and increases support pool bonus, adds up with every building."
+        },
+        "coin_boost": {
+          "name": "Coin boost",
+          "gb_description": "Raises the outcome of your houses up to 90 times with each collect, adds up with productivity and motivation."
+        },
+        "supply_boost": {
+          "name": "Supply boost",
+          "gb_description": "Raises the outcome of your production buildings, adds up with productivity, motivation, and other supply boosts."
+        },
+        "good_production": {
+          "name": "Good Production",
+          "gb_description": "Produces a certain amount of goods from your current age every 24 hours. From Modern Era on, produces double the amount in unrefined goods."
+        },
+        "medal_production": {
+          "name": "Medal production",
+          "gb_description": "Produces a certain amount of medals every 24 hours."
+        },
+        "research": {
+          "name": "Research",
+          "gb_description": "Produces a small amount of forge points every 24 hours."
+        },
+        "coin_production": {
+          "name": "Coin production",
+          "gb_description": "Produces a certain amount of coins every 24 hours."
+        },
+        "supply_production": {
+          "name": "Supply production",
+          "gb_description": "Produces a certain amount of supplies every 24 hours."
+        },
+        "population": {
+          "name": "Population",
+          "gb_description": "Permanent population bonus."
+        },
+        "happiness": {
+          "name": "Happiness",
+          "gb_description": "Permanent happiness bonus."
+        },
+        "quest_reward_boost": {
+          "name": "Quest reward boost",
+          "gb_description": "Raises only your coins, supplies, goods, medals, or diamonds from quest rewards."
+        },
+        "penal_unit": {
+          "name": "Penal Unit",
+          "gb_description": "Recruits unattached units every 24 hours, randomly chosen from any military building in your city."
+        },
+        "guild_goods": {
+          "name": "Guild Goods",
+          "gb_description": "Produces current era goods which go straight to the Guild Treasury."
+        },
+        "support_pool_bonus": {
+          "name": "Support Pool Bonus",
+          "gb_description": "Raises your guild's support pool bonus, adds up with every building."
+        },
+        "aid_goods": {
+          "name": "Aid Goods",
+          "gb_description": "Produces 1 random good when aiding another player's city (manually motivating/polishing them also counts as aiding). The age of the random good corresponds to the age of the building you are aiding."
+        },
+        "plunder_goods": {
+          "name": "Plunder Goods",
+          "gb_description": "Produces random goods for up to 3 neighbors with each collect when plundering another player's city. The age of the random goods corresponds to the age of the building you are plundering."
+        },
+        "contribution_boost": {
+          "name": "Contribution Boost",
+          "gb_description": "Raises the Forge Points, Medals, and Blueprints you receive from donation rewards."
+        },
+        "aid_blueprints": {
+          "name": "Aid Blueprints",
+          "gb_description": "Raises the chance of obtaining a blueprint when aiding another player's city (manually motivating/polishing them also counts as aiding). I.E. Having a 100% bonus will double your chance of finding a blueprint."
+        },
+        "relic_hunt": {
+          "name": "Relic Hunt",
+          "gb_description": "This ability gives you the possibility to receive Relics on the Guild Expedition map whenever you successfully solve an encounter. Relics are very valuable and can appear in 3 different rarities. Each level increases the chance to find a Relic but also the odds to find an uncommon or rare Relic, as opposed to a common one."
+        },
+        "critical_hit": {
+          "name": "Critical Hit",
+          "gb_description": "Gives all units the chance of dealing 1.5 times the expected damage when attacking units of the same era. Critical hit also works against Reactive Armor (if expected damage is 4-4, a critical hit will do 6-6 damage). Rogues (and other no-age units) are not affected/cannot use this ability until they transform into another unit. A critical hit doing at least 11 damage will one-hit kill any unit, even with the morale bonus. This bonus applies to all attacking armies plus your defending army in PvP. The critical hit will not happen when a unit is retaliating."
+        },
+        "helping_hands": {
+          "name": "Helping Hands",
+          "gb_description": "Gives you a certain chance to get a random resource when aiding another player's city (manually motivating/polishing them also counts as aiding). You can recieve goods from your current age, supplies, coins, medals, or even Diamonds."
+        },
+        "plunder_and_pillage": {
+          "name": "Plunder and Pillage",
+          "gb_description": "Gives you a certain chance to get double the resources when you plunder a neighbor's city after successfully defeating their defenses. It will double all resources that you can plunder, including Forge Points and Guild Power."
+        },
+        "first_strike": {
+          "name": "First Strike",
+          "gb_description": "Gives you a chance that at the start of the next several fights, a unit from the enemy's defense army will be killed immediately. This only applies to the first wave of a battle."
+        },
+        "double_collection": {
+          "name": "Double Collection",
+          "gb_description": "Gives you a chance to get double the resources in the the first buildings collected. Excludes military and great buildings. Refreshes with each collection of this building."
+        }
       }
     },
     "utils": {
@@ -356,6 +909,7 @@
         "p1": "Enter the different values. The result is updated automatically.",
         "p2_html": "<strong>Note</strong>: If the update is not done automatically, click on \"$t(utils.btn_calculate)\"."
       },
+      "choose_age": "Choose an Age",
       "permalink": "Permalink",
       "Yes": "Yes",
       "No": "No",
@@ -367,6 +921,9 @@
       "To": "To (max {{max}})",
       "Prefix": "Prefix",
       "Suffix": "Suffix",
+      "Rewards": "Rewards",
+      "Conquered": "Conquered",
+      "Total": "Total",
       "moment": {
         "year": "{{count}} year",
         "year_plural": "{{count, number}} years",

@@ -1,0 +1,37 @@
+div
+  h4.title.is-4.margin-top-one-em {{$t(i18nPrefix + 'title')}}
+
+  div.columns
+    div.column.is-half
+      yes-no(v-model="split" :label="$t(i18nPrefix + 'slpit')")
+      yes-no(v-model="showRatio" :label="$t(i18nPrefix + 'show_ratio')")
+
+    div.column.is-half
+      b-field(v-show="split" v-bind:label="$t('components.trade.split_value', { count: maxSplitValue })" v-bind:label-for="splitValueId" v-bind:type="haveError('splitValue')")
+        b-input(v-bind:id="splitValueId" type="number" min="0" v-bind:max="maxSplitValue" v-model.number="splitValue" name="splitValue" autocomplete="off")
+
+  div.table-wrapper
+    table.table.is-bordered.is-striped.is-narrow.is-fullwidth
+      thead
+        tr
+          th {{$t(i18nPrefix + 'table.thead.th1')}}
+          th {{$t(i18nPrefix + 'table.thead.th2')}}
+          th {{$t(i18nPrefix + 'table.thead.th3')}}
+          th {{$t(i18nPrefix + 'table.thead.th4')}}
+          th(v-show="showRatio") {{$t(i18nPrefix + 'table.thead.ratio')}}
+          th(v-show="split") {{$t(i18nPrefix + 'table.thead.split')}}
+      tbody
+        tr(v-for="(value, key) in agesGoods" :key="key")
+          td {{$t("foe_data.age." + key)}}
+          td
+            figure.image-inherit.image.is-24x24(v-for="good in value.goods")
+              img(v-bind:src="'/img/foe/goods/' + good.key + '.png'" v-bind:alt="$t('foe_data.goods.' + good.key)" v-bind:title="$t('foe_data.goods.' + good.key)")
+          td
+            b-field(v-bind:type="haveError(key)")
+              b-input(type="number" min="0" v-model.number="values[key]" v-bind:name="key + '_value'" autocomplete="off" @input="$event > 0 ? getBestRates(key) : resetFormIfAllZero(key)")
+          td
+            p(v-if="$data.results[key].show") {{$data.results[key].value}}
+          td(v-show="showRatio")
+            p {{$data.results[key].ratio}}
+          td(v-show="split")
+            p(v-if="$data.results[key].show") {{$data.results[key].split}}
