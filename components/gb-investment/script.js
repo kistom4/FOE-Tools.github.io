@@ -260,9 +260,6 @@ export default {
       );
       this.$emit("updateLevelData", this.$data.result);
     },
-    getPromo(key) {
-      return this.$data[key];
-    },
     updatePromotionMessage() {
       this.$data.promotion = [
         this.getPromotionMessage(),
@@ -303,9 +300,6 @@ export default {
         self.promotion[index].active = false;
       }, 3000);
     },
-    isPlaceFree(index) {
-      return this.$data.placeFree[index] ? this.$t("utils.Yes") : this.$t("utils.No");
-    },
     changePlaceFree(i, value) {
       this.$data.placeFree[i].state = value;
 
@@ -321,68 +315,6 @@ export default {
         this.getPromotionMessage(true, true),
         this.getPromotionMessage(false, true)
       ];
-    },
-    submitGlobal() {
-      const lChange = Utils.handlerForm(
-        this,
-        "level",
-        this.$data.level,
-        -1,
-        [1, this.$data.maxLevel],
-        !this.isPermalink,
-        this.$nuxt.$route.path
-      );
-      const pChange = Utils.handlerForm(
-        this,
-        "level",
-        this.$data.investorPercentageGlobal,
-        -1,
-        [">=", 0],
-        !this.isPermalink,
-        this.$nuxt.$route.path,
-        "float"
-      );
-
-      if (pChange === Utils.FormCheck.VALID) {
-        for (let index = 0; index < this.$data.investorPercentageCustom.length; index++) {
-          this.$data.investorPercentageCustom[index] = this.$data.investorPercentageGlobal;
-        }
-      }
-
-      if (
-        lChange !== Utils.FormCheck.INVALID &&
-        pChange !== Utils.FormCheck.INVALID &&
-        !(lChange === pChange && lChange === Utils.FormCheck.NO_CHANGE)
-      ) {
-        this.calculate();
-      }
-    },
-    submitCustom() {
-      let change = Utils.FormCheck.NO_CHANGE;
-      let listCheck = true;
-
-      for (let index = 0; index < this.$data.investorPercentageCustom.length; index++) {
-        let result = Utils.handlerForm(
-          this,
-          "investorPercentageCustom_" + index,
-          this.$data.investorPercentageCustom[index],
-          -1,
-          [">=", 0],
-          !this.isPermalink,
-          this.$nuxt.$route.path,
-          "float"
-        );
-        if (result === Utils.FormCheck.INVALID) {
-          listCheck = false;
-          change = Utils.FormCheck.INVALID;
-        } else if (result === Utils.FormCheck.VALID) {
-          change = listCheck ? Utils.FormCheck.VALID : change;
-        }
-      }
-
-      if (change !== Utils.FormCheck.INVALID) {
-        this.calculate();
-      }
     },
 
     /**
@@ -468,9 +400,6 @@ export default {
   },
   mounted() {
     this.calculate();
-    // setTimeout(() => {
-    //   this.calculate();
-    // }, 100);
   },
   components: {
     gbListSelect,

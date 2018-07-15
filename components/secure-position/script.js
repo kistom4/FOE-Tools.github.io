@@ -330,32 +330,6 @@ export default {
       return this.$data.errors[input] ? "is-danger" : "";
     },
 
-    submitSecurePosition() {
-      let change = Utils.FormCheck.NO_CHANGE;
-      let listCheck = true;
-      for (let key in inputComparator) {
-        let result = Utils.handlerForm(
-          this,
-          key,
-          this.$data[key],
-          this.$data[key],
-          inputComparator[key].comparator,
-          false,
-          "",
-          inputComparator[key].type
-        );
-        if (result.state === Utils.FormCheck.VALID) {
-          change = listCheck ? Utils.FormCheck.VALID : change;
-        } else if (result.state === Utils.FormCheck.INVALID) {
-          listCheck = false;
-          change = Utils.FormCheck.INVALID;
-        }
-      }
-
-      if (change !== Utils.FormCheck.INVALID) {
-        this.calculate();
-      }
-    },
     /**
      * Check URL query and return query data
      * @return {Object} Return an object with 'isPermalink' set to False if URI no contains query, otherwise it return

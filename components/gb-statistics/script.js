@@ -310,7 +310,6 @@ export default {
       let suggestedMin = Infinity;
       let suggestedMax = -Infinity;
 
-      // let labels = [];
       const labels = Array.from(new Array(to - from + 1), (x, i) => {
         if (statSelector !== "reward_cost" && statSelector !== "cost_reward") {
           return i + from;
