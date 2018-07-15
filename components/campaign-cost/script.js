@@ -126,7 +126,6 @@ export default {
         goodsColumnsData,
         specialGoodsColumnsData
       };
-      console.log("result: ", result);
       Vue.set(this.$data, "result", result);
     }
   },

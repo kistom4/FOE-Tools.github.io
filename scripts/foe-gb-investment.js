@@ -101,5 +101,38 @@ export default {
     }
 
     return result;
+  },
+
+  /**
+   * Compute the necessary amount of FP to secure a place.
+   * @param levelCost {number}
+   * @param currentDeposits {number}
+   * @param yourParticipation {number}
+   * @param otherParticipation {number}
+   * @param yourArcBonus {number}
+   * @param fpTargetReward {number}
+   * @returns {Object} Return an object that contains:
+   *  - fp: fp needed to secure the a place
+   *  - roi: Return of investment (if yourArcBonus >= 0 && fpTargetReward > 0), otherwise it is set to 0
+   */
+  ComputeSecurePlace(levelCost, currentDeposits, yourParticipation, otherParticipation, yourArcBonus, fpTargetReward) {
+    let result =
+      Math.ceil((levelCost - currentDeposits - (otherParticipation - yourParticipation)) / 2) + otherParticipation;
+
+    if (result <= otherParticipation) {
+      return {
+        fp: -1,
+        roi: 0
+      };
+    } else {
+      let roi = 0;
+      if (yourArcBonus >= 0 && fpTargetReward > 0) {
+        roi = Math.round((1 + yourArcBonus / 100) * fpTargetReward - result);
+      }
+      return {
+        fp: result,
+        roi: roi
+      };
+    }
   }
 };

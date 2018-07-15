@@ -106,6 +106,31 @@
           ]
         }
       },
+      "gb_investment_investors": {
+        "description": {
+          "p1": "This view allows to see the gain that can be obtained by taking a place with or without taking into account investments in other places. There are {{count}} types of consideration of other places:"
+        },
+        "takingPlaceInConsideration": {
+          "label": "Take other places in consideration ?",
+          "form": {
+            "show_place": "Display place",
+            "no": "$t(utils.No)",
+            "normal": "Normal",
+            "optimal": "Optimal"
+          },
+          "description": {
+            "no": "do not take into account other places",
+            "normal": "take into account the other places with a minimum investment of investors and without securing by the owner",
+            "optimal": "take into the account the other places with an investment without profit of the investors and with securing by owner"
+          }
+        },
+        "table": {
+          "thead": {
+            "th_place": "Place {{count}}",
+            "th_profit_loss": "Profit / Loss"
+          }
+        }
+      },
       "gb_forecast_cost": {
         "title": "Forecast",
         "p1": "Determine the number of FPs to go from one level to another, with or without Ark's bonuses.",
@@ -296,6 +321,14 @@
         "title": "$t(routes.gb_investment.hero.title, { 'gb_key': '{{gb_key}}' }) | $t(common:site_title)",
         "hero": {
           "title": "$t(routes.gb_investment_gb_chooser.hero.title) - $t({{gb_key}})"
+        },
+        "tab": {
+          "owner_view": {
+            "title": "Owner view"
+          },
+          "investors_view": {
+            "title": "Investors view"
+          }
         }
       },
       "gb_investment_gb_chooser": {
@@ -922,6 +955,7 @@
       "Prefix": "Prefix",
       "Suffix": "Suffix",
       "Rewards": "Rewards",
+      "Cost": "Cost",
       "Conquered": "Conquered",
       "Total": "Total",
       "moment": {

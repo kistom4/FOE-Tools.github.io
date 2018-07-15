@@ -1,0 +1,315 @@
+div.content
+  div.columns
+    div.column.is-half
+      div.field
+        h3.title.is-3 {{$t('foe_data.gb.' + gb.key)}}
+      div.field
+        gb-list-select(v-bind:current="gb.key" v-on:change="goTo($event)")
+    div.column.is-half(v-show="canPermalink")
+      div.field
+        nuxt-link#permalink.level-right(v-bind:to="permaLink" exact)
+          span.icon
+            i.fas.fa-link
+          | &nbsp;{{$t('utils.permalink')}}
+
+  h4.title.is-4 {{$t('routes.gb_investment_gb_chooser.hero.title')}}
+
+  p {{$t($data.i18nPrefix + 'description.p1', { count: maxConsideration })}}
+
+  p
+    b {{$t($data.i18nPrefix + 'takingPlaceInConsideration.form.no')}}
+    |  {{$t($data.i18nPrefix + 'takingPlaceInConsideration.description.no')}}
+
+  p
+    b {{$t($data.i18nPrefix + 'takingPlaceInConsideration.form.normal')}}
+    |  {{$t($data.i18nPrefix + 'takingPlaceInConsideration.description.normal')}}
+
+  p
+    b {{$t($data.i18nPrefix + 'takingPlaceInConsideration.form.optimal')}}
+    |  {{$t($data.i18nPrefix + 'takingPlaceInConsideration.description.optimal')}}
+
+  div.columns
+    div.column.is-half
+      b-field(v-bind:label="$t('components.gb_investment.gb_investment.form.level', { max: maxLevel })" label-for="giiLevel" v-bind:type="haveError('targetLevel')")
+        b-input#giiLevel(type="number" min="1" v-bind:max="maxLevel" v-model.number="targetLevel" name="targetLevel" autocomplete="off" v-bind:autofocus="canPermalink")
+    div.column.is-half
+      b-field(v-bind:label="$t('components.secure_position.block_place.your_arc_bonus')" label-for="giiYourArcBonus" v-bind:type="haveError('yourArcBonus')")
+        b-input#giiYourArcBonus(type="number" min="0" v-model.number="yourArcBonus" step="0.1" name="your-arc-bonus" autocomplete="off")
+
+  div.columns
+    div.column.is-half
+      b-field(v-bind:label="$t(i18nPrefix + 'takingPlaceInConsideration.label')" v-bind:type="haveError('takingPlaceInConsideration')")
+      b-field
+        b-radio-button(v-model="takingPlaceInConsideration" :native-value="0" type="is-danger") {{$t(i18nPrefix + "takingPlaceInConsideration.form.no")}}
+        b-radio-button(v-model="takingPlaceInConsideration" :native-value="1" type="is-info") {{$t(i18nPrefix + "takingPlaceInConsideration.form.normal")}}
+        b-radio-button(v-model="takingPlaceInConsideration" :native-value="2" type="is-success") {{$t(i18nPrefix + "takingPlaceInConsideration.form.optimal")}}
+    div.column.is-half
+      b-field(v-bind:label="$t(i18nPrefix + 'takingPlaceInConsideration.form.show_place')")
+      div.block
+          b-switch(v-model="showP1" type="is-info") 1
+          b-switch(v-model="showP2" type="is-info") 2
+          b-switch(v-model="showP3" type="is-info") 3
+          b-switch(v-model="showP4" type="is-info") 4
+          b-switch(v-model="showP5" type="is-info") 5
+
+  div.table-wrapper(style="overflow-y:auto;")
+    table.table.is-bordered.is-striped.is-narrow.is-fullwidth(v-if="result !== null")
+      thead
+        tr
+          th(rowspan=2)
+            p {{$t("utils.graph.gb_level")}}
+          th(rowspan=2)
+            p {{$t("components.gb_investment.gb_investment.table.tfoot.level_cost")}}
+          th(colspan=3 v-show="showP1")
+            p {{$t(i18nPrefix + "table.thead.th_place", { count: 1 })}}
+          th(colspan=3 v-show="showP2")
+            p {{$t(i18nPrefix + "table.thead.th_place", { count: 2 })}}
+          th(colspan=3 v-show="showP3")
+            p {{$t(i18nPrefix + "table.thead.th_place", { count: 3 })}}
+          th(colspan=3 v-show="showP4")
+            p {{$t(i18nPrefix + "table.thead.th_place", { count: 4 })}}
+          th(colspan=3 v-show="showP5")
+            p {{$t(i18nPrefix + "table.thead.th_place", { count: 5 })}}
+        tr
+          // Place 1
+          th(v-show="showP1")
+            p {{$t("utils.Rewards")}}
+          th(v-show="showP1")
+            p {{$t("utils.Cost")}}
+          th(v-show="showP1")
+            p {{$t(i18nPrefix + "table.thead.th_profit_loss")}}
+          // Place 2
+          th(v-show="showP2")
+            p {{$t("utils.Rewards")}}
+          th(v-show="showP2")
+            p {{$t("utils.Cost")}}
+          th(v-show="showP2")
+            p {{$t(i18nPrefix + "table.thead.th_profit_loss")}}
+          // Place 3
+          th(v-show="showP3")
+            p {{$t("utils.Rewards")}}
+          th(v-show="showP3")
+            p {{$t("utils.Cost")}}
+          th(v-show="showP3")
+            p {{$t(i18nPrefix + "table.thead.th_profit_loss")}}
+          // Place 4
+          th(v-show="showP4")
+            p {{$t("utils.Rewards")}}
+          th(v-show="showP4")
+            p {{$t("utils.Cost")}}
+          th(v-show="showP4")
+            p {{$t(i18nPrefix + "table.thead.th_profit_loss")}}
+          // Place 5
+          th(v-show="showP5")
+            p {{$t("utils.Rewards")}}
+          th(v-show="showP5")
+            p {{$t("utils.Cost")}}
+          th(v-show="showP5")
+            p {{$t(i18nPrefix + "table.thead.th_profit_loss")}}
+
+      tbody
+        tr(v-for="(line, index) in result.slice(targetLevel - 1)")
+          td
+            p {{$formatNumber(index + targetLevel)}}
+          td
+            p {{$formatNumber(line.cost)}}
+
+          // Place 1
+          td(v-show="showP1")
+            p {{$formatNumber(line.investment[0].reward) + " (" + $formatNumber(line.investment[0].participation) + ")"}}
+          td(v-show="showP1")
+            p(v-if="takingPlaceInConsideration === 2") {{$formatNumber(line.investment[0].participation) + " ("}}
+              b-tooltip(type="is-dark" :label="$t('components.gb_investment.gb_investment.table.thead.th3')" dashed) {{$formatNumber(line.investment[0].preparation)}}
+              | )
+            p(v-else) {{$formatNumber(line.investment[0].fp)}}
+          td(v-show="showP1")
+            p(v-if="line.investment[0].roi > 0")
+              span.icon.is-medium.has-text-success(style="vertical-align: middle;")
+                i.fas.fa-arrow-up
+              | {{$formatNumber(Math.abs(line.investment[0].roi))}}
+            p(v-else-if="line.investment[0].roi < 0")
+              span.icon.is-medium.has-text-danger(style="vertical-align: middle;")
+                i.fas.fa-arrow-down
+              | {{$formatNumber(Math.abs(line.investment[0].roi))}}
+            p(v-else)
+              span.icon.is-medium(style="vertical-align: middle;")
+                i.fas.fa-exchange-alt
+
+          // Place 2
+          td(v-show="showP2")
+            p {{$formatNumber(line.investment[1].reward) + " (" + $formatNumber(line.investment[1].participation) + ")"}}
+          td(v-show="showP2")
+            p(v-if="takingPlaceInConsideration === 2") {{$formatNumber(line.investment[1].participation) + " ("}}
+              b-tooltip(type="is-dark" :label="$t('components.gb_investment.gb_investment.table.thead.th3')" dashed) {{$formatNumber(line.investment[1].preparation)}}
+              | )
+            p(v-else) {{$formatNumber(line.investment[1].fp)}}
+          td(v-show="showP2")
+            p(v-if="line.investment[1].roi > 0")
+              span.icon.is-medium.has-text-success(style="vertical-align: middle;")
+                i.fas.fa-arrow-up
+              | {{$formatNumber(Math.abs(line.investment[1].roi))}}
+            p(v-else-if="line.investment[1].roi < 0")
+              span.icon.is-medium.has-text-danger(style="vertical-align: middle;")
+                i.fas.fa-arrow-down
+              | {{$formatNumber(Math.abs(line.investment[1].roi))}}
+            p(v-else)
+              span.icon.is-medium(style="vertical-align: middle;")
+                i.fas.fa-exchange-alt
+
+          // Place 3
+          td(v-show="showP3")
+            p {{$formatNumber(line.investment[2].reward) + " (" + $formatNumber(line.investment[2].participation) + ")"}}
+          td(v-show="showP3")
+            p(v-if="takingPlaceInConsideration === 2") {{$formatNumber(line.investment[2].participation) + " ("}}
+              b-tooltip(type="is-dark" :label="$t('components.gb_investment.gb_investment.table.thead.th3')" dashed) {{$formatNumber(line.investment[2].preparation)}}
+              | )
+            p(v-else) {{$formatNumber(line.investment[2].fp)}}
+          td(v-show="showP3")
+            p(v-if="line.investment[2].roi > 0")
+              span.icon.is-medium.has-text-success(style="vertical-align: middle;")
+                i.fas.fa-arrow-up
+              | {{$formatNumber(Math.abs(line.investment[2].roi))}}
+            p(v-else-if="line.investment[2].roi < 0")
+              span.icon.is-medium.has-text-danger(style="vertical-align: middle;")
+                i.fas.fa-arrow-down
+              | {{$formatNumber(Math.abs(line.investment[2].roi))}}
+            p(v-else)
+              span.icon.is-medium(style="vertical-align: middle;")
+                i.fas.fa-exchange-alt
+
+          // Place 4
+          td(v-show="showP4")
+            p {{$formatNumber(line.investment[3].reward) + " (" + $formatNumber(line.investment[3].participation) + ")"}}
+          td(v-show="showP4")
+            p(v-if="takingPlaceInConsideration === 2") {{$formatNumber(line.investment[3].participation) + " ("}}
+              b-tooltip(type="is-dark" :label="$t('components.gb_investment.gb_investment.table.thead.th3')" dashed) {{$formatNumber(line.investment[3].preparation)}}
+              | )
+            p(v-else) {{$formatNumber(line.investment[3].fp)}}
+          td(v-show="showP4")
+            p(v-if="line.investment[3].roi > 0")
+              span.icon.is-medium.has-text-success(style="vertical-align: middle;")
+                i.fas.fa-arrow-up
+              | {{$formatNumber(Math.abs(line.investment[3].roi))}}
+            p(v-else-if="line.investment[3].roi < 0")
+              span.icon.is-medium.has-text-danger(style="vertical-align: middle;")
+                i.fas.fa-arrow-down
+              | {{$formatNumber(Math.abs(line.investment[3].roi))}}
+            p(v-else)
+              span.icon.is-medium(style="vertical-align: middle;")
+                i.fas.fa-exchange-alt
+
+          // Place 5
+          td(v-show="showP5")
+            p {{$formatNumber(line.investment[4].reward) + " (" + $formatNumber(line.investment[4].participation) + ")"}}
+          td(v-show="showP5")
+            p(v-if="takingPlaceInConsideration === 2") {{$formatNumber(line.investment[4].participation) + " ("}}
+              b-tooltip(type="is-dark" :label="$t('components.gb_investment.gb_investment.table.thead.th3')" dashed) {{$formatNumber(line.investment[4].preparation)}}
+              | )
+            p(v-else) {{$formatNumber(line.investment[4].fp)}}
+          td(v-show="showP5")
+            p(v-if="line.investment[4].roi > 0")
+              span.icon.is-medium.has-text-success(style="vertical-align: middle;")
+                i.fas.fa-arrow-up
+              | {{$formatNumber(Math.abs(line.investment[4].roi))}}
+            p(v-else-if="line.investment[4].roi < 0")
+              span.icon.is-medium.has-text-danger(style="vertical-align: middle;")
+                i.fas.fa-arrow-down
+              | {{$formatNumber(Math.abs(line.investment[4].roi))}}
+            p(v-else)
+              span.icon.is-medium(style="vertical-align: middle;")
+                i.fas.fa-exchange-alt
+
+
+
+  //h4.title.is-4 {{$t(i18nPrefix + 'title')}}
+  //
+  //div.columns
+  //  div.column.is-half
+  //    b-field#current-age-container(v-bind:label="$t('utils.choose_age')" label-for="current-age" v-bind:type="haveError('currentAge')")
+  //      b-select#current-age(v-model="currentAge" name="current-age" expanded)
+  //        option(v-for="age in ages" :value="age.key" :key="age.key" v-bind:selected="currentAge == age.key" v-bind:id="'option_' + age.key" autocomplete="off") {{$t('foe_data.age.' + age.key)}}
+  //
+  //  div.column.is-half
+  //    b-field(v-bind:label="$t(i18nPrefix + 'choose_province')" label-for="provinceContainer")
+  //      b-select#provinceContainer(v-model="province" expanded)
+  //        option(v-if="campaignCost !== null" v-for="value of sortProvinceArray(campaignCost, currentAge)" :key="value.key" v-bind:selected="province.key === value.key" v-bind:value="value") {{$t('foe_data.province.' + value.key)}}
+  //
+  //div.table-wrapper
+  //    table.table.is-bordered.is-striped.is-narrow.is-fullwidth(v-if="(result !== null) && !errors.currentAge && !errors.province")
+  //      thead
+  //        tr
+  //          th(v-bind:colspan="result.nbColumns + 2")
+  //            p {{$t('foe_data.province.' + province.key)}}
+  //        tr
+  //          th(rowspan=2)
+  //            p {{$t('utils.Rewards')}}
+  //          th(rowspan=2)
+  //            p {{$t('utils.Conquered')}}
+  //          th(v-for="(value, age) in result.good" colspan=5)
+  //            p {{$t('foe_data.age.' + age)}}
+  //          th(v-for="value in result.specialGoodsColumnsData")
+  //            p {{value.displayName}}
+  //        tr
+  //          th(v-for="value in result.goodsColumnsData")
+  //            figure.image-inherit.image.is-24x24
+  //              img(v-bind:src="'/img/foe/goods/' + value.key + '.png'" v-bind:alt="value.displayName" v-bind:title="value.displayName")
+  //          th(v-for="value in result.specialGoodsColumnsData")
+  //            figure.image-inherit.image.is-24x24
+  //              img(v-bind:src="'/img/foe/special_goods/' + value.key + '.png'" v-bind:alt="value.displayName" v-bind:title="value.displayName")
+  //
+  //      tbody
+  //        tr(v-for="(sector, index) in province.sectors")
+  //          td
+  //            div.media(v-for="reward in sector.reward")
+  //              div.media-left(v-if="reward.type !== 'good_bonus'" style="margin-right: 0em !important;")
+  //                figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
+  //                  img(v-bind:src="'/img/foe/bonus/' + reward.type + '.png'" v-bind:alt="$t('foe_data.bonus.' + reward.type + '.name')" v-bind:title="$t('foe_data.bonus.' + reward.type + '.name')")
+  //              div.media-content
+  //                p(v-if="reward.type === 'good_bonus'") {{$t('foe_data.bonus.good_bonus.name')}}
+  //                p(v-else) {{$formatNumber(reward.value)}}
+  //          td
+  //            b-switch(v-bind:value="sectorConquired[index]" type="is-info" v-on:input="switchConquired(index, $event)") {{sectorConquired[index] ? $t('utils.Yes') : $t('utils.No')}}
+  //
+  //          td(v-for="value in result.goodsColumnsData")
+  //            div(v-for="good in sector.cost")
+  //              p(v-if="good.key === value.key")
+  //                s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
+  //                span(v-else) {{$formatNumber(good.value)}}
+  //
+  //          td(v-for="value in result.specialGoodsColumnsData")
+  //            div(v-for="good in sector.cost")
+  //              p(v-if="good.key === value.key")
+  //                s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
+  //                span(v-else) {{$formatNumber(good.value)}}
+  //
+  //      tfoot
+  //        tr
+  //          th
+  //            div(v-for="reward in province.reward")
+  //              div.media(v-if="reward.type !== 'good'")
+  //                div.media-left(v-if="reward.type !== 'good_bonus'" style="margin-right: 0em !important;")
+  //                  figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
+  //                    img(v-if="reward.type !== 'pvp_tower'" v-bind:src="'/img/foe/bonus/' + reward.type + '.png'" v-bind:alt="$t('foe_data.bonus.' + reward.type + '.name')" v-bind:title="$t('foe_data.bonus.' + reward.type + '.name')")
+  //                    img(v-else v-bind:src="'/img/foe/bonus/' + currentAge + '_tower.png'" v-bind:alt="$t('foe_data.bonus.' + reward.type + '.name')" v-bind:title="$t('foe_data.bonus.' + reward.type + '.name')")
+  //                div.media-content
+  //                  p(v-if="reward.type === 'good_bonus'") {{$t('foe_data.bonus.good_bonus.name')}}
+  //                  p(v-else-if="reward.value && reward.value > 0") {{$formatNumber(reward.value)}}
+  //              div(v-else)
+  //                div.media(v-for="good in agesGoods[currentAge].goods")
+  //                  div.media-left(v-if="reward.type !== 'good_bonus'" style="margin-right: 0em !important;")
+  //                    figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
+  //                      img(v-bind:src="'/img/foe/goods/' + good.key + '.png'" v-bind:alt="$t('foe_data.goods.' + good.key)" v-bind:title="$t('foe_data.goods.' + good.key)")
+  //                  div.media-content
+  //                    p {{$formatNumber(reward.value)}}
+  //
+  //          th
+  //              p {{$t('utils.Total')}}
+  //
+  //          th(v-for="value in result.goodsColumnsData")
+  //            div(v-for="(valueAge, age) in result.good")
+  //              div(v-for="(good, goodName) in valueAge")
+  //                p(v-if="goodName === value.key") {{$formatNumber(good)}}
+  //
+  //          th(v-for="value in result.specialGoodsColumnsData")
+  //            div(v-for="(specialGood, key) in result.specialGoods")
+  //              p(v-if="key === value.key") {{$formatNumber(specialGood)}}

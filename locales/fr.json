@@ -110,6 +110,31 @@
           ]
         }
       },
+      "gb_investment_investors": {
+        "description": {
+          "p1": "Cette vue permet de voir le gain qu'il est possible d'obtenir en prenant une place avec ou sans prise en compte des investissements sur les autres places. Il existe {{count}} types de prise en compte des autres places :"
+        },
+        "takingPlaceInConsideration": {
+          "label": "Prendre les autres places en considération ?",
+          "form": {
+            "show_place": "Afficher les places",
+            "no": "$t(utils.No)",
+            "normal": "Normal",
+            "optimal": "Optimal"
+          },
+          "description": {
+            "no": "ne prend pas en compte les autres places",
+            "normal": "prend en compte les autres places avec un investissement minimal des investisseurs et sans sécurisation par le propriétaire",
+            "optimal": "prend en compte les autres places avec un investissement sans profit des investisseurs et avec sécurisation par le propriétaire"
+          }
+        },
+        "table": {
+          "thead": {
+            "th_place": "Place {{count}}",
+            "th_profit_loss": "Bénéfice / Perte"
+          }
+        }
+      },
       "gb_forecast_cost": {
         "title": "Prévisions",
         "p1": "Détermine le nombre de PFs pour aller d'un niveau à un autre, avec ou sans bonus d'Arche.",
@@ -300,6 +325,14 @@
         "title": "$t(routes.gb_investment.hero.title, { 'gb_key': '{{gb_key}}' }) | $t(common:site_title)",
         "hero": {
           "title": "$t(routes.gb_investment_gb_chooser.hero.title) - $t({{gb_key}})"
+        },
+        "tab": {
+          "owner_view": {
+            "title": "Vue propriétaire"
+          },
+          "investors_view": {
+            "title": "Vue investisseurs"
+          }
         }
       },
       "gb_investment_gb_chooser": {
@@ -926,6 +959,7 @@
       "Prefix": "Préfixe",
       "Suffix": "Suffixe",
       "Rewards": "Récompenses",
+      "Cost": "Cost",
       "Conquered": "Conquis",
       "Total": "Total",
       "moment": {

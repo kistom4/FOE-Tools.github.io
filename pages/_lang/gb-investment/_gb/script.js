@@ -1,8 +1,16 @@
 import { gbs } from "~/lib/foe-data/gbs";
 import gbInvestment from "~/components/gb-investment/index";
+import gbInvestmentInvestors from "~/components/gb-investment-inverstors/index";
 import securePosition from "~/components/secure-position/index";
+import Utils from "~/scripts/utils";
 
 const i18nPrefix = "routes.gb_investment.";
+const MAX_TAB = 1;
+const urlPrefix = "gbi_";
+
+const queryKey = {
+  tab: urlPrefix + "tab"
+};
 
 export default {
   validate({ params }) {
@@ -31,13 +39,75 @@ export default {
   data() {
     this.$store.commit("SET_CURRENT_LOCATION", "gb_investment");
 
-    return {
+    let tab = this.cookieValid(urlPrefix + "tab") ? parseInt(this.$cookies.get(urlPrefix + "tab")) : 0;
+    tab = Utils.inRange(tab, 0, MAX_TAB) ? tab : 0;
+
+    this.$store.commit("ADD_URL_QUERY", {
+      key: queryKey.tab,
+      value: tab
+    });
+
+    const data = {
       i18nPrefix: i18nPrefix,
-      levelData: null
+      levelData: null,
+      gbi_tab: tab,
+      errors: {
+        gbi_tab: false
+      }
     };
+
+    Object.assign(data, this.checkQuery());
+
+    return data;
+  },
+  watch: {
+    gbi_tab(val, oldVal) {
+      if (
+        Utils.handlerForm(
+          this,
+          "gbi_tab",
+          val.length === 0 ? 0 : val,
+          oldVal,
+          [0, MAX_TAB],
+          !this.isPermalink,
+          this.$nuxt.$route.path
+        ) === Utils.FormCheck.VALID
+      ) {
+        this.$store.commit("UPDATE_URL_QUERY", {
+          key: queryKey.tab,
+          value: val
+        });
+      }
+    }
+  },
+  methods: {
+    cookieValid(key) {
+      return this.$cookies.get(key) !== undefined && !isNaN(this.$cookies.get(key));
+    },
+    checkQuery() {
+      let result = {};
+      let isPermalink = false;
+
+      // Check level
+      if (
+        this.$route.query[queryKey.tab] &&
+        !isNaN(this.$route.query[queryKey.tab]) &&
+        Utils.inRange(parseInt(this.$route.query[queryKey.tab]), 0, MAX_TAB)
+      ) {
+        isPermalink = true;
+        result.gbi_tab = parseInt(this.$route.query[queryKey.tab]);
+      }
+
+      if (isPermalink) {
+        this.$store.commit("IS_PERMALINK", true);
+      }
+
+      return result;
+    }
   },
   components: {
     gbInvestment,
-    securePosition
+    securePosition,
+    gbInvestmentInvestors
   }
 };
