@@ -21,5 +21,10 @@ export default {
       i18nPrefix: i18nPrefix,
       GBsByAge: Utils.splitArray(gbList, 2, true)
     };
+  },
+  methods: {
+    getGbStyle(key) {
+      return key + '-header';
+    }
   }
 };
