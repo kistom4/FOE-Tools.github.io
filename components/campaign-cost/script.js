@@ -8,6 +8,7 @@ const i18nPrefix = "components.campaign_cost.";
 
 const ages = allAges;
 delete ages.NoAge;
+delete ages.VirtualFuture;
 
 export default {
   name: "CampaignCost",
@@ -30,7 +31,6 @@ export default {
   },
   watch: {
     currentAge(val) {
-      console.log("campaignCost[currentAge]: ", this.$data.campaignCost[this.$data.currentAge]);
       if (
         Object.keys(this.$data.ages)
           .slice(1)

@@ -12,7 +12,7 @@ export default {
     const defaultToGraph = 80;
 
     const obj = {
-      i18nPrefix: i18nPrefix,
+      i18nPrefix,
       graphType: {
         cost_level: {
           title: this.$i18n.i18next.t(i18nPrefix + "graph.title_1"),
@@ -141,6 +141,10 @@ export default {
         OceanicFuture: {
           name: this.$i18n.i18next.t("foe_data.age.OceanicFuture"),
           color: "rgb(127,255,212)"
+        },
+        VirtualFuture: {
+          name: this.$i18n.i18next.t("foe_data.age.VirtualFuture"),
+          color: "rgb(85,271,39)"
         }
       },
       statSelector: "cost_level",
@@ -148,7 +152,7 @@ export default {
         .map(k => gbsData[k])
         .map(item => item.levels.length)
         .reduce((a, b) => Math.max(a, b), -Infinity),
-      maxAgeCost: agesCost.OceanicFuture,
+      maxAgeCost: agesCost.VirtualFuture,
       from: defaultFromGraph,
       to: defaultToGraph,
       errors: {
@@ -271,6 +275,10 @@ export default {
           OceanicFuture: {
             name: this.$i18n.i18next.t("foe_data.age.OceanicFuture"),
             color: "rgb(127,255,212)"
+          },
+          VirtualFuture: {
+            name: this.$i18n.i18next.t("foe_data.age.VirtualFuture"),
+            color: "rgb(85,271,39)"
           }
         }
       });

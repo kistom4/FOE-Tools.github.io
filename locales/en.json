@@ -404,7 +404,8 @@
         "Tomorrow": "Tomorrow",
         "TheFuture": "The Future",
         "ArcticFuture": "Arctic Future",
-        "OceanicFuture": "Oceanic Future"
+        "OceanicFuture": "Oceanic Future",
+        "VirtualFuture": "Virtual Future"
       },
       "age_short": {
         "NoAge": "NA",
@@ -422,7 +423,8 @@
         "Tomorrow": "TE",
         "TheFuture": "TF",
         "ArcticFuture": "AF",
-        "OceanicFuture": "OF"
+        "OceanicFuture": "OF",
+        "VirtualFuture": "VF"
       },
       "gb": {
         "Observatory": "Observatory",
@@ -459,7 +461,8 @@
         "Seed_Vault": "Seed Vault",
         "Atlantis_Museum": "Atlantis Museum",
         "The_Kraken": "The Kraken",
-        "The_Blue_Galaxy": "The Blue Galaxy"
+        "The_Blue_Galaxy": "The Blue Galaxy",
+        "Terracotta_Army": "Terracotta Army"
       },
       "goods": {
         "dye": "Dye",

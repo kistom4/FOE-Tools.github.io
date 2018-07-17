@@ -18,6 +18,7 @@ $map: (
   "TheFuture": #8dc73f,
   "ArcticFuture": #e9f7f7,
   "OceanicFuture": #225a4b,
+  "VirtualFuture": #551A8B
 );
 
 @each $key, $color in $map {

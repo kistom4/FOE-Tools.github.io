@@ -408,7 +408,8 @@
         "Tomorrow": "Ère de Demain",
         "TheFuture": "Ère du Futur",
         "ArcticFuture": "Futur Arctique",
-        "OceanicFuture": "Futur Océanique"
+        "OceanicFuture": "Futur Océanique",
+        "Virtual Future": "Futur Virtuel"
       },
       "age_short": {
         "NoAge": "SA",
@@ -426,7 +427,8 @@
         "Tomorrow": "DEM",
         "TheFuture": "FUT",
         "ArcticFuture": "ARC",
-        "OceanicFuture": "OCE"
+        "OceanicFuture": "OCE",
+        "Virtual Future": "VIR"
       },
       "gb": {
         "Observatory": "Observatoire",
@@ -463,7 +465,8 @@
         "Seed_Vault": "Chambre forte des graines",
         "Atlantis_Museum": "Musée de l'Atlantide",
         "The_Kraken": "Le Kraken",
-        "The_Blue_Galaxy": "La Galaxie Bleue"
+        "The_Blue_Galaxy": "La Galaxie Bleue",
+        "Terracotta_Army": "Armée en terre cuite"
       },
       "goods": {
         "dye": "Teinture",

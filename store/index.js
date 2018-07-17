@@ -123,7 +123,7 @@ export const mutations = {
    * @param obj {object} Contains an elemenet 'key' and 'value'
    */
   UPDATE_URL_QUERY: ({ urlQuery, urlQueryNamespace }, obj) => {
-    if ("ns" in obj) {
+    if ("ns" in obj && obj.ns && obj.ns.length > 0) {
       if (!(obj.ns in urlQueryNamespace)) {
         throw new Error(`"${urlQuery.ns}" not found in state.urlQueryNamespace`);
       }
