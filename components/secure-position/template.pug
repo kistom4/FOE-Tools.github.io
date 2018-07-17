@@ -14,7 +14,6 @@ div.content
     div.column
       div.field
         p {{$t('utils.description.p1')}}
-        //p(v-html="$t('utils.description.p2_html')")
 
   div.columns
     div.column.is-half
@@ -42,12 +41,6 @@ div.content
           option(v-for="(place, i) in levelData.investment" :value="place.reward" :key="i" v-bind:id="'option_' + i" autocomplete="off") {{$t(i18nPrefix + 'block_place.place', { place: i + 1, count: place.reward })}}
       b-field(v-else v-bind:label="$t(i18nPrefix + 'block_place.fp_target_reward')" label-for="spFpTargetReward" v-bind:type="haveError('fpTargetReward')")
         b-input(type="number" min="0" v-model.number="fpTargetReward" step="5" name="fp-target-reward" id="spFpTargetReward" autocomplete="off")
-
-  //div.columns
-  //  div.column
-  //    div.field
-  //      div.control.level-item
-  //        button.button.is-link(id="submit-secure-position" v-on:click="submitSecurePosition") {{$t('utils.btn_calculate')}}
 
   p {{$t(i18nPrefix + 'block_place.fp_to_complete_level', {count: getNumberOfRemainingPoints()})}}
   p(v-if="!formValid") {{$t(i18nPrefix + 'block_place.result.error')}}

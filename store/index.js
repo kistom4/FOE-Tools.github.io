@@ -46,6 +46,11 @@ export const state = () => ({
   urlQuery: {},
 
   /**
+   * Namespace for URL Query (to have differenet url query in a single page)
+   */
+  urlQueryNamespace: {},
+
+  /**
    * Check if current location is permalink. True if permalink, False otherwise
    */
   isPermalink: false
@@ -86,6 +91,7 @@ export const mutations = {
   SET_CURRENT_LOCATION(state, value) {
     Vue.set(state, "currentLocation", value);
     Vue.set(state, "urlQuery", {});
+    Vue.set(state, "urlQueryNamespace", {});
     Vue.set(state, "isPermalink", false);
   },
 
@@ -94,11 +100,21 @@ export const mutations = {
    * @param state Reference of state
    * @param obj {object} Contains an elemenet 'key' and 'value'
    */
-  ADD_URL_QUERY: ({ urlQuery }, obj) => {
-    if (obj.key in urlQuery) {
-      throw new Error(`"${obj.key}" already defined in state.urlQuery`);
+  ADD_URL_QUERY: ({ urlQuery, urlQueryNamespace }, obj) => {
+    if ("ns" in obj && obj.ns && obj.ns.length > 0) {
+      if (obj.key in urlQuery || (obj.ns in urlQueryNamespace && obj.key in urlQueryNamespace[obj.ns])) {
+        throw new Error(`"${obj.key}" already defined in state.urlQuery or state.urlQueryNamespace`);
+      }
+      if (!(obj.ns in urlQueryNamespace)) {
+        Vue.set(urlQueryNamespace, obj.ns, {});
+      }
+      Vue.set(urlQueryNamespace[obj.ns], obj.key, obj.value);
+    } else {
+      if (obj.key in urlQuery) {
+        throw new Error(`"${obj.key}" already defined in state.urlQuery`);
+      }
+      Vue.set(urlQuery, obj.key, obj.value);
     }
-    Vue.set(urlQuery, obj.key, obj.value);
   },
 
   /**
@@ -106,9 +122,17 @@ export const mutations = {
    * @param state Reference of state
    * @param obj {object} Contains an elemenet 'key' and 'value'
    */
-  UPDATE_URL_QUERY: ({ urlQuery }, obj) => {
-    const key = obj.key;
-    Vue.set(urlQuery, key, obj.value);
+  UPDATE_URL_QUERY: ({ urlQuery, urlQueryNamespace }, obj) => {
+    if ("ns" in obj && obj.ns && obj.ns.length > 0) {
+      if (!(obj.ns in urlQueryNamespace)) {
+        throw new Error(`"${urlQuery.ns}" not found in state.urlQueryNamespace`);
+      }
+      const { ns, key, value } = obj;
+      Vue.set(urlQueryNamespace[ns], key, value);
+    } else {
+      const key = obj.key;
+      Vue.set(urlQuery, key, obj.value);
+    }
   },
 
   /**
@@ -118,5 +142,14 @@ export const mutations = {
    */
   IS_PERMALINK: (state, value) => {
     Vue.set(state, "isPermalink", value);
+  }
+};
+
+export const getters = {
+  getUrlQuery: state => (ns = "") => {
+    if (!ns || ns.length === 0) {
+      return state.urlQuery;
+    }
+    return Object.assign(JSON.parse(JSON.stringify(state.urlQuery)), state.urlQueryNamespace[ns]);
   }
 };

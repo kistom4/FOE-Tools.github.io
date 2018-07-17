@@ -14,7 +14,8 @@ export default {
     return {
       i18nPrefix: i18nPrefix,
       foeGBList: gbList,
-      gbList: this.$props.current
+      gbList: this.$props.current,
+      id: "gbList" + this._uid
     };
   },
   watch: {

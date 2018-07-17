@@ -76,34 +76,40 @@ export default {
 
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.level,
-      value: data.level
+      value: data.level,
+      ns: "gbi"
     });
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.investorPercentageGlobal,
-      value: data.investorPercentageGlobal
+      value: data.investorPercentageGlobal,
+      ns: "gbi"
     });
 
     for (let index = 0; index < data.investorPercentageCustom.length; index++) {
       this.$store.commit("ADD_URL_QUERY", {
         key: queryKey.investorPercentageCustom + (index + 1),
-        value: data.investorPercentageCustom[index]
+        value: data.investorPercentageCustom[index],
+        ns: "gbi"
       });
     }
 
     for (let index = 0; index < data.placeFree.length; index++) {
       this.$store.commit("ADD_URL_QUERY", {
         key: queryKey.placeFree + (index + 1),
-        value: data.placeFree[index].state ? 1 : 0
+        value: data.placeFree[index].state ? 1 : 0,
+        ns: "gbi"
       });
     }
 
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.prefix,
-      value: data.prefix
+      value: data.prefix,
+      ns: "gbi"
     });
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.suffix,
-      value: data.suffix
+      value: data.suffix,
+      ns: "gbi"
     });
 
     return data;
@@ -118,7 +124,7 @@ export default {
     permaLink() {
       return {
         path: this.$i18n.path("gb-investment/" + this.gb.key + "/"),
-        query: this.$store.state.urlQuery
+        query: this.$store.getters.getUrlQuery("gbi")
       };
     }
   },
@@ -140,7 +146,8 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.level,
-          value: val
+          value: val,
+          ns: "gbi"
         });
         this.calculate();
       }
@@ -160,14 +167,16 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.investorPercentageGlobal,
-          value: val
+          value: val,
+          ns: "gbi"
         });
         this.calculate();
       }
       for (let index = 0; index < this.$data.investorPercentageCustom.length; index++) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.investorPercentageCustom + (index + 1),
-          value: val
+          value: val,
+          ns: "gbi"
         });
         this.$data.investorPercentageCustom[index] = val;
       }
@@ -191,7 +200,8 @@ export default {
         } else if (tmp === Utils.FormCheck.VALID) {
           this.$store.commit("UPDATE_URL_QUERY", {
             key: queryKey.investorPercentageCustom + (index + 1),
-            value: val[index]
+            value: val[index],
+            ns: "gbi"
           });
         }
       }
@@ -203,7 +213,8 @@ export default {
     prefix(val) {
       this.$store.commit("UPDATE_URL_QUERY", {
         key: queryKey.prefix,
-        value: val
+        value: val,
+        ns: "gbi"
       });
       this.$cookies.set("gbPrefix", val, {
         path: "/",
@@ -214,7 +225,8 @@ export default {
     suffix(val) {
       this.$store.commit("UPDATE_URL_QUERY", {
         key: queryKey.suffix,
-        value: val
+        value: val,
+        ns: "gbi"
       });
       this.$cookies.set("gbSuffix", val, {
         path: "/",
@@ -247,9 +259,6 @@ export default {
         this.$props.gb.levels
       );
       this.$emit("updateLevelData", this.$data.result);
-    },
-    getPromo(key) {
-      return this.$data[key];
     },
     updatePromotionMessage() {
       this.$data.promotion = [
@@ -291,15 +300,13 @@ export default {
         self.promotion[index].active = false;
       }, 3000);
     },
-    isPlaceFree(index) {
-      return this.$data.placeFree[index] ? this.$t("utils.Yes") : this.$t("utils.No");
-    },
     changePlaceFree(i, value) {
       this.$data.placeFree[i].state = value;
 
       this.$store.commit("UPDATE_URL_QUERY", {
         key: queryKey.placeFree + (i + 1),
-        value: value ? 1 : 0
+        value: value ? 1 : 0,
+        ns: "gbi"
       });
 
       this.$data.promotion = [
@@ -308,68 +315,6 @@ export default {
         this.getPromotionMessage(true, true),
         this.getPromotionMessage(false, true)
       ];
-    },
-    submitGlobal() {
-      const lChange = Utils.handlerForm(
-        this,
-        "level",
-        this.$data.level,
-        -1,
-        [1, this.$data.maxLevel],
-        !this.isPermalink,
-        this.$nuxt.$route.path
-      );
-      const pChange = Utils.handlerForm(
-        this,
-        "level",
-        this.$data.investorPercentageGlobal,
-        -1,
-        [">=", 0],
-        !this.isPermalink,
-        this.$nuxt.$route.path,
-        "float"
-      );
-
-      if (pChange === Utils.FormCheck.VALID) {
-        for (let index = 0; index < this.$data.investorPercentageCustom.length; index++) {
-          this.$data.investorPercentageCustom[index] = this.$data.investorPercentageGlobal;
-        }
-      }
-
-      if (
-        lChange !== Utils.FormCheck.INVALID &&
-        pChange !== Utils.FormCheck.INVALID &&
-        !(lChange === pChange && lChange === Utils.FormCheck.NO_CHANGE)
-      ) {
-        this.calculate();
-      }
-    },
-    submitCustom() {
-      let change = Utils.FormCheck.NO_CHANGE;
-      let listCheck = true;
-
-      for (let index = 0; index < this.$data.investorPercentageCustom.length; index++) {
-        let result = Utils.handlerForm(
-          this,
-          "investorPercentageCustom_" + index,
-          this.$data.investorPercentageCustom[index],
-          -1,
-          [">=", 0],
-          !this.isPermalink,
-          this.$nuxt.$route.path,
-          "float"
-        );
-        if (result === Utils.FormCheck.INVALID) {
-          listCheck = false;
-          change = Utils.FormCheck.INVALID;
-        } else if (result === Utils.FormCheck.VALID) {
-          change = listCheck ? Utils.FormCheck.VALID : change;
-        }
-      }
-
-      if (change !== Utils.FormCheck.INVALID) {
-        this.calculate();
-      }
     },
 
     /**
@@ -455,9 +400,6 @@ export default {
   },
   mounted() {
     this.calculate();
-    // setTimeout(() => {
-    //   this.calculate();
-    // }, 100);
   },
   components: {
     gbListSelect,

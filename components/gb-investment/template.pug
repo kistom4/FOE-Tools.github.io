@@ -15,7 +15,6 @@ div.content
   h4.title.is-4 {{$t($data.i18nPrefix + 'gb_investment.title')}}
 
   p {{$t($data.i18nPrefix + 'gb_investment.description.p1')}}
-  //p(v-html="$t($data.i18nPrefix + 'gb_investment.description.p2_html')")
 
   div.columns
     div.column.is-half
@@ -24,12 +23,6 @@ div.content
     div.column.is-half
       b-field(v-bind:label="$t(i18nPrefix + 'gb_investment.form.investor_percentage')" label-for="giInvestorPercentageGlobal" v-bind:type="haveError('investorPercentageGlobal')")
         b-input#giInvestorPercentageGlobal(type="number" min="0" step="0.1" v-model.number="investorPercentageGlobal" name="investorPercentageGlobal" autocomplete="off")
-
-  //div.columns
-  //  div.column
-  //    div.field
-  //      div.control.level-item
-  //        button.button.is-link(v-on:click="submitGlobal") {{$t($data.i18nPrefix + 'gb_investment.form.submit_global')}}
 
   div.table-wrapper
     table.table.is-bordered.is-striped.is-narrow.is-fullwidth(v-if="result !== null")
@@ -66,12 +59,6 @@ div.content
           td
             p.level-right {{$formatNumber(result.cost)}}
 
-  //div.columns
-  //  div.column
-  //    div.field
-  //      div.control.level-item
-  //        button.button.is-link(v-on:click="submitCustom") {{$t($data.i18nPrefix + 'gb_investment.form.submit_custom')}}
-
   h4.title.is-4.margin-top-one-em(v-if="result !== null") {{$t($data.i18nPrefix + 'promotion.title')}}
 
   div.columns
@@ -92,4 +79,3 @@ div.content
               i.far.fa-copy
             | &nbsp;&nbsp;{{$t('utils.Copy')}}
 
-  //secure-position(v-if="result !== null" v-bind:propLevelCost="result.cost")

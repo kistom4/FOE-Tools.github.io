@@ -503,44 +503,6 @@ export default {
       this.$data.result.totalGoods = this.$data.result.goods + this.$data.goods;
       this.$data.result.totalFp = this.$data.result.fp + this.$data.fpBy24h;
     },
-    submitCfCalculator() {
-      let data = ["yourCfBoost", "coins", "supplies", "goods", "fpBy24h", "otherRq", "suppliesGathered"];
-
-      let change = Utils.FormCheck.NO_CHANGE;
-      let listCheck = true;
-      for (let key in data) {
-        let result = Utils.handlerForm(
-          this,
-          key,
-          this.$data[key],
-          this.$data[key],
-          [">=", 0],
-          !this.isPermalink,
-          this.$nuxt.$route.path
-        );
-        if (result.state === Utils.FormCheck.VALID) {
-          change = listCheck ? Utils.FormCheck.VALID : change;
-        } else if (result.state === Utils.FormCheck.INVALID) {
-          listCheck = false;
-          change = Utils.FormCheck.INVALID;
-        }
-      }
-
-      if (
-        change !== Utils.FormCheck.INVALID &&
-        Utils.handlerForm(
-          this,
-          "cumulativeQuest",
-          this.$data.cumulativeQuest,
-          -1,
-          [">=", 1],
-          !this.isPermalink,
-          this.$nuxt.$route.path
-        ) !== Utils.FormCheck.INVALID
-      ) {
-        this.calculate();
-      }
-    },
     checkQuery() {
       let result = {};
       let change = Utils.FormCheck.NO_CHANGE;

@@ -1,4 +1,5 @@
 import Utils from "~/scripts/utils";
+import gbProcess from "~/scripts/foe-gb-investment";
 
 const i18nPrefix = "components.secure_position.";
 const urlPrefix = "sp_";
@@ -31,6 +32,10 @@ export default {
     canPermalink: {
       type: Boolean,
       default: false
+    },
+    ns: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -60,27 +65,33 @@ export default {
 
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.levelCost,
-      value: data.levelCost
+      value: data.levelCost,
+      ns: this.$props.ns
     });
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.currentDeposits,
-      value: data.currentDeposits
+      value: data.currentDeposits,
+      ns: this.$props.ns
     });
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.yourParticipation,
-      value: data.yourParticipation
+      value: data.yourParticipation,
+      ns: this.$props.ns
     });
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.otherParticipation,
-      value: data.otherParticipation
+      value: data.otherParticipation,
+      ns: this.$props.ns
     });
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.yourArcBonus,
-      value: data.yourArcBonus
+      value: data.yourArcBonus,
+      ns: this.$props.ns
     });
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.fpTargetReward,
-      value: data.fpTargetReward
+      value: data.fpTargetReward,
+      ns: this.$props.ns
     });
 
     return data;
@@ -92,7 +103,7 @@ export default {
     permaLink() {
       return {
         path: this.$i18n.path("secure-position/"),
-        query: this.$store.state.urlQuery
+        query: this.$store.getters.getUrlQuery(this.$props.ns)
       };
     }
   },
@@ -114,7 +125,8 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.levelCost,
-          value: val
+          value: val,
+          ns: this.$props.ns
         });
         this.calculate();
       }
@@ -132,7 +144,8 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.currentDeposits,
-          value: val
+          value: val,
+          ns: this.$props.ns
         });
         this.calculate();
       }
@@ -150,7 +163,8 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.yourParticipation,
-          value: val
+          value: val,
+          ns: this.$props.ns
         });
         this.calculate();
       }
@@ -170,7 +184,8 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.otherParticipation,
-          value: val
+          value: val,
+          ns: this.$props.ns
         });
         this.calculate();
       }
@@ -191,7 +206,8 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.yourArcBonus,
-          value: val
+          value: val,
+          ns: this.$props.ns
         });
         this.calculate();
       }
@@ -203,7 +219,8 @@ export default {
           this.$data.errors.fpTargetReward = false;
           this.$store.commit("UPDATE_URL_QUERY", {
             key: queryKey.fpTargetReward,
-            value: val
+            value: val,
+            ns: this.$props.ns
           });
           this.calculate();
         } else {
@@ -221,7 +238,8 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.fpTargetReward,
-          value: val
+          value: val,
+          ns: this.$props.ns
         });
         this.calculate();
       }
@@ -245,22 +263,17 @@ export default {
 
     calculate() {
       if (this.$data.change && this.checkFormValid()) {
-        let result =
-          Math.ceil(
-            (this.$data["levelCost"] -
-              this.$data["currentDeposits"] -
-              (this.$data["otherParticipation"] - this.$data["yourParticipation"])) /
-              2
-          ) + this.$data["otherParticipation"];
+        const result = gbProcess.ComputeSecurePlace(
+          this.$data["levelCost"],
+          this.$data["currentDeposits"],
+          this.$data["yourParticipation"],
+          this.$data["otherParticipation"],
+          this.$data["yourArcBonus"],
+          this.$data["fpTargetReward"]
+        );
 
-        if (result <= this.$data["otherParticipation"]) {
-          this.$data.fp = -1;
-        } else {
-          this.$data.fp = result;
-          if (this.$data["yourArcBonus"] >= 0 && this.$data["fpTargetReward"] > 0) {
-            this.$data.roi = Math.round((1 + this.$data["yourArcBonus"] / 100) * this.$data["fpTargetReward"] - result);
-          }
-        }
+        this.$data.fp = result.fp;
+        this.$data.roi = result.roi;
       }
     },
 
@@ -317,32 +330,6 @@ export default {
       return this.$data.errors[input] ? "is-danger" : "";
     },
 
-    submitSecurePosition() {
-      let change = Utils.FormCheck.NO_CHANGE;
-      let listCheck = true;
-      for (let key in inputComparator) {
-        let result = Utils.handlerForm(
-          this,
-          key,
-          this.$data[key],
-          this.$data[key],
-          inputComparator[key].comparator,
-          false,
-          "",
-          inputComparator[key].type
-        );
-        if (result.state === Utils.FormCheck.VALID) {
-          change = listCheck ? Utils.FormCheck.VALID : change;
-        } else if (result.state === Utils.FormCheck.INVALID) {
-          listCheck = false;
-          change = Utils.FormCheck.INVALID;
-        }
-      }
-
-      if (change !== Utils.FormCheck.INVALID) {
-        this.calculate();
-      }
-    },
     /**
      * Check URL query and return query data
      * @return {Object} Return an object with 'isPermalink' set to False if URI no contains query, otherwise it return

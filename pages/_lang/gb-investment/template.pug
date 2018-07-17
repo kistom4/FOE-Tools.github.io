@@ -2,9 +2,9 @@ div
   h3.title.is-3 {{$t(i18nPrefix + 'choose_gb.title')}}
 
   div.tile.is-ancestor(v-for="items of GBsByAge")
-    div.tile.is-parent(v-for="item of items" v-if="item !== null")
-      article.tile.is-child.box
-        p.title.is-4(:class="item.key + '-header'") {{$t('foe_data.age.' + item.key)}}
+    div.tile.is-parent(v-for="item of items")
+      article.tile.is-child.box(v-if="item !== null")
+        p.title.is-4(:class="getGbStyle(item.key)") {{$t('foe_data.age.' + item.key)}}
         div.content
           ul
             li(v-for="gb in item.gbs")
