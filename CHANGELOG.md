@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.6.0"></a>
+# [2.6.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.5.0...v2.6.0) (2018-07-17)
+
+
+### Bug Fixes
+
+* **gb-investment:** Fix strip color for GB-Investemt chooser ([fd86f67](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/fd86f67))
+
+
+### Features
+
+* **foe-data:** Add Terracotta Army (Virtual Future) ([79516b9](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/79516b9))
+* **gb-investment:** :sparkles: Add investors view ([c89c53c](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/c89c53c)), closes [#60](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/60)
+
+
+
 <a name="2.5.0"></a>
 # [2.5.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.4.0...v2.5.0) (2018-06-24)
 
