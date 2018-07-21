@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     getGbStyle(key) {
-      return key + '-header';
+      return key + "-header";
     }
   }
 };
