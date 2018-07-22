@@ -409,7 +409,7 @@
         "TheFuture": "Ère du Futur",
         "ArcticFuture": "Futur Arctique",
         "OceanicFuture": "Futur Océanique",
-        "Virtual Future": "Futur Virtuel"
+        "VirtualFuture": "Futur Virtuel"
       },
       "age_short": {
         "NoAge": "SA",
@@ -428,7 +428,7 @@
         "TheFuture": "FUT",
         "ArcticFuture": "ARC",
         "OceanicFuture": "OCE",
-        "Virtual Future": "VIR"
+        "VirtualFuture": "VIR"
       },
       "gb": {
         "Observatory": "Observatoire",
@@ -545,7 +545,12 @@
         "pearls": "Perles",
         "plankton": "Plancton",
         "promethium": "Prométhium",
-        "orichalcum": "Orichalque"
+        "orichalcum": "Orichalque",
+        "cryptocash": "Crypto-monnaie",
+        "data_crystals": "Cristal de données",
+        "golden_rice": "Riz dorée",
+        "nanites": "Nanorobot",
+        "tea_silk": "Soie de thé"
       },
       "province": {
         "Dunarsund": "Dunarsund",

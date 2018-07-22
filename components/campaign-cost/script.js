@@ -8,7 +8,6 @@ const i18nPrefix = "components.campaign_cost.";
 
 const ages = allAges;
 delete ages.NoAge;
-delete ages.VirtualFuture;
 
 export default {
   name: "CampaignCost",
