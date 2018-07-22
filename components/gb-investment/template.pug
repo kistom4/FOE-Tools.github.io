@@ -69,6 +69,10 @@ div.content
       b-field(v-bind:label="$t('utils.Suffix')" label-for="giSuffix")
         b-input#giSuffix(type="text" v-model.trim="suffix" name="suffix" autocomplete="off" :placeholder="$t($data.i18nPrefix + 'promotion.suffix_placeholder')")
 
+  div.columns
+    div.column.is-half
+      yes-no(v-model="shortName" :label="$t($data.i18nPrefix + 'gb_investment.use_short_name')")
+
   div(v-if="result !== null")
     b-field(v-for="(value, i) in promotion" :key="i")
       b-input(type="text" :value="value.message" readonly expanded)

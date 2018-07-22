@@ -91,7 +91,8 @@
               "total_preparation": "Total investment of the owner",
               "level_cost": "Level cost"
             }
-          }
+          },
+          "use_short_name": "Use short name ?"
         },
         "promotion": {
           "title": "Promotion message",
@@ -463,6 +464,44 @@
         "The_Kraken": "The Kraken",
         "The_Blue_Galaxy": "The Blue Galaxy",
         "Terracotta_Army": "Terracotta Army"
+      },
+      "gb_short": {
+        "Observatory": "Obs",
+        "Temple_of_Relics": "ToR",
+        "Oracle_of_Delphi": "OoD",
+        "Tower_of_Babel": "Babel",
+        "Statue_of_Zeus": "Zeus",
+        "Colosseum": "Colosseum",
+        "Lighthouse_of_Alexandria": "Lighthouse",
+        "Hagia_Sophia": "Hagia",
+        "Cathedral_of_Aachen": "Aachen",
+        "St_Mark_s_Basilica": "St. Mark's",
+        "Notre_Dame": "Notre Dame",
+        "Saint_Basil_s_Cathedral": "St. Basil's",
+        "Castel_del_Monte": "Castel",
+        "Deal_Castle": "Deal",
+        "Frauenkirche_of_Dresden": "Dresden",
+        "Capitol": "Capitol",
+        "Royal_Albert_Hall": "RAH",
+        "Chateau_Frontenac": "Frontenac",
+        "Alcatraz": "Alca",
+        "Space_Needle": "SN",
+        "Atomium": "Atomium",
+        "Cape_Canaveral": "Cape",
+        "The_Habitat": "Habitat",
+        "Lotus_Temple": "Lotus",
+        "Innovation_Tower": "Inno",
+        "Dynamic_Tower": "Dynamic",
+        "Voyager_V1": "Voyager",
+        "The_Arc": "Arc",
+        "Rain_Forest_Project": "RFP",
+        "Gaea_Statue": "Gaea",
+        "Arctic_Orangery": "Orangery",
+        "Seed_Vault": "SV",
+        "Atlantis_Museum": "Museum",
+        "The_Kraken": "Kraken",
+        "The_Blue_Galaxy": "Galaxy",
+        "Terracotta_Army": "TA"
       },
       "goods": {
         "dye": "Dye",
