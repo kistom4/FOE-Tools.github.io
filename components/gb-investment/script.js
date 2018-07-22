@@ -1,7 +1,7 @@
 import Utils from "~/scripts/utils";
 import gbProcess from "~/scripts/foe-gb-investment";
 import gbListSelect from "~/components/gb-list-select/index";
-import securePosition from "~/components/secure-position/index";
+import yesNo from "~/components/yes-no/index";
 
 const i18nPrefix = "components.gb_investment.";
 
@@ -16,7 +16,8 @@ const queryKey = {
   investorPercentageCustom: urlPrefix + "p",
   placeFree: urlPrefix + "pFree",
   prefix: urlPrefix + "px",
-  suffix: urlPrefix + "sx"
+  suffix: urlPrefix + "sx",
+  shortName: urlPrefix + "sn"
 };
 
 export default {
@@ -49,6 +50,7 @@ export default {
       placeFree: [{ state: true }, { state: true }, { state: true }, { state: true }, { state: true }],
       prefix: this.$cookies.get("gbPrefix") ? this.$cookies.get("gbPrefix") : "",
       suffix: this.$cookies.get("gbSuffix") ? this.$cookies.get("gbSuffix") : "",
+      shortName: this.cookieValid("shortName") ? !!this.$cookies.get("shortName") : false,
       result: null,
       errors: {
         level: false,
@@ -109,6 +111,11 @@ export default {
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.suffix,
       value: data.suffix,
+      ns: "gbi"
+    });
+    this.$store.commit("ADD_URL_QUERY", {
+      key: queryKey.shortName,
+      value: data.shortName ? 1 : 0,
       ns: "gbi"
     });
 
@@ -234,6 +241,18 @@ export default {
       });
       this.updatePromotionMessage();
     },
+    shortName(val) {
+      this.$store.commit("UPDATE_URL_QUERY", {
+        key: queryKey.shortName,
+        value: val ? 1 : 0,
+        ns: "gbi"
+      });
+      this.$cookies.set("shortName", val, {
+        path: "/",
+        expires: Utils.getDefaultCookieExpireTime()
+      });
+      this.updatePromotionMessage();
+    },
     result(val) {
       if (val !== null) {
         this.updatePromotionMessage();
@@ -270,7 +289,7 @@ export default {
     },
     getPromotionMessage(titleFirst = true, reverse = false) {
       let result = this.$data.prefix.length > 0 ? `${this.$data.prefix} ` : "";
-      result += titleFirst ? this.$t("foe_data.gb." + this.$props.gb.key) : "";
+      result += titleFirst ? this.$t(`foe_data.gb${this.$data.shortName ? "_short" : ""}.${this.$props.gb.key}`) : "";
       let array = reverse ? this.$data.result.investment.reduce((a, b) => [b, ...a], []) : this.$data.result.investment;
 
       let i = reverse ? 5 : 0;
@@ -288,7 +307,7 @@ export default {
         i += reverse ? 0 : 1;
       }
 
-      result += titleFirst ? "" : this.$t("foe_data.gb." + this.$props.gb.key);
+      result += titleFirst ? "" : this.$t(`foe_data.gb${this.$data.shortName ? "_short" : ""}.${this.$props.gb.key}`);
       result += this.$data.suffix.length > 0 ? ` ${this.$data.suffix}` : "";
 
       return { message: result, active: false };
@@ -386,6 +405,11 @@ export default {
         result.suffix = this.$route.query[queryKey.suffix];
       }
 
+      if (this.$route.query[queryKey.shortName]) {
+        isPermalink = true;
+        result.shortName = !!parseInt(this.$route.query[queryKey.shortName]);
+      }
+
       if (isPermalink) {
         this.$store.commit("IS_PERMALINK", true);
         result.investorPercentageCustom = investorPercentageCustom;
@@ -403,6 +427,6 @@ export default {
   },
   components: {
     gbListSelect,
-    securePosition
+    yesNo
   }
 };
