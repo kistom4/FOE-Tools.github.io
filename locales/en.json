@@ -541,7 +541,12 @@
         "pearls": "Pearls",
         "plankton": "Plankton",
         "promethium": "Promethium",
-        "orichalcum": "Orichalcum"
+        "orichalcum": "Orichalcum",
+        "cryptocash": "Cryptocash",
+        "data_crystals": "Data Crystals",
+        "golden_rice": "Golden Rice",
+        "nanites": "Nanites",
+        "tea_silk": "Tea Silk"
       },
       "province": {
         "Dunarsund": "Dunarsund",
