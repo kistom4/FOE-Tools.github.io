@@ -96,7 +96,8 @@
               "level_cost": "Coût du niveau"
             }
           },
-          "use_short_name": "Utiliser un nom court ?"
+          "use_short_name": "Utiliser un nom court ?",
+          "show_level": "Afficher le niveau ?"
         },
         "promotion": {
           "title": "Message de promotion",

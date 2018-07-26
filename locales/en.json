@@ -92,7 +92,8 @@
               "level_cost": "Level cost"
             }
           },
-          "use_short_name": "Use short name ?"
+          "use_short_name": "Use short name ?",
+          "show_level": "Show level ?"
         },
         "promotion": {
           "title": "Promotion message",

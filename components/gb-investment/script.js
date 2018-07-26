@@ -17,7 +17,8 @@ const queryKey = {
   placeFree: urlPrefix + "pFree",
   prefix: urlPrefix + "px",
   suffix: urlPrefix + "sx",
-  shortName: urlPrefix + "sn"
+  shortName: urlPrefix + "sn",
+  showLevel: urlPrefix + "sl"
 };
 
 export default {
@@ -51,6 +52,7 @@ export default {
       prefix: this.$cookies.get("gbPrefix") ? this.$cookies.get("gbPrefix") : "",
       suffix: this.$cookies.get("gbSuffix") ? this.$cookies.get("gbSuffix") : "",
       shortName: this.cookieValid("shortName") ? !!this.$cookies.get("shortName") : false,
+      showLevel: this.cookieValid("showLevel") ? !!this.$cookies.get("showLevel") : false,
       result: null,
       errors: {
         level: false,
@@ -116,6 +118,11 @@ export default {
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.shortName,
       value: data.shortName ? 1 : 0,
+      ns: "gbi"
+    });
+    this.$store.commit("ADD_URL_QUERY", {
+      key: queryKey.showLevel,
+      value: data.showLevel ? 1 : 0,
       ns: "gbi"
     });
 
@@ -253,6 +260,18 @@ export default {
       });
       this.updatePromotionMessage();
     },
+    showLevel(val) {
+      this.$store.commit("UPDATE_URL_QUERY", {
+        key: queryKey.showLevel,
+        value: val ? 1 : 0,
+        ns: "gbi"
+      });
+      this.$cookies.set("showLevel", val, {
+        path: "/",
+        expires: Utils.getDefaultCookieExpireTime()
+      });
+      this.updatePromotionMessage();
+    },
     result(val) {
       if (val !== null) {
         this.updatePromotionMessage();
@@ -289,7 +308,10 @@ export default {
     },
     getPromotionMessage(titleFirst = true, reverse = false) {
       let result = this.$data.prefix.length > 0 ? `${this.$data.prefix} ` : "";
-      result += titleFirst ? this.$t(`foe_data.gb${this.$data.shortName ? "_short" : ""}.${this.$props.gb.key}`) : "";
+      result += titleFirst
+        ? this.$t(`foe_data.gb${this.$data.shortName ? "_short" : ""}.${this.$props.gb.key}`) +
+          `${this.$data.showLevel ? " " + this.$data.level : ""}`
+        : "";
       let array = reverse ? this.$data.result.investment.reduce((a, b) => [b, ...a], []) : this.$data.result.investment;
 
       let i = reverse ? 5 : 0;
@@ -307,7 +329,10 @@ export default {
         i += reverse ? 0 : 1;
       }
 
-      result += titleFirst ? "" : this.$t(`foe_data.gb${this.$data.shortName ? "_short" : ""}.${this.$props.gb.key}`);
+      result += titleFirst
+        ? ""
+        : this.$t(`foe_data.gb${this.$data.shortName ? "_short" : ""}.${this.$props.gb.key}`) +
+          `${this.$data.showLevel ? " " + this.$data.level : ""}`;
       result += this.$data.suffix.length > 0 ? ` ${this.$data.suffix}` : "";
 
       return { message: result, active: false };
@@ -408,6 +433,11 @@ export default {
       if (this.$route.query[queryKey.shortName]) {
         isPermalink = true;
         result.shortName = !!parseInt(this.$route.query[queryKey.shortName]);
+      }
+
+      if (this.$route.query[queryKey.showLeve]) {
+        isPermalink = true;
+        result.showLeve = !!parseInt(this.$route.query[queryKey.showLeve]);
       }
 
       if (isPermalink) {

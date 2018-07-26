@@ -72,6 +72,8 @@ div.content
   div.columns
     div.column.is-half
       yes-no(v-model="shortName" :label="$t($data.i18nPrefix + 'gb_investment.use_short_name')")
+    div.column.is-half
+      yes-no(v-model="showLevel" :label="$t($data.i18nPrefix + 'gb_investment.show_level')")
 
   div(v-if="result !== null")
     b-field(v-for="(value, i) in promotion" :key="i")
