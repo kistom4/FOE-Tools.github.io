@@ -63,15 +63,8 @@ export default {
   watch: {
     gbi_tab(val, oldVal) {
       if (
-        Utils.handlerForm(
-          this,
-          "gbi_tab",
-          val.length === 0 ? 0 : val,
-          oldVal,
-          [0, MAX_TAB],
-          !this.isPermalink,
-          this.$nuxt.$route.path
-        ) === Utils.FormCheck.VALID
+        Utils.handlerForm(this, "gbi_tab", val.length === 0 ? 0 : val, oldVal, [0, MAX_TAB], !this.isPermalink, "/") ===
+        Utils.FormCheck.VALID
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.tab,
