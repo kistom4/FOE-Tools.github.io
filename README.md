@@ -1,5 +1,6 @@
 # FOE Tools
 [![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FFOE-Tools%2FFOE-Tools.github.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FFOE-Tools%2FFOE-Tools.github.io?ref=badge_shield)
 
 This repo is the [website](https://foe-tools.github.io/) of FOE Tools, a set of tools for [Forge Of Empire](https://forgeofempires.com).
 
@@ -101,3 +102,6 @@ See [CONTRIBUTORS.md](https://github.com/FOE-Tools/FOE-Tools.github.io/blob/dev/
 ## License
 
 MIT
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FFOE-Tools%2FFOE-Tools.github.io.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FFOE-Tools%2FFOE-Tools.github.io?ref=badge_large)
