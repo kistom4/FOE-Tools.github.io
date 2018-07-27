@@ -1,3 +1,4 @@
+import allContributorsrc from "~/all-contributorsrc.json";
 import Utils from "~/scripts/utils";
 
 const i18nPrefix = "routes.contributors.";
@@ -17,32 +18,9 @@ export default {
     this.$store.commit("SET_CURRENT_LOCATION", "contributors");
 
     return {
-      i18nPrefix: i18nPrefix,
-      url: "https://api.github.com/repos/FOE-Tools/FOE-Tools.github.io/contributors",
-      contributors: []
+      i18nPrefix,
+      allContributorsrc,
+      contributors: Utils.splitArray(allContributorsrc.contributors, 2, true)
     };
-  },
-  methods: {
-    i18nExists(key, options) {
-      return this.$i18n.i18next.exists(key, options || {});
-    }
-  },
-  mounted() {
-    let xhr = new XMLHttpRequest();
-    let self = this;
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          self.$data.contributors = Utils.splitArray(JSON.parse(xhr.responseText), 2, true);
-        } else {
-          console.error(xhr.statusText);
-        }
-      }
-    };
-    xhr.open("GET", this.$data.url, true);
-    xhr.onerror = function() {
-      console.error(xhr.statusText);
-    };
-    xhr.send(null);
   }
 };

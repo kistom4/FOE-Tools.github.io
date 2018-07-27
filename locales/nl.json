@@ -223,25 +223,6 @@
           "hero": {
             "title": "Bijdragers",
             "subtitle": "Deze pagina doet een poging om alle bijdragers te vermelden"
-          },
-          "credit": {
-            "title": "Credit",
-            "table_credit": {
-              "thead": {
-                "th1": "Pseudoniem",
-                "th2": "Notitie"
-              },
-              "tbody": {
-                "td1": "\"$t(routes.gb_investment_gb_chooser.hero.title)\" en \"$t(routes.secure_position.hero.title)\" zijn gebasseerd op het gigantische hoeveelheid werk aan zijn spreadsheets",
-                "td2": "\"$t(routes.cf_calculator.hero.title)\" is gebasseerd op het uitmuntende werk aan zijn spreadsheet"
-              }
-            }
-          },
-          "programmer_and_translator": {
-            "title": "Ontwikkelaars en Vertalers",
-            "contributors": {
-              "Heziode": "(Yoratheon) maker van dit project"
-            }
           }
         },
         "gb_investment": {
@@ -393,4 +374,3 @@
       }
     }
   }
-  

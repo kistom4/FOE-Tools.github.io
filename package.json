@@ -16,8 +16,8 @@
     "generate:gh": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate",
     "release": "standard-version",
     "deploy": "push-dir --dir=dist --branch=master --cleanup",
-    "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate"
+    "contributors:add": "all-contributors --config all-contributorsrc.json add",
+    "contributors:generate": "all-contributors --config all-contributorsrc.json generate"
   },
   "repository": {
     "type": "git",
