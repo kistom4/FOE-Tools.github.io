@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.8.0"></a>
+# [2.8.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.7.0...v2.8.0) (2018-07-27)
+
+
+### Bug Fixes
+
+* **gb-investment:** :bug: Fix bad view when switch GB in GB-Investment ([c9cb852](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/c9cb852)), closes [#66](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/66)
+
+
+### Features
+
+* **cf-calculator:** :sparkles: Add Virtual Future ([7540f54](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/7540f54)), closes [#67](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/67)
+* **contributors:** :busts_in_silhouette: Update page ([20f1d08](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/20f1d08))
+* **foe-data:** Add first 2 sectors of Virtual Future campaign ([00e015c](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/00e015c))
+* **gb-investment:** :sparkles: Add show level for promotion message ([ffb3be3](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/ffb3be3))
+
 
 
 <a name="2.7.0"></a>
@@ -318,4 +334,3 @@ Initial version of the website. This version using [Marko](https://markojs.com/)
 - home
 - about
 - GB Investment
-
