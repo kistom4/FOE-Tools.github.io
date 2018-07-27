@@ -1,5 +1,5 @@
 # FOE Tools
-[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors) [![Greenkeeper badge](https://badges.greenkeeper.io/FOE-Tools/FOE-Tools.github.io.svg)](https://greenkeeper.io/)
 
 This repo is the [website](https://foe-tools.github.io/) of FOE Tools, a set of tools for [Forge Of Empire](https://forgeofempires.com).
 
