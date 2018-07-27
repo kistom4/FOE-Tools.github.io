@@ -1,0 +1,222 @@
+{
+  "projectName": "foe-tools",
+  "projectOwner": "Heziode",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "CONTRIBUTORS.md",
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributorsPerLine": 6,
+  "types": {
+    "data": {
+      "symbol": "🗃",
+      "description": "Adding or updating data"
+    },
+    "inspired_tool": {
+      "symbol": "⚙️",
+      "description": "Tool inspired by his work"
+    },
+    "creator": {
+      "symbol": "👑",
+      "description": "Creator of this project"
+    }
+  },
+  "contributors": [
+    {
+      "login": "Heziode",
+      "name": "Heziode (Yoratheon)",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16735076?v=4",
+      "profile": "https://github.com/Heziode",
+      "contributions": [
+        "creator",
+        "code",
+        "design",
+        "doc",
+        "bug",
+        "ideas",
+        "data",
+        "review",
+        "talk",
+        "tool",
+        "translation"
+      ]
+    },
+    {
+      "login": "doosterkamp",
+      "name": "Dennis",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1842171?v=4",
+      "profile": "http://www.fidonet.nl",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "aviriel",
+      "name": "Oksana Kurysheva",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/596948?v=4",
+      "profile": "http://www.itdhq.com",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Nlossae",
+      "name": "Michael Hudak",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6510075?v=4",
+      "profile": "https://github.com/Nlossae",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "KingSasquatch",
+      "name": "KingSasquatch",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5184069?v=4",
+      "profile": "https://github.com/KingSasquatch",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "AntoineBouron",
+      "name": "Antoine Bouron",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/12555872?v=4",
+      "profile": "https://github.com/AntoineBouron",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "DasRifftierchen",
+      "name": "Stefan",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/39431201?v=4",
+      "profile": "https://github.com/DasRifftierchen",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "kTitan",
+      "name": "Alexander Schneider",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/516661?v=4",
+      "profile": "http://www.magicspace.eu",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "thewaiters",
+      "name": "thewaiters",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5732845?v=4",
+      "profile": "https://github.com/thewaiters",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "Von Willem",
+      "name": "Von Willem",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/37/37209.jpg?1454012509",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/von-willem.37209/",
+      "contributions": [
+        "inspired_tool",
+        "ideas"
+      ]
+    },
+    {
+      "login": "Ozyman Tremble Weaklings",
+      "name": "Ozyman Tremble Weaklings",
+      "avatar_url": "https://forum.us.forgeofempires.com/data/avatars/l/31/31440.jpg?1506918935",
+      "profile": "https://forum.us.forgeofempires.com/index.php?members/ozyman-tremble-weaklings.31440/",
+      "contributions": [
+        "inspired_tool",
+        "ideas"
+      ]
+    },
+    {
+      "login": "placid88",
+      "name": "placid88",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/14/14156.jpg?1450635748",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/placid88.14156/",
+      "contributions": [
+        "data"
+      ]
+    },
+    {
+      "login": "Pusso",
+      "name": "Pusso",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/50/50829.jpg?1516574022",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/pusso.50829/",
+      "contributions": [
+        "data"
+      ]
+    },
+    {
+      "login": "Dams54320",
+      "name": "Dams54320",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/22/22838.jpg?1512901809",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/dams54320.22838/",
+      "contributions": [
+        "question"
+      ]
+    },
+    {
+      "login": "Zaro ZaroZaro",
+      "name": "Zaro ZaroZaro",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/37/37202.jpg?1520984122",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/zaro-zarozaro.37202/",
+      "contributions": [
+        "ideas",
+        "translation"
+      ]
+    },
+    {
+      "login": "OR73",
+      "name": "OR73",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/44/44137.jpg?1526964606",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/or73.44137/",
+      "contributions": [
+        "question"
+      ]
+    },
+    {
+      "login": "-kikou-",
+      "name": "-kikou-",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/36/36832.jpg?1451576610",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/kikou.36832/",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "Sirthael",
+      "name": "Sirthael",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/54/54195.jpg?1530397609",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/sirthael.54195/",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "Bkui",
+      "name": "Bkui",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/26/26696.jpg?1447316567",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/bkui.26696/",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "qaccy",
+      "name": "qaccy",
+      "avatar_url": "https://forum.us.forgeofempires.com/styles/foe_mx/xenforo/avatars/avatar_l.png",
+      "profile": "https://forum.us.forgeofempires.com/index.php?members/qaccy.10786/",
+      "contributions": [
+        "question"
+      ]
+    }
+  ]
+}

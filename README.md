@@ -1,4 +1,5 @@
 # FOE Tools
+[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors)
 
 This repo is the [website](https://foe-tools.github.io/) of FOE Tools, a set of tools for [Forge Of Empire](https://forgeofempires.com).
 
@@ -88,6 +89,12 @@ See [CHANGELOG.md](https://github.com/FOE-Tools/FOE-Tools.github.io/blob/dev/CHA
 ## Code of Conduct
 
 This project adheres to the [Contributor Covenant](https://www.contributor-covenant.org/). By participating in this project you agree to abide by its terms.
+
+
+
+## Contributors
+
+See [CONTRIBUTORS.md](https://github.com/FOE-Tools/FOE-Tools.github.io/blob/dev/CONTRIBUTORS.md)
 
 
 
