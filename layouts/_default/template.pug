@@ -74,7 +74,7 @@
       div.container
         div.columns.is-centered
           div.column.is-three-quarters
-            div(v-if="(['home', 'gb_investment'].indexOf($store.state.currentLocation) >= 0) && !$route.params.gb")
+            div(v-if="(['home', 'gb_investment', 'contributors'].indexOf($store.state.currentLocation) >= 0) && !$route.params.gb")
               nuxt
             div.card.article(v-else)
               div.card-content

@@ -11,6 +11,90 @@
   "commit": false,
   "contributorsPerLine": 6,
   "types": {
+    "blog": {
+      "symbol": "📝",
+      "description": "Blogposts"
+    },
+    "bug": {
+      "symbol": "🐛",
+      "description": "Bug reports"
+    },
+    "code": {
+      "symbol": "💻",
+      "description": "Code"
+    },
+    "design": {
+      "symbol": "🎨",
+      "description": "Design"
+    },
+    "doc": {
+      "symbol": "📖",
+      "description": "Documentation"
+    },
+    "eventOrganizing": {
+      "symbol": "📋",
+      "description": "Event Organizing"
+    },
+    "example": {
+      "symbol": "💡",
+      "description": "Examples"
+    },
+    "financial": {
+      "symbol": "💵",
+      "description": "Financial"
+    },
+    "fundingFinding": {
+      "symbol": "🔍",
+      "description": "Funding Finding"
+    },
+    "ideas": {
+      "symbol": "🤔",
+      "description": "Ideas, Planning, & Feedback"
+    },
+    "infra": {
+      "symbol": "🚇",
+      "description": "Infrastructure (Hosting, Build-Tools, etc)"
+    },
+    "platform": {
+      "symbol": "📦",
+      "description": "Packaging/porting to new platform"
+    },
+    "plugin": {
+      "symbol": "🔌",
+      "description": "Plugin/utility libraries"
+    },
+    "question": {
+      "symbol": "💬",
+      "description": "Answering Questions"
+    },
+    "review": {
+      "symbol": "👀",
+      "description": "Reviewed Pull Requests"
+    },
+    "talk": {
+      "symbol": "📢",
+      "description": "Talks"
+    },
+    "test": {
+      "symbol": "⚠️",
+      "description": "Tests"
+    },
+    "tool": {
+      "symbol": "🔧",
+      "description": "Tools"
+    },
+    "translation": {
+      "symbol": "🌍",
+      "description": "Translation"
+    },
+    "tutorial": {
+      "symbol": "✅",
+      "description": "Tutorials"
+    },
+    "video": {
+      "symbol": "📹",
+      "description": "Videos"
+    },
     "data": {
       "symbol": "🗃",
       "description": "Adding or updating data"
@@ -42,6 +126,26 @@
         "talk",
         "tool",
         "translation"
+      ]
+    },
+    {
+      "login": "Von Willem",
+      "name": "Von Willem",
+      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/37/37209.jpg?1454012509",
+      "profile": "https://forum.fr.forgeofempires.com/index.php?members/von-willem.37209/",
+      "contributions": [
+        "inspired_tool",
+        "ideas"
+      ]
+    },
+    {
+      "login": "Ozyman Tremble Weaklings",
+      "name": "Ozyman Tremble Weaklings",
+      "avatar_url": "https://forum.us.forgeofempires.com/data/avatars/l/31/31440.jpg?1506918935",
+      "profile": "https://forum.us.forgeofempires.com/index.php?members/ozyman-tremble-weaklings.31440/",
+      "contributions": [
+        "inspired_tool",
+        "ideas"
       ]
     },
     {
@@ -117,26 +221,6 @@
       ]
     },
     {
-      "login": "Von Willem",
-      "name": "Von Willem",
-      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/37/37209.jpg?1454012509",
-      "profile": "https://forum.fr.forgeofempires.com/index.php?members/von-willem.37209/",
-      "contributions": [
-        "inspired_tool",
-        "ideas"
-      ]
-    },
-    {
-      "login": "Ozyman Tremble Weaklings",
-      "name": "Ozyman Tremble Weaklings",
-      "avatar_url": "https://forum.us.forgeofempires.com/data/avatars/l/31/31440.jpg?1506918935",
-      "profile": "https://forum.us.forgeofempires.com/index.php?members/ozyman-tremble-weaklings.31440/",
-      "contributions": [
-        "inspired_tool",
-        "ideas"
-      ]
-    },
-    {
       "login": "placid88",
       "name": "placid88",
       "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/14/14156.jpg?1450635748",
@@ -171,15 +255,6 @@
       "contributions": [
         "ideas",
         "translation"
-      ]
-    },
-    {
-      "login": "OR73",
-      "name": "OR73",
-      "avatar_url": "https://forum.fr.forgeofempires.com/data/avatars/l/44/44137.jpg?1526964606",
-      "profile": "https://forum.fr.forgeofempires.com/index.php?members/or73.44137/",
-      "contributions": [
-        "question"
       ]
     },
     {

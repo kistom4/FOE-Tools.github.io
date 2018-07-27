@@ -226,25 +226,6 @@
         "hero": {
           "title": "Авторы",
           "subtitle": "На этой странице перечислены все (надеемся, что так) участники разработки этого проекта"
-        },
-        "credit": {
-          "title": "Благодарности",
-          "table_credit": {
-            "thead": {
-              "th1": "Ник",
-              "th2": "Примечание"
-            },
-            "tbody": {
-              "td1": "\"$t(routes.gb_investment_gb_chooser.hero.title)\" и \"$t(routes.secure_position.hero.title)\" основаны на таблицах, сделанных этим игроком",
-              "td2": "\"$t(routes.cf_calculator.hero.title)\" основан на таблицах, сделанных этим игроком"
-            }
-          }
-        },
-        "programmer_and_translator": {
-          "title": "Разработчики и переводчики",
-          "contributors": {
-            "Heziode": "(Yoratheon) создатель проекта"
-          }
         }
       },
       "gb_investment": {
