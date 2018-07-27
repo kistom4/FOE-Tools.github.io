@@ -1,6 +1,6 @@
 # FOE Tools
-[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FFOE-Tools%2FFOE-Tools.github.io.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FFOE-Tools%2FFOE-Tools.github.io?ref=badge_shield)
+[![GitHub version](https://badge.fury.io/gh/FOE-Tools%2FFOE-Tools.github.io.svg?style=flat-square)](https://badge.fury.io/gh/FOE-Tools%2FFOE-Tools.github.io)[![Dependency Status](https://david-dm.org/FOE-Tools/FOE-Tools.github.io/status.svg?style=flat-square)](https://david-dm.org/FOE-Tools/FOE-Tools.github.io/) [![devDependency Status](https://david-dm.org/FOE-Tools/FOE-Tools.github.io/dev-status.svg?style=flat-square)](https://david-dm.org/FOE-Tools/FOE-Tools.github.io/?type=dev)
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors)[![GitHub license](https://img.shields.io/github/license/FOE-Tools/FOE-Tools.github.io.svg?style=flat-square)](https://github.com/FOE-Tools/FOE-Tools.github.io/blob/master/LICENSE)[![Greenkeeper](https://badges.greenkeeper.io/nuxt-community/nuxtent-module.svg?style=flat-square)](https://greenkeeper.io/)
 
 This repo is the [website](https://foe-tools.github.io/) of FOE Tools, a set of tools for [Forge Of Empire](https://forgeofempires.com).
 
