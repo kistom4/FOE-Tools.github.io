@@ -144,7 +144,7 @@ Repo References
 
 [repo]:https://github.com/FOE-Tools/FOE-Tools.github.io
 [coc]:https://github.com/FOE-Tools/FOE-Tools.github.io/blob/dev/CODE_OF_CONDUCT.md "Contributor Covenant Code of Conduct"
-[license]:https://github.com/FOE-Tools/FOE-Tools.github.io/blob/dev/LICENSE.md "License"
+[license]:https://github.com/FOE-Tools/FOE-Tools.github.io/blob/dev/LICENSE "License"
 
 <!--
 Badge References
