@@ -25,7 +25,7 @@ Using yarn:
 yarn
 ```
 
-## Starting the server
+## Start the server
 
 Using npm:
 
@@ -37,6 +37,22 @@ Using yarn:
 
 ```
 yarn start
+```
+
+
+
+## Start in development mode
+
+Using npm:
+
+```bash
+npm run dev
+```
+
+Using yarn:
+
+```
+yarn run dev
 ```
 
 
@@ -65,14 +81,17 @@ The generated static site will be placed in `dist/`.
 Generate all files for production (or test for production):
 
 ```bash
-npm run generate
+npm run generate:gh
 ```
 
 Using yarn:
 
 ```bash
-yarn run generate
+yarn run generate:gh
 ```
+
+
+> _**Note**: You need an HTTP server to test with generated. You can use [http-serve](https://www.npmjs.com/package/http-serve)._
 
 
 
@@ -111,7 +130,12 @@ See [CONTRIBUTORS.md](https://github.com/FOE-Tools/FOE-Tools.github.io/blob/dev/
 MIT
 
 
+<div align="center">
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FFOE-Tools%2FFOE-Tools.github.io.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FFOE-Tools%2FFOE-Tools.github.io?ref=badge_large)
+
+</div>
+
 
 
 <!--
