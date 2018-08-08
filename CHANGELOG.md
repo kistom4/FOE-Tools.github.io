@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **foe-data:** :alien: Update Virtual Future GB Cost due to InnoGames change ([03c837f](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/03c837f))
+* **foe-data**: :sparkles: Add levels 82 to 102 of Virtual Future ([03c837f](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/03c837f))
 
 
 
