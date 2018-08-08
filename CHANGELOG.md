@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.9.0"></a>
+# [2.9.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.8.0...v2.9.0) (2018-08-08)
+
+
+### Features
+
+* **foe-data:** :alien: Update Virtual Future GB Cost due to InnoGames change ([03c837f](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/03c837f))
+
+
+
 <a name="2.8.0"></a>
 # [2.8.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.7.0...v2.8.0) (2018-07-27)
 
