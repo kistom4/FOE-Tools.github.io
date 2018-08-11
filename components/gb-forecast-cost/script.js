@@ -170,11 +170,11 @@ export default {
   computed: {
     fromInput: {
       get() {
-        return this.$data.from;
+        return this.$data.from - 1;
       },
       set(val) {
-        this.checkFrom(val);
-        oldFromInput = val;
+        this.checkFrom(val + 1);
+        oldFromInput = val + 1;
       }
     },
     lang() {
@@ -382,7 +382,7 @@ export default {
     changeGb(key) {
       this.$data.gb = gbsData[key];
       this.$data.maxLevel = this.$data.gb.levels.length;
-      this.$data.from = this.$data.from > this.$data.maxLevel ? 1 : this.$data.from;
+      this.$data.from = this.$data.from > this.$data.maxLevel ? 0 : this.$data.from;
       this.$data.to = this.$data.to > this.$data.maxLevel ? this.$data.maxLevel : this.$data.to;
       this.calculate();
     },
