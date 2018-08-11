@@ -75,7 +75,8 @@
             "level": "GB Level (between 1 and {{max}})",
             "investor_percentage": "% of global investors bonus (arc bonus)",
             "submit_global": "Global calculation",
-            "submit_custom": "Custom calculation"
+            "submit_custom": "Custom calculation",
+            "owner_investment": "Number of FPs currently put by the owner"
           },
           "table": {
             "title": "$t({{gb_key}}) level {{level}}",
@@ -86,6 +87,9 @@
               "th4": "Rewards with rate",
               "th5": "% of investors bonus (arc bonus)",
               "th6": "Place free"
+            },
+            "tbody": {
+              "tooltip_owner_investment": "FPs remaining to be put by the owner to secure the place"
             },
             "tfoot": {
               "total_preparation": "Total investment of the owner",
@@ -996,6 +1000,7 @@
       "Cost": "Cost",
       "Conquered": "Conquered",
       "Total": "Total",
+      "Secured": "Secured",
       "moment": {
         "year": "{{count}} year",
         "year_plural": "{{count, number}} years",

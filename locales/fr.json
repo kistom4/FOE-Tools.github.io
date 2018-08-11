@@ -79,7 +79,8 @@
             "level": "Niveau du GM (entre 1 et {{max}})",
             "investor_percentage": "% de bonus (grosses arches) global des investisseurs",
             "submit_global": "Calcul global",
-            "submit_custom": "Calcul personnalisé"
+            "submit_custom": "Calcul personnalisé",
+            "owner_investment": "Nombre de PFs actuellement mis par le propriétaire"
           },
           "table": {
             "title": "$t({{gb_key}}) niveau {{level}}",
@@ -90,6 +91,9 @@
               "th4": "Récompenses avec taux",
               "th5": "% de bonus (grosses arches) des investisseurs",
               "th6": "Place libre"
+            },
+            "tbody": {
+              "tooltip_owner_investment": "PFs restant à mettre par le propriétaire pour sécuriser la place"
             },
             "tfoot": {
               "total_preparation": "Investissement total du propriétaire",
@@ -1000,6 +1004,7 @@
       "Cost": "Cost",
       "Conquered": "Conquis",
       "Total": "Total",
+      "Secured": "Sécurisé",
       "moment": {
         "year": "{{count}} an",
         "year_plural": "{{count, number}} ans",

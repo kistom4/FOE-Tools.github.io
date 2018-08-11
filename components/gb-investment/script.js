@@ -12,6 +12,7 @@ const urlPrefix = "gbi_";
 
 const queryKey = {
   level: urlPrefix + "l",
+  ownerInvestment: urlPrefix + "oi",
   investorPercentageGlobal: urlPrefix + "ipg",
   investorPercentageCustom: urlPrefix + "p",
   placeFree: urlPrefix + "pFree",
@@ -38,6 +39,7 @@ export default {
       i18nPrefix,
       level: this.cookieValid("level") ? parseInt(this.$cookies.get("level")) : 10,
       maxLevel: this.$props.gb.levels.length,
+      ownerInvestment: this.cookieValid("ownerInvestment") ? parseInt(this.$cookies.get("ownerInvestment")) : 0,
       investorPercentageGlobal: this.cookieValid("investorPercentageGlobal")
         ? parseFloat(this.$cookies.get("investorPercentageGlobal"))
         : defaultArcPercentage,
@@ -56,6 +58,7 @@ export default {
       result: null,
       errors: {
         level: false,
+        ownerInvestment: false,
         percentageValueGlobal: false,
         investorPercentageCustom_0: false,
         investorPercentageCustom_1: false,
@@ -74,13 +77,18 @@ export default {
       }
     }
 
-    Object.assign(data, this.checkQuery(data.maxLevel));
+    Object.assign(data, this.checkQuery(data.level, data.maxLevel));
 
     oldInvestorPercentageCustom = JSON.parse(JSON.stringify(data.investorPercentageCustom));
 
     this.$store.commit("ADD_URL_QUERY", {
       key: queryKey.level,
       value: data.level,
+      ns: "gbi"
+    });
+    this.$store.commit("ADD_URL_QUERY", {
+      key: queryKey.ownerInvestment,
+      value: data.ownerInvestment,
       ns: "gbi"
     });
     this.$store.commit("ADD_URL_QUERY", {
@@ -160,6 +168,26 @@ export default {
       ) {
         this.$store.commit("UPDATE_URL_QUERY", {
           key: queryKey.level,
+          value: val,
+          ns: "gbi"
+        });
+        this.calculate();
+      }
+    },
+    ownerInvestment(val, oldVal) {
+      if (
+        Utils.handlerForm(
+          this,
+          "ownerInvestment",
+          val.length === 0 ? 0 : val,
+          oldVal,
+          [0, this.$data.result.cost],
+          !this.isPermalink,
+          this.$nuxt.$route.path
+        ) === Utils.FormCheck.VALID
+      ) {
+        this.$store.commit("UPDATE_URL_QUERY", {
+          key: queryKey.ownerInvestment,
           value: val,
           ns: "gbi"
         });
@@ -363,12 +391,13 @@ export default {
 
     /**
      * Check URL query and return query data
+     * @param level Current selected level
      * @param maxLevel Max level of the GB
      * @return {Object} Return an object with 'isPermalink' set to False if URI no contains query, otherwise it return
      * an object with corresponding values
      */
-    checkQuery(maxLevel) {
-      let result = {};
+    checkQuery(level, maxLevel) {
+      let result = {level};
       let investorPercentageCustom = Array.apply(null, Array(5)).map(() => defaultArcPercentage);
       let placeFree = Array.apply(null, Array(5)).map(() => {
         return { free: true };
@@ -383,6 +412,16 @@ export default {
       ) {
         isPermalink = true;
         result.level = parseInt(this.$route.query[queryKey.level]);
+      }
+
+      // Check owner investment
+      if (
+        this.$route.query[queryKey.ownerInvestment] &&
+        !isNaN(this.$route.query[queryKey.ownerInvestment]) &&
+        Utils.inRange(parseInt(this.$route.query[queryKey.ownerInvestment]), 0, this.$props.gb.levels[result.level - 1].cost)
+      ) {
+        isPermalink = true;
+        result.ownerInvestment = parseInt(this.$route.query[queryKey.ownerInvestment]);
       }
 
       // Check global investors percentage

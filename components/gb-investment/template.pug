@@ -24,6 +24,11 @@ div.content
       b-field(v-bind:label="$t(i18nPrefix + 'gb_investment.form.investor_percentage')" label-for="giInvestorPercentageGlobal" v-bind:type="haveError('investorPercentageGlobal')")
         b-input#giInvestorPercentageGlobal(type="number" min="0" step="0.1" v-model.number="investorPercentageGlobal" name="investorPercentageGlobal" autocomplete="off")
 
+  div.columns(v-if="result !== null")
+    div.column.is-half
+      b-field(v-bind:label="$t(i18nPrefix + 'gb_investment.form.owner_investment', { max: result.cost })" label-for="giOwnerInvestment" v-bind:type="haveError('ownerInvestment')")
+        b-input#giOwnerInvestment(type="number" min="0" v-bind:max="result.cost" v-model.number="ownerInvestment" name="ownerInvestment" autocomplete="off")
+
   div.table-wrapper
     table.table.is-bordered.is-striped.is-narrow.is-fullwidth(v-if="result !== null")
       thead
@@ -41,7 +46,15 @@ div.content
         tr(v-for="(place, i) in result.investment")
           td.has-text-right {{$formatNumber(i + 1)}}
           td.has-text-right {{$formatNumber(place.reward)}}
-          td.has-text-right {{$formatNumber(place.preparation)}}
+          td.has-text-right
+            p(v-if="(place.preparation > 0) && (ownerInvestment > 0)") {{$formatNumber(place.preparation)}} (
+              template(v-if="place.preparation - ownerInvestment > 0")
+                b-tooltip(type="is-dark" :label="$t(i18nPrefix + 'gb_investment.table.tbody.tooltip_owner_investment')" dashed)
+                  span.has-text-danger {{$formatNumber(place.preparation - ownerInvestment)}}
+              template(v-else)
+                span.has-text-success {{$t('utils.Secured')}}
+              | )
+            p(v-else) {{$formatNumber(place.preparation)}}
           td.has-text-right {{$formatNumber(place.participation)}}
           td
             b-field(v-bind:type="haveError('investorPercentageCustom_' + i)")
