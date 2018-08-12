@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.10.0"></a>
+# [2.10.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.9.0...v2.10.0) (2018-08-12)
+
+
+### Features
+
+* **foe-data:** Add sectors in Virtual Future ([d3a63be](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/d3a63be))
+* **foe-data:** Update Tomorrow GB Cost, add level 71 to 81 ([066f578](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/066f578))
+* **GB Forecast Cost:** Review the input "From" to start from 0 instead of 1 ([5a36e30](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/5a36e30))
+* **GB Investment:** Add input of number of FPs currently put by the owner ([df62b0d](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/df62b0d))
+
+
+
 <a name="2.9.0"></a>
 # [2.9.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.8.0...v2.9.0) (2018-08-08)
 
