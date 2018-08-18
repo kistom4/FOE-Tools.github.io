@@ -55,7 +55,14 @@ div.content
                 span.has-text-success {{$t('utils.Secured')}}
               | )
             p(v-else) {{$formatNumber(place.preparation)}}
-          td.has-text-right {{$formatNumber(place.participation)}}
+          td.has-text-right
+            p(v-if="(place.reward > 0)") {{$formatNumber(place.participation)}}
+            template(v-else)
+              template(v-if="(i > 0) && (result.investment[i - 1].cumulativeInvestment < result.cost)")
+                b-field(v-bind:type="haveError('investorParticipation_' + i)")
+                  b-input(type="number" :value="getInvestorParticipation(i)" min="0" @input="changeInvestorParticipation(i, parseInt($event))" :max="i > 0 ? Math.min(result.investment[i - 1].participation, result.cost - result.investment[i - 1].cumulativeInvestment) : false" v-bind:name="'investorParticipation_' + i" autocomplete="off")
+              template(v-else)
+                | {{$formatNumber(place.participation)}}
           td
             b-field(v-bind:type="haveError('investorPercentageCustom_' + i)")
               b-input(type="number" min="0" step="0.1" v-model.number="investorPercentageCustom[i]" v-bind:name="'investorPercentageCustom_' + i" autocomplete="off")

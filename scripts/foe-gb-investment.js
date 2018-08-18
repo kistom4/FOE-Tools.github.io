@@ -1,23 +1,10 @@
 /**
- * Calculate the cost to secure a place
- *
- * @param levelCost {number} Cost of the current level
- * @param participations {Array} Array of integer which contains all participant costs
- * @returns {number} Return the cost to secure a place
+ * Error throw when the value of the participation for the current place is greater than the previous place.
+ * @param index Index of the place
  */
-function costSecureRank(levelCost, participations) {
-  let acc = 0;
-  let index = 0;
-  let result;
-
-  while (index < participations.length - 1) {
-    acc += participations[index];
-    index++;
-  }
-
-  result = levelCost - (acc + participations[participations.length - 1] * 2);
-
-  return result < 0 ? 0 : result;
+function InvalidParticipationException(index) {
+  this.message = `The value at index ${index} should not be greater than the previous place participation`;
+  this.index = index;
 }
 
 /**
@@ -26,21 +13,49 @@ function costSecureRank(levelCost, participations) {
  * @param gb {object} Pointer of Great Building
  * @param currentLevel {number} Current level
  * @param investorPercentage {Array} percentage of investors (Arc)
- * @returns {object}
+ * @param defaultParticipation {Array} Default participation used if reward of the place is equal to 0.
+ * If null, all default place participation are set to 0.
+ * @return {object}
  */
-function getValues(gb, currentLevel, investorPercentage) {
-  let obj = {};
+function getValues(gb, currentLevel, investorPercentage, defaultParticipation) {
+  const obj = {};
   obj.cost = gb[currentLevel - 1].cost;
   obj.investment = [];
+  if (!defaultParticipation) {
+    defaultParticipation = Array.apply(null, Array(gb[currentLevel - 1].reward.length)).map(() => 0);
+  }
 
-  let participation = [];
+  let levelCostReached = false;
+  let cumulativeParticipation = 0;
+  let maxPreparation = 0;
+
   for (let i = 0; i < gb[currentLevel - 1].reward.length; i++) {
-    let investment = {};
-    let factor = 1 + investorPercentage[i] / 100;
+    const investment = {};
+    const factor = 1 + investorPercentage[i] / 100;
+
+    // Compute the participation of the investor
     investment.reward = gb[currentLevel - 1].reward[i];
-    investment.participation = Math.round(investment.reward * factor);
-    participation[participation.length] = investment.participation;
-    investment.preparation = costSecureRank(obj.cost, participation);
+    investment.participation = 0;
+    if (investment.reward > 0) {
+      investment.participation = Math.round(investment.reward * factor);
+    } else if (!levelCostReached) {
+      if (defaultParticipation[i] > obj.investment[obj.investment.length - 1].participation) {
+        throw new InvalidParticipationException(i);
+      }
+      investment.participation = defaultParticipation[i];
+    }
+
+    // Compute the cost to secure the place
+    investment.preparation = obj.cost - (cumulativeParticipation + investment.participation * 2);
+    investment.preparation = investment.preparation < 0 ? 0 : investment.preparation;
+
+    cumulativeParticipation += investment.participation;
+    maxPreparation = Math.max(maxPreparation, investment.preparation);
+    investment.cumulativeInvestment = cumulativeParticipation + maxPreparation;
+    if (!levelCostReached && cumulativeParticipation + maxPreparation >= obj.cost) {
+      levelCostReached = true;
+    }
+
     obj.investment[obj.investment.length] = investment;
   }
 
@@ -60,15 +75,17 @@ export default {
    * @param currentLevel {number} Current level
    * @param investorPercentage {Array} percentage of investors (Arc)
    * @param gb {object} Pointer of Great Building
-   * @returns {object}
+   * @param defaultParticipation {Array} Default participation used if reward of the place is equal to 0.
+   * If null, all default place participation are set to 0.
+   * @return {object}
    */
-  Submit(currentLevel, investorPercentage, gb) {
+  Submit(currentLevel, investorPercentage, gb, defaultParticipation) {
     if (currentLevel < 1 || currentLevel > gb.length) {
       // Triggering an error
       return;
     }
 
-    return getValues(gb, currentLevel, investorPercentage);
+    return getValues(gb, currentLevel, investorPercentage, defaultParticipation);
   },
 
   /**
@@ -78,7 +95,7 @@ export default {
    * @param to {number} To this level
    * @param investorPercentage {Array} percentage of investors (Arc)
    * @param gb {object} Pointer of Great Building
-   * @returns {object}
+   * @return {object}
    */
   SubmitRange(from, to, investorPercentage, gb) {
     if (from < 1 || from > gb.length || to < 1 || to > gb.length || from > to) {
@@ -95,7 +112,7 @@ export default {
     };
 
     for (let i = from; i <= to; i++) {
-      result.levels.push(this.Submit(i, investorPercentage, gb));
+      result.levels.push(this.Submit(i, investorPercentage, gb, null));
       result.global.cost += result.levels[result.levels.length - 1].cost;
       result.global.totalPreparations += result.levels[result.levels.length - 1].totalPreparations;
     }
@@ -111,7 +128,7 @@ export default {
    * @param otherParticipation {number}
    * @param yourArcBonus {number}
    * @param fpTargetReward {number}
-   * @returns {Object} Return an object that contains:
+   * @return {Object} Return an object that contains:
    *  - fp: fp needed to secure the a place
    *  - roi: Return of investment (if yourArcBonus >= 0 && fpTargetReward > 0), otherwise it is set to 0
    */
