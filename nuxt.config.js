@@ -167,12 +167,64 @@ const modifyHtml = (page, locale) => {
   return window.document.querySelector("html").outerHTML;
 };
 
+function generateSitemapRoutes(baseURL, locales, routes) {
+  const result = [];
+  const lastmodISO = new Date().toISOString();
+  for (let route of routes) {
+    let obj = {};
+    obj.url = `${baseURL}${route.route}`;
+    obj.changefreq = "weekly";
+    obj.lastmodISO = lastmodISO;
+    const links = [];
+    for (let locale of locales) {
+      if (locale === defaultLocale) {
+        links.push({ lang: locale, url: `${baseURL}${route.route}` });
+      } else {
+        links.push({ lang: locale, url: `${baseURL}/${locale}${route.route}` });
+      }
+    }
+    obj.links = links;
+
+    result.push(obj);
+    for (let subRoute of route.dynamic) {
+      let subObj = {};
+      subObj.url = `${baseURL}${route.route}/${subRoute}`;
+      subObj.changefreq = "weekly";
+      subObj.lastmodISO = lastmodISO;
+      const links = [];
+      for (let locale of locales) {
+        if (locale === defaultLocale) {
+          links.push({ lang: locale, url: `${baseURL}${route.route}/${subRoute}` });
+        } else {
+          links.push({ lang: locale, url: `${baseURL}/${locale}${route.route}/${subRoute}` });
+        }
+      }
+      subObj.links = links;
+
+      result.push(subObj);
+    }
+  }
+
+  return result;
+}
+
 // only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
 const routerBase =
   process.env.DEPLOY_ENV === "GH_PAGES"
     ? {
         router: {
           base: "/"
+        }
+      }
+    : {};
+
+const hostname = process.env.DEPLOY_ENV === "GH_PAGES" ? "https://foe-tools.github.io" : "";
+
+const sitemap =
+  process.env.DEPLOY_ENV === "GH_PAGES"
+    ? {
+        sitemap: {
+          hostname: "https://foe-tools.github.io"
         }
       }
     : {};
@@ -199,6 +251,7 @@ const defaultRoutes = [
 
 module.exports = {
   ...routerBase,
+  ...sitemap,
 
   loading: {
     color: "#3498db",
@@ -234,7 +287,7 @@ module.exports = {
     }
   },
 
-  modules: ["cookie-universal-nuxt", "nuxt-buefy"],
+  modules: ["@nuxtjs/sitemap", "cookie-universal-nuxt", "nuxt-buefy"],
   buefy: { defaultIconPack: "fas", materialDesignIcons: false },
   mode: "spa",
   hooks(hook) {
@@ -244,5 +297,9 @@ module.exports = {
     hook("generate:page", page => {
       page.html = modifyHtml(page, getLocale(page.route));
     });
+  },
+  sitemap: {
+    generate: true,
+    routes: generateSitemapRoutes(hostname, supportedLocales, defaultRoutes)
   }
 };

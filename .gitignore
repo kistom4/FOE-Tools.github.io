@@ -12,3 +12,4 @@ dist/
 .DS_STORE
 dump.rdb
 .marko-devtools/
+static/sitemap.xml

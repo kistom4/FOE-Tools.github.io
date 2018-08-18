@@ -576,7 +576,6 @@ export default {
         }
         this.calculate();
       } else {
-        console.log("invalid value");
         this.$data.errors["investorParticipation_" + currentIndex] = true;
       }
     },
