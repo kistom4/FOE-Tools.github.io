@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.11.0"></a>
+# [2.11.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.10.0...v2.11.0) (2018-08-18)
+
+
+### Features
+
+* **GB Investment:** Add input to set custom investor value if place does not have reward ([11da2d9](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/11da2d9))
+* **SEO:** Add robots.txt and auto-generate sitemap.xml when run nuxt generate ([34da7d4](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/34da7d4))
+
+
+
 <a name="2.10.0"></a>
 # [2.10.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.9.0...v2.10.0) (2018-08-12)
 
