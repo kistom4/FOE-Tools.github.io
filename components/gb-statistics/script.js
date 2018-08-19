@@ -314,7 +314,15 @@ export default {
     }
   },
   methods: {
-    updateData(statSelector, graphType, ageConfig, maxAgeCost, from = this.$data.from, to = this.$data.to, hidden = this.$data.hidden) {
+    updateData(
+      statSelector,
+      graphType,
+      ageConfig,
+      maxAgeCost,
+      from = this.$data.from,
+      to = this.$data.to,
+      hidden = this.$data.hidden
+    ) {
       const data = {};
       const datasets = [];
       let suggestedMin = Infinity;
@@ -377,7 +385,15 @@ export default {
       };
     },
     updateGraphData(obj = this.$data) {
-      const result = this.updateData(obj.statSelector, obj.graphType, obj.ageConfig, obj.maxAgeCost, obj.from, obj.to, obj.hidden);
+      const result = this.updateData(
+        obj.statSelector,
+        obj.graphType,
+        obj.ageConfig,
+        obj.maxAgeCost,
+        obj.from,
+        obj.to,
+        obj.hidden
+      );
 
       obj.options.title.text = result.title;
       obj.options.scales.xAxes[0].scaleLabel.labelString = result.xAxesLabel;
