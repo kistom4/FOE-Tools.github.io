@@ -1,4 +1,5 @@
 import Chart from "chart.js";
+import Utils from "~/scripts/utils";
 
 export default {
   name: "GraphCanvas",
@@ -57,7 +58,7 @@ export default {
   methods: {
     updateCanvas() {
       const ctx = document.getElementById(this.$props.id).getContext("2d");
-      this.$data.chart = new Chart(ctx, {
+      document.chart = this.$data.chart = new Chart(ctx, {
         type: this.$data.type,
         data: this.$data.chart_data,
         options: this.$data.options
@@ -66,5 +67,21 @@ export default {
   },
   mounted() {
     this.updateCanvas();
+    let self = this;
+    document.getElementById(this.$props.id).onclick = function(evt) {
+      setTimeout(() => {
+        const { layerX, layerY } = evt;
+        let legendHitBoxes = JSON.parse(JSON.stringify(document.chart.legend.legendHitBoxes));
+
+        for (let i = 0; i < legendHitBoxes.length; i++) {
+          if (
+            Utils.inRange(layerX, legendHitBoxes[i].left, legendHitBoxes[i].left + legendHitBoxes[i].width) &&
+            Utils.inRange(layerY, legendHitBoxes[i].top, legendHitBoxes[i].top + legendHitBoxes[i].height)
+          ) {
+            self.$emit("switchVisibility", i);
+          }
+        }
+      }, 50);
+    };
   }
 };
