@@ -567,9 +567,7 @@ export default {
         const newCumulativeResult = this.$data.result.investment[currentIndex - 1].cumulativeInvestment + value;
         let acc = 0;
         for (let i = currentIndex + 1; i < this.$data.investorParticipation.length; i++) {
-          if (this.$data.investorParticipation[i] >= value || (
-            acc + newCumulativeResult >= this.$data.result.cost
-          )) {
+          if (this.$data.investorParticipation[i] >= value || acc + newCumulativeResult >= this.$data.result.cost) {
             this.$data.investorParticipation[i] = 0;
           }
           acc += this.$data.investorParticipation[i];

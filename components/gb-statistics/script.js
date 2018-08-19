@@ -35,9 +35,11 @@ export default {
           yAxesLabel: this.$i18n.i18next.t("utils.graph.gb_reward_1st_place")
         }
       },
+      hidden: Array.from(new Array(Object.keys(gbsData).length), (_, x) => x !== 0),
       labels: [],
       datasets: [],
       options: {
+        animation: false,
         responsive: true,
         stacked: true,
         title: {
@@ -312,7 +314,15 @@ export default {
     }
   },
   methods: {
-    updateData(statSelector, graphType, ageConfig, maxAgeCost, from = this.$data.from, to = this.$data.to) {
+    updateData(
+      statSelector,
+      graphType,
+      ageConfig,
+      maxAgeCost,
+      from = this.$data.from,
+      to = this.$data.to,
+      hidden = this.$data.hidden
+    ) {
       const data = {};
       const datasets = [];
       let suggestedMin = Infinity;
@@ -342,10 +352,10 @@ export default {
           }
         });
       }
-
+      let index = 0;
       for (const elt in agesCost) {
         datasets.push({
-          hidden: true,
+          hidden: hidden[index++],
           label: ageConfig[elt].name,
           fill: false,
           lineTension: 0,
@@ -364,11 +374,6 @@ export default {
           data: data[elt]
         });
       }
-
-      if (datasets.length > 0) {
-        datasets[0].hidden = false;
-      }
-
       return {
         title: graphType[statSelector].title,
         xAxesLabel: graphType[statSelector].xAxesLabel,
@@ -380,7 +385,15 @@ export default {
       };
     },
     updateGraphData(obj = this.$data) {
-      const result = this.updateData(obj.statSelector, obj.graphType, obj.ageConfig, obj.maxAgeCost, obj.from, obj.to);
+      const result = this.updateData(
+        obj.statSelector,
+        obj.graphType,
+        obj.ageConfig,
+        obj.maxAgeCost,
+        obj.from,
+        obj.to,
+        obj.hidden
+      );
 
       obj.options.title.text = result.title;
       obj.options.scales.xAxes[0].scaleLabel.labelString = result.xAxesLabel;
@@ -389,6 +402,11 @@ export default {
       obj.options.scales.yAxes[0].ticks.suggestedMax = result.suggestedMax;
       obj.labels = result.labels;
       obj.datasets = result.datasets;
+    },
+    switchVisibility(index) {
+      if (Utils.inRange(index, 0, this.$data.hidden.length)) {
+        this.$data.hidden[index] = !this.$data.hidden[index];
+      }
     },
     haveError(input) {
       return this.$data.errors[input] ? "is-danger" : "";
