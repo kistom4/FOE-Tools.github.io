@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.12.0"></a>
+# [2.12.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.11.0...v2.12.0) (2018-08-24)
+
+
+### Features
+
+* **foe-data:** :sparkles: Add levels of several ages ([c215000](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/c215000))
+* **GB Statistics:** Save state when change graph ([8930a51](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/8930a51)), closes [#51](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/51)
+
+
+
 <a name="2.11.0"></a>
 # [2.11.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.10.0...v2.11.0) (2018-08-18)
 
