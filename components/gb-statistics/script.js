@@ -1,9 +1,17 @@
+import Vue from "vue";
 import Utils from "~/scripts/utils";
 import graphCanvas from "~/components/graph-canvas/index";
 
 import { agesCost, gbsData } from "~/lib/foe-data/gbs";
 
 const i18nPrefix = "components.gb_statistics.";
+const urlPrefix = "gbs_";
+const queryKey = {
+  statSelector: urlPrefix + "s",
+  from: urlPrefix + "f",
+  to: urlPrefix + "t",
+  hidden: urlPrefix + "h"
+};
 
 export default {
   name: "GbStatistics",
@@ -35,7 +43,7 @@ export default {
           yAxesLabel: this.$i18n.i18next.t("utils.graph.gb_reward_1st_place")
         }
       },
-      hidden: Array.from(new Array(Object.keys(gbsData).length), (_, x) => x !== 0),
+      hidden: Array.from(new Array(Object.keys(agesCost).length), (_, x) => x !== 0),
       labels: [],
       datasets: [],
       options: {
@@ -169,6 +177,28 @@ export default {
       }
     }
 
+    Object.assign(obj, this.checkQuery(obj));
+
+    this.$store.commit("ADD_URL_QUERY", {
+      key: queryKey.statSelector,
+      value: obj.statSelector
+    });
+
+    this.$store.commit("ADD_URL_QUERY", {
+      key: queryKey.from,
+      value: obj.from
+    });
+
+    this.$store.commit("ADD_URL_QUERY", {
+      key: queryKey.to,
+      value: obj.to
+    });
+
+    this.$store.commit("ADD_URL_QUERY", {
+      key: queryKey.hidden,
+      value: obj.hidden.map(k => (k ? 1 : 0)).join("")
+    });
+
     this.updateGraphData(obj);
 
     return obj;
@@ -176,14 +206,21 @@ export default {
   computed: {
     lang() {
       return this.$store.state.locale;
+    },
+    permaLink() {
+      return {
+        path: this.$i18n.path("gb-statistics/"),
+        query: this.$store.state.urlQuery
+      };
     }
   },
   watch: {
-    statSelector: {
-      handler() {
-        this.updateGraphData();
-      },
-      deep: true
+    statSelector(val) {
+      this.$store.commit("UPDATE_URL_QUERY", {
+        key: queryKey.statSelector,
+        value: val
+      });
+      this.updateGraphData();
     },
     lang() {
       Object.assign(this.$data, {
@@ -292,6 +329,10 @@ export default {
         Utils.handlerForm(this, "from", val.length === 0 ? 0 : val, oldVal, [1, this.$data.to]) ===
         Utils.FormCheck.VALID
       ) {
+        this.$store.commit("UPDATE_URL_QUERY", {
+          key: queryKey.from,
+          value: val
+        });
         this.updateGraphData();
       }
     },
@@ -302,6 +343,10 @@ export default {
           this.$data.maxLevelGraph
         ]) === Utils.FormCheck.VALID
       ) {
+        this.$store.commit("UPDATE_URL_QUERY", {
+          key: queryKey.to,
+          value: val
+        });
         if (this.$data.errors.from) {
           if (val >= this.$data.errors.from) {
             this.$data.errors.from = false;
@@ -311,6 +356,12 @@ export default {
           this.updateGraphData();
         }
       }
+    },
+    hidden(val) {
+      this.$store.commit("UPDATE_URL_QUERY", {
+        key: queryKey.hidden,
+        value: val.map(k => (k ? 1 : 0)).join("")
+      });
     }
   },
   methods: {
@@ -405,8 +456,50 @@ export default {
     },
     switchVisibility(index) {
       if (Utils.inRange(index, 0, this.$data.hidden.length)) {
-        this.$data.hidden[index] = !this.$data.hidden[index];
+        Vue.set(this.$data.hidden, index, !this.$data.hidden[index]);
       }
+    },
+    checkQuery(obj) {
+      let result = {};
+      result.hidden = obj.hidden;
+      let change = Utils.FormCheck.NO_CHANGE;
+
+      if (this.$route.query[queryKey.statSelector] && this.$route.query[queryKey.statSelector] in obj.graphType) {
+        change = Utils.FormCheck.VALID;
+        result.statSelector = this.$route.query[queryKey.statSelector];
+      }
+
+      if (
+        this.$route.query[queryKey.from] &&
+        !isNaN(this.$route.query[queryKey.from]) &&
+        Utils.inRange(parseInt(this.$route.query[queryKey.from]), 1, obj.maxLevelGraph)
+      ) {
+        change = Utils.FormCheck.VALID;
+        result.from = parseInt(this.$route.query[queryKey.from]);
+      }
+
+      if (
+        this.$route.query[queryKey.to] &&
+        !isNaN(this.$route.query[queryKey.to]) &&
+        Utils.inRange(parseInt(this.$route.query[queryKey.to]), 1, obj.maxLevelGraph) &&
+        (parseInt(this.$route.query[queryKey.to]) >= obj.from ||
+          parseInt(this.$route.query[queryKey.to]) >= result.from)
+      ) {
+        change = Utils.FormCheck.VALID;
+        result.to = parseInt(this.$route.query[queryKey.to]);
+      }
+
+      if (this.$route.query[queryKey.hidden]) {
+        change = Utils.FormCheck.VALID;
+        let hidden = this.$route.query[queryKey.hidden].split("").map(k => k !== "0");
+        Array.prototype.splice.apply(obj.hidden, [0, hidden.length].concat(hidden));
+      }
+
+      if (change === Utils.FormCheck.VALID) {
+        this.$store.commit("IS_PERMALINK", true);
+      }
+
+      return result;
     },
     haveError(input) {
       return this.$data.errors[input] ? "is-danger" : "";
