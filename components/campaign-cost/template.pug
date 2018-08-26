@@ -69,8 +69,12 @@ div
                     figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
                       img(v-if="reward.type !== 'pvp_tower'" v-bind:src="'/img/foe/bonus/' + reward.type + '.png'" v-bind:alt="$t('foe_data.bonus.' + reward.type + '.name')" v-bind:title="$t('foe_data.bonus.' + reward.type + '.name')")
                       img(v-else v-bind:src="'/img/foe/bonus/' + currentAge + '_tower.png'" v-bind:alt="$t('foe_data.bonus.' + reward.type + '.name')" v-bind:title="$t('foe_data.bonus.' + reward.type + '.name')")
-                  div.media-content
+                  div.media-content(:style="{ overflow: ((reward.type === 'good_bonus') && reward.age ? 'unset' : 'hidden') }")
                     p(v-if="reward.type === 'good_bonus'") {{$t('foe_data.bonus.good_bonus.name')}}
+                      template(v-if="reward.age")
+                        | &nbsp;
+                        b-tooltip(type="is-dark" :label="$t('foe_data.age.' + reward.age)" dashed)
+                          span {{$t('foe_data.age_short.' + reward.age)}}
                     p(v-else-if="reward.value && reward.value > 0") {{$formatNumber(reward.value)}}
                 div(v-else)
                   div.media(v-for="good in agesGoods[currentAge].goods")
