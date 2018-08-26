@@ -839,7 +839,13 @@
         "Pulse_City": "Pulse City",
         "Max_s_Shelter": "Max's Shelter",
         "The_Open_Zone": "The Open Zone",
-        "The_Warring_Towers": "The Warring Towers"
+        "The_Warring_Towers": "The Warring Towers",
+        "Forgotten_Fragments": "Forgotten Fragments",
+        "Backup_NET": "Backup:NET",
+        "Spoiled_Resort": "Spoiled Resort",
+        "Fort_Duplex": "Fort Duplex",
+        "LoneHub": "LoneHub",
+        "Alpha_1_Omega_2": "Alpha 1 Omega 2"
       },
       "bonus": {
         "coin": {
