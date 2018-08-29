@@ -59,10 +59,8 @@ function getValues(gb, currentLevel, investorPercentage, defaultParticipation) {
     obj.investment[obj.investment.length] = investment;
   }
 
-  obj.totalPreparations =
-    obj.investment[obj.investment.length - 1].preparation === 0
-      ? 0
-      : obj.investment[obj.investment.length - 1].preparation + obj.investment[obj.investment.length - 1].participation;
+  obj.totalPreparations = obj.cost - cumulativeParticipation;
+  obj.totalPreparations = obj.totalPreparations < 0 ? 0 : obj.totalPreparations;
   obj.level = currentLevel;
 
   return obj;
