@@ -292,6 +292,15 @@
       "contributions": [
         "question"
       ]
+    },
+    {
+      "login": "mestileryan",
+      "name": "mestileryan",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/42813379?v=4",
+      "profile": "https://github.com/mestileryan",
+      "contributions": [
+        "bug"
+      ]
     }
   ]
 }
