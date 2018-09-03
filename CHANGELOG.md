@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.13.0"></a>
+# [2.13.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.12.0...v2.13.0) (2018-09-03)
+
+
+### Bug Fixes
+
+* **GB Investment:** Fix bad value of total investment of the owner when P5 have huge arc bonus ([f099b5f](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/f099b5f)), closes [#87](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/87)
+* **GB Investment:** Fix bad value of total investment of the owner when P5 have huge arc bonus ([1dc58dc](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/1dc58dc)), closes [#87](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/87)
+
+
+### Features
+
+* **Campaign cost:** Display age of the goods deposits if known ([625bb29](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/625bb29))
+* **Campaign cost:** Display age of the goods deposits if known ([9ad26f0](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/9ad26f0))
+* **contributors:** :busts_in_silhouette: Add contributor ([65123f4](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/65123f4))
+* **foe-data:** :package: Add last provinces of Virtual Future ([34623ce](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/34623ce))
+* **foe-data:** :package: Add last provinces of Virtual Future ([fb2be63](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/fb2be63))
+* **foe-data:** :sparkles: Add levels of several ages ([8808edb](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/8808edb))
+* **foe-data:** :sparkles: Add levels of several ages ([461163d](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/461163d))
+* **foe-data:** :sparkles: Add levels of several ages ([100ec74](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/100ec74))
+* **GB Statistics:** :sparkles: Add permalink ([4beb307](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/4beb307))
+
+
+
 <a name="2.12.0"></a>
 # [2.12.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.11.0...v2.12.0) (2018-08-24)
 
