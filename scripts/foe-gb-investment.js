@@ -142,7 +142,9 @@ export default {
     } else {
       let roi = 0;
       if (yourArcBonus >= 0 && fpTargetReward > 0) {
-        roi = Math.round((1 + yourArcBonus / 100) * fpTargetReward - result);
+        const investment = result > yourParticipation ? result : yourParticipation;
+        const factor = (100 + yourArcBonus) / 100;
+        roi = Math.round(factor * fpTargetReward - investment);
       }
       return {
         fp: result,
