@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.15.0"></a>
+# [2.15.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.14.0...v2.15.0) (2018-09-20)
+
+
+### Bug Fixes
+
+* **foe-data:** Add missing level 71 of Iron Age ([233d2e5](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/233d2e5))
+* **secure-place:** Fix calculation of ROI ([8d3d496](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/8d3d496))
+
+
+### Features
+
+* **contributors:** :busts_in_silhouette: Update page ([13d1614](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/13d1614))
+
+
+
 <a name="2.14.0"></a>
 # [2.14.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.13.0...v2.14.0) (2018-09-11)
 
