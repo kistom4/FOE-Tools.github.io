@@ -4,7 +4,7 @@
       div.navbar-brand
         a.navbar-item(:href="$i18n.path('/')")
           img(src="/img/icons/logo.png" alt="FOE-Tools logo" width="28" height="28")
-        div.navbar-burger.burger(v-bind:class="{'is-active': burgerMenuVisible}" data-target="mainNavbar")
+        div.navbar-burger.burger(v-bind:class="{'is-active': burgerMenuVisible}" data-target="mainNavbar" @click="toggleMainMenu")
           span
           span
           span

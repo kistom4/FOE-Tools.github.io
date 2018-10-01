@@ -58,26 +58,13 @@ export default {
   watch: {
     lang(val) {
       this.$formatNumberLocale(val);
+    },
+    "$route.path"() {
+      this.$data.burgerMenuVisible = false;
     }
   },
   mounted() {
     this.$formatNumberLocale(this.lang);
-
-    // Get all "navbar-burger" elements
-    let $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"), 0);
-
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-      let self = this;
-
-      // Add a click event on each of them
-      $navbarBurgers.forEach(function($el) {
-        $el.addEventListener("click", function() {
-          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-          self.$data.burgerMenuVisible = !self.$data.burgerMenuVisible;
-        });
-      });
-    }
   },
   methods: {
     confirmInfoCookie() {
@@ -86,6 +73,9 @@ export default {
         path: "/",
         expires: Utils.getDefaultCookieExpireTime()
       });
+    },
+    toggleMainMenu() {
+      this.$data.burgerMenuVisible = !this.$data.burgerMenuVisible;
     }
   },
   components: {
