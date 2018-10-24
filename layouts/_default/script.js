@@ -1,3 +1,4 @@
+import Vue from "vue";
 import languageSelector from "~/components/language-selector";
 import packageConfig from "~/package.json";
 
@@ -40,6 +41,73 @@ export default {
         trade: this.$store.state.routes.trade,
         campaign_cost: this.$store.state.routes.campaign_cost
       },
+      mainMenu: [
+        {
+          ...this.$store.state.routes.home,
+          type: Utils.MenuRecordType.PAGE,
+          name: this.$i18n.i18next.t(`main_menu.${this.$store.state.routes.home.key}`),
+          children: []
+        },
+        {
+          type: Utils.MenuRecordType.MENU_ENTRY,
+          name: this.$i18n.i18next.t('utils.content.tools'),
+          key: null,
+          link: null,
+          children: [
+            {
+              ...this.$store.state.routes.gb_investment,
+              type: Utils.MenuRecordType.PAGE,
+              name: this.$i18n.i18next.t(`main_menu.${this.$store.state.routes.gb_investment.key}`),
+              children: []
+            },
+            {
+              ...this.$store.state.routes.secure_position,
+              type: Utils.MenuRecordType.PAGE,
+              name: this.$i18n.i18next.t(`main_menu.${this.$store.state.routes.secure_position.key}`),
+              children: []
+            },
+            {
+              ...this.$store.state.routes.cf_calculator,
+              type: Utils.MenuRecordType.PAGE,
+              name: this.$i18n.i18next.t(`main_menu.${this.$store.state.routes.cf_calculator.key}`),
+              children: []
+            },
+            {
+              ...this.$store.state.routes.trade,
+              type: Utils.MenuRecordType.PAGE,
+              name: this.$i18n.i18next.t(`main_menu.${this.$store.state.routes.trade.key}`),
+              children: []
+            },
+            {
+              ...this.$store.state.routes.campaign_cost,
+              type: Utils.MenuRecordType.PAGE,
+              name: this.$i18n.i18next.t(`main_menu.${this.$store.state.routes.campaign_cost.key}`),
+              children: []
+            }
+          ]
+        },
+        {
+          type: Utils.MenuRecordType.MENU_ENTRY,
+          name: this.$i18n.i18next.t('utils.content.statistics'),
+          link: null,
+          key: null,
+          children: [
+            {
+              ...this.$store.state.routes.gb_statistics,
+              type: Utils.MenuRecordType.PAGE,
+              name: this.$i18n.i18next.t(`main_menu.${this.$store.state.routes.gb_statistics.key}`),
+              link: this.$store.state.routes.gb_statistics.link,
+              children: []
+            },
+            {
+              ...this.$store.state.routes.gb_forecast_cost,
+              type: Utils.MenuRecordType.PAGE,
+              name: this.$i18n.i18next.t(`main_menu.${this.$store.state.routes.gb_forecast_cost.key}`),
+              children: []
+            }
+          ]
+        }
+      ],
       footerLinks: [
         this.$store.state.routes.about,
         this.$store.state.routes.contributors,
@@ -60,11 +128,8 @@ export default {
       this.$formatNumberLocale(val);
     },
     "$route.path"() {
-      this.$data.burgerMenuVisible = false;
+      Vue.set(this.$data, "burgerMenuVisible", false);
     }
-  },
-  mounted() {
-    this.$formatNumberLocale(this.lang);
   },
   methods: {
     confirmInfoCookie() {
@@ -74,9 +139,15 @@ export default {
         expires: Utils.getDefaultCookieExpireTime()
       });
     },
-    toggleMainMenu() {
-      this.$data.burgerMenuVisible = !this.$data.burgerMenuVisible;
+    toggleMenu() {
+      Vue.set(this.$data, "burgerMenuVisible", !this.$data.burgerMenuVisible);
+    },
+    isActive(key) {
+      return this.$store.state.currentLocation === key;
     }
+  },
+  mounted() {
+    this.$formatNumberLocale(this.lang);
   },
   components: {
     languageSelector

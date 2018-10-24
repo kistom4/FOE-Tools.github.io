@@ -3,11 +3,19 @@ import { Enum } from "enumify";
 class FormCheck extends Enum {}
 FormCheck.initEnum(["VALID", "INVALID", "NO_CHANGE"]);
 
+class MenuRecordType extends Enum {}
+MenuRecordType.initEnum(["PAGE", "SEPARATOR", "MENU_ENTRY"]);
+
 export default {
   /**
    * Enum of the different results of check
    */
   FormCheck,
+
+  /**
+   * Enum of the different type of menu record
+   */
+  MenuRecordType,
 
   /**
    * Regex used to get duration. Groups:
