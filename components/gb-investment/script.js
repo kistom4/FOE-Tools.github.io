@@ -366,7 +366,7 @@ export default {
       let result = this.$data.prefix.length > 0 ? `${this.$data.prefix} ` : "";
       result += titleFirst
         ? this.$t(`foe_data.gb${this.$data.shortName ? "_short" : ""}.${this.$props.gb.key}`) +
-          `${this.$data.showLevel ? " " + this.$data.level : ""}`
+          `${this.$data.showLevel ? " " + (this.$data.level - 1) + " → " + this.$data.level : ""}`
         : "";
       let array = reverse ? this.$data.result.investment.reduce((a, b) => [b, ...a], []) : this.$data.result.investment;
 
@@ -388,7 +388,7 @@ export default {
       result += titleFirst
         ? ""
         : this.$t(`foe_data.gb${this.$data.shortName ? "_short" : ""}.${this.$props.gb.key}`) +
-          `${this.$data.showLevel ? " " + this.$data.level : ""}`;
+          `${this.$data.showLevel ? " " + (this.$data.level - 1) + " → " + this.$data.level : ""}`;
       result += this.$data.suffix.length > 0 ? ` ${this.$data.suffix}` : "";
 
       return { message: result, active: false };
