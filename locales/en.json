@@ -72,14 +72,14 @@
             "p2_html": "<strong>Note</strong>: If the update is not done automatically, first set the GB level and the overall investment value and click on \"$t(components.gb_investment.gb_investment.form.submit_global)\". If you want to adjust the values of each place, adjust to your convenience and click on \"$t(components.gb_investment.gb_investment.form.submit_custom)\"."
           },
           "form": {
-            "level": "GB Level (between 1 and {{max}})",
+            "level": "Level {{fromLevel, number}} → {{level, number}} (between 1 and {{max, number}})",
             "investor_percentage": "% of global investors bonus (arc bonus)",
             "submit_global": "Global calculation",
             "submit_custom": "Custom calculation",
             "owner_investment": "Number of FPs currently put by the owner"
           },
           "table": {
-            "title": "$t({{gb_key}}) level {{level}}",
+            "title": "$t({{gb_key}}) level {{fromLevel, number}} → {{level, number}}",
             "thead": {
               "th1": "Places",
               "th2": "Default rewards",

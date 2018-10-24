@@ -18,7 +18,7 @@ div.content
 
   div.columns
     div.column.is-half
-      b-field(v-bind:label="$t(i18nPrefix + 'gb_investment.form.level', { max: maxLevel })" label-for="giLevel" v-bind:type="haveError('level')")
+      b-field(v-bind:label="$t(i18nPrefix + 'gb_investment.form.level', { level: level, fromLevel: level - 1, max: maxLevel })" label-for="giLevel" v-bind:type="haveError('level')")
         b-input#giLevel(type="number" min="1" v-bind:max="maxLevel" v-model.number="level" name="level" autocomplete="off" v-bind:autofocus="canPermalink")
     div.column.is-half
       b-field(v-bind:label="$t(i18nPrefix + 'gb_investment.form.investor_percentage')" label-for="giInvestorPercentageGlobal" v-bind:type="haveError('investorPercentageGlobal')")
@@ -34,7 +34,7 @@ div.content
       thead
         tr
           th.has-text-centered(colspan=6)
-            p {{$t($data.i18nPrefix + 'gb_investment.table.title', {gb_key: 'foe_data.gb.' + gb.key, level: result.level})}}
+            p {{$t($data.i18nPrefix + 'gb_investment.table.title', {gb_key: 'foe_data.gb.' + gb.key, level: result.level, fromLevel: (result.level - 1)})}}
         tr
           th {{$t($data.i18nPrefix + 'gb_investment.table.thead.th1')}}
           th {{$t($data.i18nPrefix + 'gb_investment.table.thead.th2')}}

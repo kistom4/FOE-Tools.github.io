@@ -76,14 +76,14 @@
             "p2_html": "<strong>Note</strong> : Si la mise à jour ne se fait pas automatiquement, dans un premier temps, définissez le niveau du GM et la valeur d'investissement globale et cliquez sur « $t(components.gb_investment.gb_investment.form.submit_global) ». Si vous souhaitez ajuster les valeurs de chaque place, ajuster à votre convenance et cliquez sur « $t(components.gb_investment.gb_investment.form.submit_custom) »."
           },
           "form": {
-            "level": "Niveau du GM (entre 1 et {{max}})",
+            "level": "Niveau {{fromLevel, number}} → {{level, number}} (entre 1 et {{max, number}})",
             "investor_percentage": "% de bonus (grosses arches) global des investisseurs",
             "submit_global": "Calcul global",
             "submit_custom": "Calcul personnalisé",
             "owner_investment": "Nombre de PFs actuellement mis par le propriétaire"
           },
           "table": {
-            "title": "$t({{gb_key}}) niveau {{level}}",
+            "title": "$t({{gb_key}}) niveau {{fromLevel, number}} → {{level, number}}",
             "thead": {
               "th1": "Places",
               "th2": "Récompenses de base",
