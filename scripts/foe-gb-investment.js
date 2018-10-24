@@ -48,6 +48,9 @@ function getValues(gb, currentLevel, investorPercentage, defaultParticipation) {
     // Compute the cost to secure the place
     investment.preparation = obj.cost - (cumulativeParticipation + investment.participation * 2);
     investment.preparation = investment.preparation < 0 ? 0 : investment.preparation;
+    if (obj.investment.length > 0 && investment.preparation < obj.investment[obj.investment.length - 1].preparation) {
+      investment.preparation = obj.investment[obj.investment.length - 1].preparation;
+    }
 
     cumulativeParticipation += investment.participation;
     maxPreparation = Math.max(maxPreparation, investment.preparation);
