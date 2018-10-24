@@ -50,7 +50,7 @@ export default {
         },
         {
           type: Utils.MenuRecordType.MENU_ENTRY,
-          name: this.$i18n.i18next.t('utils.content.tools'),
+          name: this.$i18n.i18next.t("utils.content.tools"),
           key: null,
           link: null,
           children: [
@@ -88,7 +88,7 @@ export default {
         },
         {
           type: Utils.MenuRecordType.MENU_ENTRY,
-          name: this.$i18n.i18next.t('utils.content.statistics'),
+          name: this.$i18n.i18next.t("utils.content.statistics"),
           link: null,
           key: null,
           children: [

@@ -12,7 +12,7 @@ export const state = () => ({
    * Contains all no-dynamic routes
    */
   routes: {
-    home: { key: "home", link: "/" },
+    home: { key: "home", link: "" },
     gb_investment: { key: "gb_investment", link: "gb-investment" },
     secure_position: { key: "secure_position", link: "secure-position" },
     cf_calculator: { key: "cf_calculator", link: "cf-calculator" },
