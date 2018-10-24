@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.17.0"></a>
+# [2.17.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.16.0...v2.17.0) (2018-10-24)
+
+
+### Features
+
+* **foe-data:** :package: Add levels of several ages ([0e7a7c4](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/0e7a7c4))
+* **gb-investment:** :globe_with_meridians: Improve level input label ([7bc64cf](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/7bc64cf))
+
+
+
 <a name="2.16.0"></a>
 # [2.16.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.15.0...v2.16.0) (2018-10-14)
 
