@@ -32,7 +32,6 @@ export default {
     currentAge(val) {
       if (
         Object.keys(this.$data.ages)
-          .slice(1)
           .indexOf(val) >= 0
       ) {
         this.$data.errors.currentAge = false;
