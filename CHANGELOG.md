@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.17.1"></a>
+## [2.17.1](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.17.0...v2.17.1) (2018-10-27)
+
+
+### Bug Fixes
+
+* **campaign-cost:** :bug: Fix error when provinces contains missing values ([03b4cf9](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/03b4cf9))
+* **campaign-cost:** :bug: Fix multi display of goods rewards (provinces) ([2dee5dd](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/2dee5dd))
+* **campaign-cost:** :bug: Fix reward of Santa Nerea sector province (Tomorrow) ([67cf300](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/67cf300))
+* **campaign-cost:** :bug: Fix select of Bronze Age after select other age ([acac7b6](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/acac7b6))
+* **campaign-cost:** :pencil2: Fix typo of Bronze Age in French ([de55ded](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/de55ded))
+* **cf-calculator:** Fix display of number of quests when infinite generator ([716d35d](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/716d35d))
+
+
+
 <a name="2.17.0"></a>
 # [2.17.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.16.0...v2.17.0) (2018-10-24)
 
