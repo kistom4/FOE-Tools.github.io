@@ -70,7 +70,7 @@ div
         p {{$t(i18nPrefix + 'block_cfc.reward_message.bonus_ubq', {count: result.bonusUbq})}}
     div.column.is-one-third
       div.field
-        p {{$t(i18nPrefix + 'block_cfc.reward_message.total_rq_completed', {count: result.totalRqCompleted})}}
+        p {{$t(i18nPrefix + 'block_cfc.reward_message.total_rq_completed', {count: infinityGenerator ? cumulativeQuest : result.totalRqCompleted})}}
         p(v-show="secondRq") {{$t(i18nPrefix + 'block_cfc.reward_message.second_rq_completed', {count: result.secondRqCompleted})}}
 
   div.table-wrapper(v-show="!result.coinSupplyReturn.length <= 0")

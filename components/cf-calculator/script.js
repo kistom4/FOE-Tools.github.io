@@ -243,6 +243,7 @@ export default {
           value: val
         });
         this.$data.infinityGenerator = false;
+        this.$data.cumulativeQuest = 0;
         this.calculate();
       }
     },
