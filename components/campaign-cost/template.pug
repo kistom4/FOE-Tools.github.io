@@ -72,7 +72,7 @@ div
         tfoot
           tr
             th
-              div(v-for="reward in province.reward")
+              template(v-for="reward in province.reward")
                 div.media(v-if="reward.type !== 'good'")
                   div.media-left(v-if="reward.type !== 'good_bonus'" style="margin-right: 0em !important;")
                     figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
@@ -85,8 +85,8 @@ div
                         b-tooltip(type="is-dark" :label="$t('foe_data.age.' + reward.age)" dashed)
                           span {{$t('foe_data.age_short.' + reward.age)}}
                     p(v-else-if="reward.value && reward.value > 0") {{$formatNumber(reward.value)}}
-                div(v-else)
-                  div.media(v-for="good in agesGoods[currentAge].goods")
+                template(v-else)
+                  div.media(v-for="good in agesGoods[currentAge].goods" :key="good.key")
                     div.media-left(v-if="reward.type !== 'good_bonus'" style="margin-right: 0em !important;")
                       figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
                         img(v-bind:src="'/img/foe/goods/' + good.key + '.png'" v-bind:alt="$t('foe_data.goods.' + good.key)" v-bind:title="$t('foe_data.goods.' + good.key)")
@@ -97,7 +97,7 @@ div
                 p {{$t('utils.Total')}}
 
             th(v-for="value in result.goodsColumnsData")
-              div(v-for="(valueAge, age) in result.good")
+              div(v-for="(valueAge) in result.good")
                 div(v-for="(good, goodName) in valueAge")
                   p(v-if="goodName === value.key") {{$formatNumber(good)}}
 
