@@ -18,7 +18,10 @@
     "components": {
       "campaign_cost": {
         "title": "$t(routes.campaign_cost.hero.title)",
-        "choose_province": "Choissisez une province"
+        "choose_province": "Choissisez une province",
+        "message": {
+          "haveUnknownCosts": "Cette province contient un ou plusieurs secteurs dont il manque des valeurs."
+        }
       },
       "cf_calculator": {
         "block_cfc": {
@@ -400,7 +403,7 @@
       },
       "age_short": {
         "NoAge": "SA",
-        "BronzeAge": "ABD",
+        "BronzeAge": "ADB",
         "IronAge": "ADF",
         "EarlyMiddleAges": "HMA",
         "HighMiddleAges": "MAC",

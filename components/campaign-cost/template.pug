@@ -1,6 +1,10 @@
 div
   h4.title.is-4 {{$t(i18nPrefix + 'title')}}
 
+  div.columns(v-show="haveUnknownCosts")
+    div.column
+      b-message(v-bind:title="$t('utils.Information')" type="is-warning" has-icon) {{$t(i18nPrefix + 'message.haveUnknownCosts')}}
+
   div.columns
     div.column.is-half
       b-field#current-age-container(v-bind:label="$t('utils.choose_age')" label-for="current-age" v-bind:type="haveError('currentAge')")
@@ -49,21 +53,26 @@ div
               b-switch(v-bind:value="sectorConquired[index]" type="is-info" v-on:input="switchConquired(index, $event)") {{sectorConquired[index] ? $t('utils.Yes') : $t('utils.No')}}
 
             td(v-for="value in result.goodsColumnsData")
-              div(v-for="good in sector.cost")
-                p(v-if="good.key === value.key")
-                  s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
-                  span(v-else) {{$formatNumber(good.value)}}
+              template(v-if="Object.keys(sector).indexOf('cost') >= 0")
+                div(v-for="good in sector.cost")
+                  p(v-if="good.key === value.key")
+                    s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
+                    span(v-else) {{$formatNumber(good.value)}}
+              div(v-else)
+                p ?
 
             td(v-for="value in result.specialGoodsColumnsData")
-              div(v-for="good in sector.cost")
-                p(v-if="good.key === value.key")
-                  s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
-                  span(v-else) {{$formatNumber(good.value)}}
-
+              template(v-if="Object.keys(sector).indexOf('cost') >= 0")
+                div(v-for="good in sector.cost")
+                  p(v-if="good.key === value.key")
+                    s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
+                    span(v-else) {{$formatNumber(good.value)}}
+              div(v-else)
+                p ?
         tfoot
           tr
             th
-              div(v-for="reward in province.reward")
+              template(v-for="reward in province.reward")
                 div.media(v-if="reward.type !== 'good'")
                   div.media-left(v-if="reward.type !== 'good_bonus'" style="margin-right: 0em !important;")
                     figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
@@ -76,8 +85,8 @@ div
                         b-tooltip(type="is-dark" :label="$t('foe_data.age.' + reward.age)" dashed)
                           span {{$t('foe_data.age_short.' + reward.age)}}
                     p(v-else-if="reward.value && reward.value > 0") {{$formatNumber(reward.value)}}
-                div(v-else)
-                  div.media(v-for="good in agesGoods[currentAge].goods")
+                template(v-else)
+                  div.media(v-for="good in agesGoods[currentAge].goods" :key="good.key")
                     div.media-left(v-if="reward.type !== 'good_bonus'" style="margin-right: 0em !important;")
                       figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
                         img(v-bind:src="'/img/foe/goods/' + good.key + '.png'" v-bind:alt="$t('foe_data.goods.' + good.key)" v-bind:title="$t('foe_data.goods.' + good.key)")
@@ -88,7 +97,7 @@ div
                 p {{$t('utils.Total')}}
 
             th(v-for="value in result.goodsColumnsData")
-              div(v-for="(valueAge, age) in result.good")
+              div(v-for="(valueAge) in result.good")
                 div(v-for="(good, goodName) in valueAge")
                   p(v-if="goodName === value.key") {{$formatNumber(good)}}
 

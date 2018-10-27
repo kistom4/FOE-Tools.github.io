@@ -22,6 +22,7 @@ export default {
       province: provinces[Object.keys(provinces)[0]],
       result: null,
       sectorConquired: [],
+      haveUnknownCosts: false,
       errors: {
         currentAge: false,
         province: false
@@ -30,11 +31,7 @@ export default {
   },
   watch: {
     currentAge(val) {
-      if (
-        Object.keys(this.$data.ages)
-          .slice(1)
-          .indexOf(val) >= 0
-      ) {
+      if (Object.keys(this.$data.ages).indexOf(val) >= 0) {
         this.$data.errors.currentAge = false;
         this.$data.province = this.sortProvinceArray(campaignCost, val)[Object.keys(campaignCost[val])[0]];
         this.compute();
@@ -80,6 +77,8 @@ export default {
     },
 
     compute() {
+      this.$data.haveUnknownCosts = false;
+
       let good = {};
       let specialGoods = {};
       let goodsColumnsData = [];
@@ -87,6 +86,10 @@ export default {
       let index = 0;
       let ages = {};
       for (const sector of this.$data.province.sectors) {
+        if (Object.keys(sector).indexOf("cost") < 0) {
+          this.$data.haveUnknownCosts = true;
+          continue;
+        }
         for (const need of sector.cost) {
           if (need.type === bonus.special_good) {
             if (!specialGoods[need.key]) {
