@@ -1,6 +1,10 @@
 div
   h4.title.is-4 {{$t(i18nPrefix + 'title')}}
 
+  div.columns(v-show="haveUnknownCosts")
+    div.column
+      b-message(v-bind:title="$t('utils.Information')" type="is-warning" has-icon) {{$t(i18nPrefix + 'message.haveUnknownCosts')}}
+
   div.columns
     div.column.is-half
       b-field#current-age-container(v-bind:label="$t('utils.choose_age')" label-for="current-age" v-bind:type="haveError('currentAge')")
@@ -49,17 +53,22 @@ div
               b-switch(v-bind:value="sectorConquired[index]" type="is-info" v-on:input="switchConquired(index, $event)") {{sectorConquired[index] ? $t('utils.Yes') : $t('utils.No')}}
 
             td(v-for="value in result.goodsColumnsData")
-              div(v-for="good in sector.cost")
-                p(v-if="good.key === value.key")
-                  s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
-                  span(v-else) {{$formatNumber(good.value)}}
+              template(v-if="Object.keys(sector).indexOf('cost') >= 0")
+                div(v-for="good in sector.cost")
+                  p(v-if="good.key === value.key")
+                    s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
+                    span(v-else) {{$formatNumber(good.value)}}
+              div(v-else)
+                p ?
 
             td(v-for="value in result.specialGoodsColumnsData")
-              div(v-for="good in sector.cost")
-                p(v-if="good.key === value.key")
-                  s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
-                  span(v-else) {{$formatNumber(good.value)}}
-
+              template(v-if="Object.keys(sector).indexOf('cost') >= 0")
+                div(v-for="good in sector.cost")
+                  p(v-if="good.key === value.key")
+                    s(v-if="sectorConquired[index]") {{$formatNumber(good.value)}}
+                    span(v-else) {{$formatNumber(good.value)}}
+              div(v-else)
+                p ?
         tfoot
           tr
             th
