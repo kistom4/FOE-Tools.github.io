@@ -276,8 +276,44 @@
         "cookie": {
           "title": "Cookies",
           "p1": "Pour améliorer votre confort d'utilisation, le site utilise des cookies.",
-          "p2_html": "Nous stockons la langue d'affichage.<br />Dans l'outil « $t(components.gb_investment.gb_investment.title) », nous stockons pour chaque GM le niveau et les divers pourcentages des investisseurs afin de ne pas avoir à les ressaisir à chaque fois.<br />Veuillez noter que lorsque vous consulter une page « $t(utils.permalink) », aucune information sur le niveau du GM et les divers pourcentages des investisseurs n'est stockée.",
-          "p3": "Dans l'outil « $t(routes.cf_calculator.hero.title) », nous stockons les valeurs des champs du formulaire."
+          "table_message": "Le tableau ci-dessous présent tous les cookies utilisés sur ce site.",
+          "info": {
+            "root": {
+              "cookieDisclaimerDisplayed": "Indique si vous avez lu le message d'information concernant l'utilisation de cookies",
+              "gbi_tab": "Paramètre global pour « $t(routes.gb_investment_gb_chooser.hero.title) » indiquant quel onglet charger par défaut ($t(routes.gb_investment.tab.owner_view.title), etc.).",
+              "gbPrefix": "Paramètre global pour « $t(routes.gb_investment_gb_chooser.hero.title) » contenant le préfixe pour le message de promotion",
+              "gbSuffix": "Paramètre global pour « $t(routes.gb_investment_gb_chooser.hero.title) » contenant le suffixe pour le message de promotion",
+              "locale": "Langue d'affichage",
+              "shortName": "Paramètre global pour « $t(routes.gb_investment_gb_chooser.hero.title) » indiquant s'il faut afficher le nom court des GM pour le message de promotion",
+              "showLevel": "Paramètre global pour « $t(routes.gb_investment_gb_chooser.hero.title) » indiquant s'il faut afficher le niveau des GM pour le message de promotion",
+              "yourArcBonus": "Paramètre global contenant le bonus de votre Arche",
+              "yourCfBoost": "Paramètre global contenant le bonus de votre Château Frontenac"
+            },
+            "cf-calculator": {
+              "coins": "$t(components.cf_calculator.block_cfc.coins_to_use)",
+              "fpBy24h": "$t(components.cf_calculator.block_cfc.fp_by_24h)",
+              "goods": "$t(components.cf_calculator.block_cfc.gb_plunder_goods)",
+              "otherRq": "$t(components.cf_calculator.block_cfc.other_rq)",
+              "cumulativeQuest": "Nombre de quêtes cumulées",
+              "secondRq": "$t(components.cf_calculator.block_cfc.second_rq)",
+              "supplies": "$t(components.cf_calculator.block_cfc.supplies_to_use)",
+              "suppliesGathered": "$t(components.cf_calculator.block_cfc.supplies_gathered)",
+              "yourAge": "$t(components.cf_calculator.block_cfc.your_age)"
+            },
+            "gb-investment": {
+              "investorPercentageCustom_x": "$t(components.gb_investment.gb_investment.table.thead.th5)",
+              "investorPercentageGlobal": "$t(components.gb_investment.gb_investment.form.investor_percentage)",
+              "investorParticipation_x": "Participation attendue des investisseurs quand la place ne donne pas de PFs",
+              "level": "Niveau du GM",
+              "ownerInvestment": "$t(components.gb_investment.gb_investment.table.thead.th3)",
+              "showPx": "Indique s'il faut afficher ou non la place dans le message de promotion",
+              "takingPlaceInConsideration": "Dans l'onglet « $t(routes.gb_investment.tab.investors_view.title) », indique si les autres places doivent être prises en considération dans le calcul",
+              "targetLevel": "Dans l'onglet « $t(routes.gb_investment.tab.investors_view.title) », indique à partir de quel niveau il faut afficher les informations dans le tableau"
+            },
+            "secure-position": {
+              "currentDeposits": "$t(components.secure_position.block_place.current_deposits)"
+            }
+          }
         },
         "dev_info": {
           "title": "Informations développement",
@@ -1009,6 +1045,9 @@
       "To": "À (max {{max}})",
       "Prefix": "Préfixe",
       "Suffix": "Suffixe",
+      "Path": "Chemin",
+      "Name": "Nom",
+      "Description": "Description",
       "Rewards": "Récompenses",
       "Cost": "Cost",
       "Conquered": "Conquis",
