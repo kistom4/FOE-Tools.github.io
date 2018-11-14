@@ -196,9 +196,7 @@
           },
           "cookie": {
             "title": "Cookies",
-            "p1": "Om het gebruiksgemak te verhogen, gebruikt deze site cookies.",
-            "p2_html": "Wij slaan de weergave taal op.<br />In \"$t(components.gb_investment.gb_investment.title)\" tool, slaan we voor iedere GG het niveau en de diverse investeringspercentages op, zodat je deze niet steeds weer hoeft in te vullen. <br />Als je een \"$t(utils.permalink)\" pagina bezoekt, worden er geen GG niveaus of investeringspercentages doorgegeven of opgeslagen.",
-            "p3": "In \"$t(routes.cf_calculator.hero.title)\" tool, slaan we alle ingevoerde informatie op."
+            "p1": "Om het gebruiksgemak te verhogen, gebruikt deze site cookies."
           },
           "dev_info": {
             "title": "Ontwikkel informatie",
