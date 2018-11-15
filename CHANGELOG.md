@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.18.0"></a>
+# [2.18.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.17.1...v2.18.0) (2018-11-15)
+
+
+### Features
+
+* **about:** Add an exhaustive table of cookies used on this site ([2c8bddf](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/2c8bddf)), closes [#106](https://github.com/FOE-Tools/FOE-Tools.github.io/issues/106)
+* **foe-data:** :package: Add levels of several ages ([029418f](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/029418f))
+
+
+
 <a name="2.17.1"></a>
 ## [2.17.1](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.17.0...v2.17.1) (2018-10-27)
 
