@@ -1,10 +1,13 @@
 import Vue from "vue";
 import languageSelector from "~/components/language-selector";
 import packageConfig from "~/package.json";
-
 import Utils from "~/scripts/utils";
+import * as moment from "moment";
+import momentDurationFormatSetup from "moment-duration-format";
 
+momentDurationFormatSetup(moment);
 const i18nPrefix = "components.site_layout.";
+const creationDate = moment("2017-12-20");
 
 export default {
   head() {
@@ -121,6 +124,12 @@ export default {
     },
     lang() {
       return this.$store.state.locale;
+    },
+    isNewYear() {
+      return moment().format("MMDD") === creationDate.format("MMDD");
+    },
+    nbYears() {
+      return moment().year() - creationDate.year();
     }
   },
   watch: {
