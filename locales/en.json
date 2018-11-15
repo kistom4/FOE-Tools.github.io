@@ -232,6 +232,10 @@
           "message": "By continuing to use $t(common:site_title), you agree to the use of cookies to improve your comfort of use.",
           "link": "More information"
         },
+        "new_year": {
+          "message": "$t(common:site_title) celebrates these {{count, number}} year",
+          "message_plural": "$t(common:site_title) celebrates these {{count, number}} years"
+        },
         "permalink_info": "You visit a permalink. Consequently, any changes made will not be saved in cookies.",
         "footer": {
           "license_html": "Source code under $t(common:links.mit) license",

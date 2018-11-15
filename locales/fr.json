@@ -236,6 +236,10 @@
           "message": "En continuant à utiliser $t(common:site_title), vous acceptez l'utilisation de cookies pour améliorer votre confort d'utilisation.",
           "link": "En savoir plus"
         },
+        "new_year": {
+          "message": "$t(common:site_title) fête ces {{count, number}} an",
+          "message_plural": "$t(common:site_title) fête ces {{count, number}} ans"
+        },
         "permalink_info": "Vous visitez un lien permanent. De ce fait, toutes modifications effectuées ne seront pas sauvegardées dans des cookies.",
         "footer": {
           "license_html": "Code source sous licence $t(common:links.mit)",
