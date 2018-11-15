@@ -9,7 +9,6 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "build:gh": "cross-env DEPLOY_ENV=GH_PAGES nuxt build",
@@ -17,7 +16,10 @@
     "release": "standard-version",
     "deploy": "push-dir --dir=dist --branch=master --cleanup",
     "contributors:add": "all-contributors --config all-contributorsrc.json add",
-    "contributors:generate": "all-contributors --config all-contributorsrc.json generate"
+    "contributors:generate": "all-contributors --config all-contributorsrc.json generate",
+    "test:e2e": "testcafe firefox test/e2e/ --app \"cross-env PORT=8080 npm run dev\" --app-init-delay 35000",
+    "test:unit": "jest test/unit/",
+    "test": "npm run test:unit && npm run test:e2e"
   },
   "repository": {
     "type": "git",
@@ -42,7 +44,12 @@
   "homepage": "https://foe-tools.github.io/",
   "devDependencies": {
     "@nuxtjs/sitemap": "^0.1.1",
+    "@vue/test-utils": "^1.0.0-beta.25",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-vue": "^2.0.2",
     "cross-env": "^5.2.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -51,8 +58,11 @@
     "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.0.0",
     "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-testcafe": "^0.2.1",
     "eslint-plugin-vue": "^4.7.1",
+    "jest": "^23.6.0",
     "node-sass": "^4.9.3",
     "prettier": "^1.14.3",
     "pug": "^2.0.3",
@@ -60,7 +70,10 @@
     "pug-plain-loader": "^1.0.0",
     "push-dir": "^0.4.1",
     "sass-loader": "^7.1.0",
-    "standard-version": "^4.4.0"
+    "standard-version": "^4.4.0",
+    "testcafe": "^0.23.2",
+    "testcafe-nuxt-selectors": "^1.0.6",
+    "vue-jest": "^3.0.0"
   },
   "dependencies": {
     "@panter/vue-i18next": "^0.13.0",
