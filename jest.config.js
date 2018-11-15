@@ -15,6 +15,8 @@ module.exports = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1"
   },
+  setupFiles: ["<rootDir>/test/unit/setup"],
+  snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
   collectCoverage: true,
   collectCoverageFrom: ["**/*.{js,vue}", "!**/node_modules/**", "!**/test/**"],
   coverageReporters: ["html", "text-summary"]
