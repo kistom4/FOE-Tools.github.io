@@ -9,12 +9,11 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * **about:** Fix cookie table overflow on small screen ([1e7fbf0](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/1e7fbf0))
-* **about:** Improve ergonomic on mobile ([7764ed3](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/7764ed3))
-
 
 ### Features
 
 * **ux:** Improve ergonomic ([38bf650](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/38bf650))
+* improve ergonomic on mobile ([7764ed3](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/7764ed3))
 
 
 
