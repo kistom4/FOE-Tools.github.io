@@ -51,9 +51,9 @@
   main.container.is-fullheight
     section.section
       div.container
-        div.columns.is-centered
+        div.columns.is-centered(v-show="isNewYear")
           div.column.is-three-quarters
-            b-notification.newYearNotification(v-show="isNewYear") 🎉&nbsp;&nbsp;{{$t(i18nPrefix + 'new_year.message', { count: nbYears })}}&nbsp;&nbsp;🍰
+            b-notification.newYearNotification 🎉&nbsp;&nbsp;{{$t(i18nPrefix + 'new_year.message', { count: nbYears })}}&nbsp;&nbsp;🍰
         div.columns.is-centered
           div.column.is-three-quarters
             div(v-if="(['home', 'gb_investment', 'contributors'].indexOf($store.state.currentLocation) >= 0) && !$route.params.gb")

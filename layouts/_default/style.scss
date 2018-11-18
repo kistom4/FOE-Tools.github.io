@@ -18,6 +18,14 @@
   background-color: $info;
 }
 
+main {
+  @media screen and (max-width: $tablet - 1px) {
+    section.section {
+      padding: 0 !important;
+    }
+  }
+}
+
 // custom
 body {
   background-color: #F0F2F4 !important;
