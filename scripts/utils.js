@@ -1,10 +1,18 @@
 import { Enum } from "enumify";
-
 class FormCheck extends Enum {}
 FormCheck.initEnum(["VALID", "INVALID", "NO_CHANGE"]);
 
 class MenuRecordType extends Enum {}
 MenuRecordType.initEnum(["PAGE", "SEPARATOR", "MENU_ENTRY"]);
+
+const NullOrEmptyArgError = { name: "NullOrEmptyArgError", message: "At least one argument is null or empty" };
+
+const InvalidTypeError = (expected, actual) => {
+  return {
+    name: "InvalidTypeError",
+    message: `Invalid type, expected "${expected}" but was "${actual}"`
+  };
+};
 
 export default {
   /**
@@ -16,6 +24,17 @@ export default {
    * Enum of the different type of menu record
    */
   MenuRecordType,
+
+  /**
+   * Error throw when argument are null or empty
+   */
+  NullOrEmptyArgError,
+
+  /**
+   * Error throw when the type are invalid
+   * @constructor
+   */
+  InvalidTypeError,
 
   /**
    * Regex used to get duration. Groups:
@@ -31,6 +50,14 @@ export default {
    * @param i18next {i18next} Reference of i18next instance to translate in good locale
    */
   getFormatedDuration(duration, i18next) {
+    if (!duration || Object.keys(duration).length === 0 || !i18next || !i18next.t) {
+      throw NullOrEmptyArgError;
+    }
+
+    if (!(duration.constructor.name === "Duration")) {
+      throw InvalidTypeError("Duration", duration.constructor.name);
+    }
+
     let match = this.regex_duration.exec(
       duration.format("y [years] M [months] d [days]", 0, {
         useToLocaleString: false
@@ -74,6 +101,14 @@ export default {
    * @returns {boolean} Return true if the value it's in range, false otherwise
    */
   inRange(value, lowerBound, upperBound) {
+    if (typeof value !== "number" || typeof lowerBound !== "number" || typeof upperBound !== "number") {
+      throw InvalidTypeError("number", {
+        value: typeof value,
+        lowerBound: typeof lowerBound,
+        upperBound: typeof upperBound
+      });
+    }
+
     if (lowerBound > upperBound) {
       return value >= upperBound && value <= lowerBound;
     }
