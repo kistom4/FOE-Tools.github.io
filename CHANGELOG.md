@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.19.0"></a>
+# [2.19.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.18.0...v2.19.0) (2018-11-18)
+
+
+### Bug Fixes
+
+* **about:** Fix cookie table overflow on small screen ([1e7fbf0](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/1e7fbf0))
+* **about:** Improve ergonomic on mobile ([7764ed3](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/7764ed3))
+
+
+### Features
+
+* **ux:** Improve ergonomic ([38bf650](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/38bf650))
+
+
+
 <a name="2.18.0"></a>
 # [2.18.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.17.1...v2.18.0) (2018-11-15)
 
