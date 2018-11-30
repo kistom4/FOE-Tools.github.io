@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.0"></a>
+# [2.20.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.19.0...v2.20.0) (2018-11-30)
+
+
+### Features
+
+* **foe-data:** :package: Add levels of several ages ([a3695e5](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/a3695e5))
+
+
+
 <a name="2.19.0"></a>
 # [2.19.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.18.0...v2.19.0) (2018-11-18)
 
