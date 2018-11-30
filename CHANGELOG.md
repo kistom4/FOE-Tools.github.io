@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.1"></a>
+## [2.20.1](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.0...v2.20.1) (2018-11-30)
+
+
+### Bug Fixes
+
+* **campaign-cost:** Fix JcJ towers images overflows ([bb147f5](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/bb147f5))
+
+
+
 <a name="2.20.0"></a>
 # [2.20.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.19.0...v2.20.0) (2018-11-30)
 
