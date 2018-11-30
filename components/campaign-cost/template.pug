@@ -75,7 +75,7 @@ div
               template(v-for="reward in province.reward")
                 div.media(v-if="reward.type !== 'good'")
                   div.media-left(v-if="reward.type !== 'good_bonus'" style="margin-right: 0em !important;")
-                    figure.image-inherit.image.is-24x24(style="margin-left: .5em !important; margin-right: 1em !important;")
+                    figure.image-inherit.image(style="margin-left: .5em !important; margin-right: 1em !important;" :class="reward.type !== 'pvp_tower' ? 'is-24x24' : 'is-48xauto'")
                       img(v-if="reward.type !== 'pvp_tower'" v-bind:src="'/img/foe/bonus/' + reward.type + '.png'" v-bind:alt="$t('foe_data.bonus.' + reward.type + '.name')" v-bind:title="$t('foe_data.bonus.' + reward.type + '.name')")
                       img(v-else v-bind:src="'/img/foe/bonus/' + currentAge + '_tower.png'" v-bind:alt="$t('foe_data.bonus.' + reward.type + '.name')" v-bind:title="$t('foe_data.bonus.' + reward.type + '.name')")
                   div.media-content(:style="{ overflow: ((reward.type === 'good_bonus') && reward.age ? 'unset' : 'hidden') }")
