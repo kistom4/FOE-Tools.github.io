@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.2"></a>
+## [2.20.2](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.1...v2.20.2) (2018-12-01)
+
+
+### Bug Fixes
+
+* **foe-data:** Fix level cost ([3036fcd](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/3036fcd))
+
+
+
 <a name="2.20.1"></a>
 ## [2.20.1](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.0...v2.20.1) (2018-11-30)
 
