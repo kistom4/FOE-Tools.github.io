@@ -198,10 +198,10 @@
             "fp_to_secure_html_plural": "You still have to put {{count, number}} FPs.",
             "cant_block": "You can not block the place.",
             "roi": {
-              "profit": "You will gain {{count}} FP",
-              "profit_plural": "You will gain {{count, number}} FPs",
-              "loss": "You will loss {{count}} FP",
-              "loss_plural": "You will loss {{count, number}} FPs",
+              "profit": "Your gain will be {{count}} FP",
+              "profit_plural": "Your gain will be {{count, number}} FPs",
+              "loss": "Your loss will be {{count}} FP",
+              "loss_plural": "Your loss will be {{count, number}} FPs",
               "neutral": "You will not have a return on investment"
             }
           },
