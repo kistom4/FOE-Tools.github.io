@@ -152,18 +152,308 @@ describe("Utils", () => {
       expect(() => Utils.inRange(1, null, 3)).toThrow(
         Utils.InvalidTypeError("number", {
           value: "number",
-          lowerBound: "Object",
+          lowerBound: "object",
           upperBound: "number"
         })
       );
     });
 
     test("Throw invalid type error when upperBound is not a number", () => {
-      expect(() => Utils.inRange("1", 2, () => false)).toThrow(
+      expect(() => Utils.inRange(1, 2, () => false)).toThrow(
         Utils.InvalidTypeError("number", {
           value: "number",
           lowerBound: "number",
           upperBound: "function"
+        })
+      );
+    });
+  });
+
+  describe("checkFormNumeric", () => {
+    test("Valid value with change", () => {
+      const result = Utils.checkFormNumeric(5, 4, [">", 2]);
+
+      expect(result).toMatchObject({
+        value: 5,
+        state: Utils.FormCheck.VALID
+      });
+    });
+
+    test("Valid float value with change", () => {
+      const result = Utils.checkFormNumeric(5.3, 4, [">", 2], "float");
+
+      expect(result).toMatchObject({
+        value: 5.3,
+        state: Utils.FormCheck.VALID
+      });
+    });
+
+    test("Valid value with string value", () => {
+      const result = Utils.checkFormNumeric("5", 4, [">", 2]);
+
+      expect(result).toMatchObject({
+        value: 5,
+        state: Utils.FormCheck.VALID
+      });
+    });
+
+    test("Valid value with value between bounds", () => {
+      const result = Utils.checkFormNumeric(5, 4, [3, 7]);
+
+      expect(result).toMatchObject({
+        value: 5,
+        state: Utils.FormCheck.VALID
+      });
+    });
+
+    test("Valid value with string value and value between bounds", () => {
+      const result = Utils.checkFormNumeric("5", 4, [3, 7]);
+
+      expect(result).toMatchObject({
+        value: 5,
+        state: Utils.FormCheck.VALID
+      });
+    });
+
+    test("Valid value with no change", () => {
+      const result = Utils.checkFormNumeric(5, 5, [">", 2]);
+
+      expect(result).toMatchObject({
+        state: Utils.FormCheck.NO_CHANGE
+      });
+    });
+
+    test("Invalid value", () => {
+      const result = Utils.checkFormNumeric("a", 4, [">", 2]);
+
+      expect(result).toMatchObject({
+        state: Utils.FormCheck.INVALID
+      });
+    });
+
+    test("Invalid current value", () => {
+      const result = Utils.checkFormNumeric(5, "a", [">", 2]);
+
+      expect(result).toMatchObject({
+        state: Utils.FormCheck.INVALID
+      });
+    });
+
+    test("Throw invalid comparator size when size of comparator array is not equal to 2", () => {
+      expect(() => Utils.checkFormNumeric(5, 4, [">", ">", 2])).toThrow(Utils.InvalidComparatorSize);
+    });
+
+    test("Throw invalid comparator error when first parameter of comparator is not a valid string", () => {
+      expect(() => Utils.checkFormNumeric(5, 4, ["a", 2])).toThrow(Utils.InvalidComparatorError(true, "a"));
+    });
+
+    test("Throw invalid comparator error when first parameter of comparator is not a number or a string", () => {
+      expect(() => Utils.checkFormNumeric(5, 4, [[], 2])).toThrow(Utils.InvalidComparatorError(true, "object"));
+    });
+
+    test("Throw invalid comparator error when second parameter of comparator is not a number", () => {
+      expect(() => Utils.checkFormNumeric(5, 4, [">", "a"])).toThrow(Utils.InvalidComparatorError(false, "string"));
+    });
+
+    test("Throw invalid error type when type is invalid", () => {
+      expect(() => Utils.checkFormNumeric(5, 4, [">", 2], "string")).toThrow(
+        Utils.InvalidTypeError(["int", "float"], "string")
+      );
+    });
+  });
+
+  describe("splitArray", () => {
+    test("Valid value split [1, 2, 3, 4, 5] into arrays with max size of 3", () => {
+      const result = Utils.splitArray([1, 2, 3, 4, 5], 3);
+
+      expect(result).toEqual([[1, 2, 3], [4, 5]]);
+    });
+
+    test("Valid value split [1, 2, 3, 4, 5] into arrays with max size of 3 with all arrays have the same length", () => {
+      const result = Utils.splitArray([1, 2, 3, 4, 5], 3, true);
+
+      expect(result).toEqual([[1, 2, 3], [4, 5, null]]);
+    });
+
+    test("Throw invalid type error when arrayList is not an array", () => {
+      expect(() => Utils.splitArray("a", 3)).toThrow(
+        Utils.InvalidTypeError(
+          "Array",
+          "string",
+          'for parameter "arrayList" of splitArray(arrayList, chunk, sameSize = false)'
+        )
+      );
+    });
+
+    test("Throw invalid type error when chunk is not a number", () => {
+      expect(() => Utils.splitArray([1, 2, 3, 4, 5], "a")).toThrow(
+        Utils.InvalidTypeError(
+          "number",
+          "string",
+          'for parameter "chunk" of splitArray(arrayList, chunk, sameSize = false)'
+        )
+      );
+    });
+  });
+
+  // For coverage
+  describe("getDefaultCookieExpireTime", () => {
+    test("Call for coverage", () => {
+      const result = Utils.getDefaultCookieExpireTime();
+
+      expect(result.constructor.name).toEqual("Date");
+      expect(result.getFullYear()).toEqual(new Date().getFullYear() + 1);
+    });
+  });
+
+  describe("handlerForm", () => {
+    let cookies;
+    let ctx;
+
+    beforeEach(() => {
+      cookies = [];
+      ctx = {
+        $data: {
+          errors: []
+        },
+        $cookies: {
+          set: jest.fn((key, value, param) => {
+            cookies.push({ key, value, param });
+          })
+        }
+      };
+    });
+
+    test("Valid value", () => {
+      const result = Utils.handlerForm(ctx, "myKey", 5, 4, [">", 3]);
+
+      expect(result).toEqual(Utils.FormCheck.VALID);
+      expect(ctx.$data.errors.myKey).toBeFalsy();
+      expect(ctx.$cookies.set.mock.calls.length).toBe(0);
+      expect(cookies).toEqual([]);
+    });
+
+    test("Valid value and save in cookie", () => {
+      const result = Utils.handlerForm(ctx, "myKey", 5, 4, [">", 3], true);
+
+      expect(result).toEqual(Utils.FormCheck.VALID);
+      expect(ctx.$data.errors.myKey).toBeFalsy();
+      expect(ctx.$cookies.set.mock.calls.length).toBe(1);
+      expect(cookies).toEqual([
+        {
+          key: "myKey",
+          param: {
+            expires: cookies[0].param.expires, // We don't care
+            path: ""
+          },
+          value: 5
+        }
+      ]);
+    });
+
+    test("Valid value and save in cookie with path '/foo'", () => {
+      const result = Utils.handlerForm(ctx, "myKey", 5, 4, [">", 3], true, "/foo");
+
+      expect(result).toEqual(Utils.FormCheck.VALID);
+      expect(ctx.$data.errors.myKey).toBeFalsy();
+      expect(ctx.$cookies.set.mock.calls.length).toBe(1);
+      expect(cookies).toEqual([
+        {
+          key: "myKey",
+          param: {
+            expires: cookies[0].param.expires, // We don't care
+            path: "/foo"
+          },
+          value: 5
+        }
+      ]);
+    });
+
+    test("Valid value with float value and save in cookie with path '/foo'", () => {
+      const result = Utils.handlerForm(ctx, "myKey", 5.3, 4, [">", 3], true, "/foo", "float");
+
+      expect(result).toEqual(Utils.FormCheck.VALID);
+      expect(ctx.$data.errors.myKey).toBeFalsy();
+      expect(ctx.$cookies.set.mock.calls.length).toBe(1);
+      expect(cookies).toEqual([
+        {
+          key: "myKey",
+          param: {
+            expires: cookies[0].param.expires, // We don't care
+            path: "/foo"
+          },
+          value: 5.3
+        }
+      ]);
+    });
+
+    test("Throw invalid type error when ctx is not a valid object", () => {
+      expect(() => Utils.handlerForm("a", "myKey", 5, 4, [">", 3])).toThrow(Utils.FieldNullError("ctx", "handlerForm"));
+    });
+
+    test("Throw field null error when ctx is null", () => {
+      expect(() => Utils.handlerForm(null, "myKey", 5, 4, [">", 3])).toThrow(
+        Utils.FieldNullError("ctx", "handlerForm")
+      );
+    });
+
+    test("Throw invalid type error when cookiePath is not a string", () => {
+      expect(() => Utils.handlerForm(ctx, "myKey", 5, 4, [">", 3], true, 2)).toThrow(
+        Utils.InvalidTypeError(
+          "string",
+          "number",
+          'for parameter "cookiePath" of handlerForm(ctx, key, value, currentValue, comparator, saveCookie = false, ' +
+            'cookiePath = "", type = "int")'
+        )
+      );
+    });
+  });
+
+  // For coverage
+  describe("shadeRGBColor", () => {
+    test("Valid value", () => {
+      const result = Utils.shadeRGBColor("rgb(0, 12, 123)", 0.3);
+      expect(result).toBe("rgb(77,85,163)");
+    });
+
+    test("Throw invalid color error when color is not in format rgb(0, 12, 123)", () => {
+      expect(() => Utils.shadeRGBColor("rgb(0, 12, red)", 0.3)).toThrow(
+        Utils.InvalidColorError("rgb(0, 12, 123)", "rgb(0, 12, red)")
+      );
+    });
+
+    test("Throw not in bounds error when percent is not between -1.0 and 1.0", () => {
+      expect(() => Utils.shadeRGBColor("rgb(0, 12, 123)", 10.3)).toThrow(
+        Utils.NotInBoundsError(10.3, -1.0, 1.0, '(parameter "percent" of shadeRGBColor(color, percent))')
+      );
+    });
+  });
+
+  describe("roundTo", () => {
+    test("Valid value", () => {
+      const result = Utils.roundTo(1 / 3, 2);
+      expect(result).toStrictEqual(0.33);
+    });
+
+    test("Valid value with scientific notation", () => {
+      const result = Utils.roundTo(2e-2, 2);
+      expect(result).toStrictEqual(0.02);
+    });
+
+    test("Throw invalid type error when num is not a number", () => {
+      expect(() => Utils.roundTo("a", 2)).toThrow(
+        Utils.InvalidTypeError("number", {
+          num: "string",
+          scale: "number"
+        })
+      );
+    });
+
+    test("Throw invalid type error when scale is not a number", () => {
+      expect(() => Utils.roundTo(1 / 3, "a")).toThrow(
+        Utils.InvalidTypeError("number", {
+          num: "number",
+          scale: "string"
         })
       );
     });

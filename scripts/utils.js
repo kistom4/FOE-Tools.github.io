@@ -6,11 +6,61 @@ class MenuRecordType extends Enum {}
 MenuRecordType.initEnum(["PAGE", "SEPARATOR", "MENU_ENTRY"]);
 
 const NullOrEmptyArgError = { name: "NullOrEmptyArgError", message: "At least one argument is null or empty" };
+const InvalidComparatorSize = { name: "InvalidComparatorSize", message: "Comparator should contains only two values" };
 
-const InvalidTypeError = (expected, actual) => {
+const InvalidTypeError = (expected, actual, additionalMessage = undefined) => {
+  let expectedType;
+  if (expected.constructor.name === "Array") {
+    expectedType = '["' + expected.join('","') + '"]';
+  } else {
+    expectedType = `"${expected}"`;
+  }
   return {
     name: "InvalidTypeError",
-    message: `Invalid type, expected "${expected}" but was "${actual}"`
+    message: `Invalid type${
+      additionalMessage ? " " + additionalMessage : ""
+    }, expected ${expectedType} but was "${typeof actual === 'object' ? JSON.stringify(actual) : actual}"`
+  };
+};
+
+const InvalidComparatorError = (firstParam, value) => {
+  let message;
+  if (firstParam) {
+    message =
+      "Invalid value or type for the first comparator value, " +
+      'expected string with value "<", "<=", ">", ">=", "==" or "===" or a number but was "' +
+      value +
+      '"';
+  } else {
+    message = `Invalid type for the second comparator value, expected "number" but was "${value}"`;
+  }
+
+  return {
+    name: "InvalidComparatorError",
+    message
+  };
+};
+
+const FieldNullError = (field, funcName) => {
+  return {
+    name: "FieldNullError",
+    message: `The field "${field}" in "${funcName}" cannot be null`
+  };
+};
+
+const InvalidColorError = (expectedFormat, color) => {
+  return {
+    name: "InvalidColorError",
+    message: `Invalid color, expected format like "${expectedFormat}" but was "${color}"`
+  };
+};
+
+const NotInBoundsError = (value, lowerBound, upperBound, additionalMessage = undefined) => {
+  return {
+    name: "NotInBoundsError",
+    message: `Value "${value}" is not between ${lowerBound} and ${upperBound}${
+      additionalMessage ? " " + additionalMessage : ""
+    }`
   };
 };
 
@@ -31,10 +81,37 @@ export default {
   NullOrEmptyArgError,
 
   /**
+   * Error throw when the comparator size are invalid
+   * @see {#checkFormNumeric}
+   */
+  InvalidComparatorSize,
+
+  /**
+   * Error throw when the comparator are invalid
+   * @see {#checkFormNumeric}
+   */
+  InvalidComparatorError,
+
+  /**
    * Error throw when the type are invalid
    * @constructor
    */
   InvalidTypeError,
+
+  /**
+   * Error throw when a field is null
+   */
+  FieldNullError,
+
+  /**
+   * Error throw when the format of the color are invalid
+   */
+  InvalidColorError,
+
+  /**
+   * Error throw when a value is not between bounds
+   */
+  NotInBoundsError,
 
   /**
    * Regex used to get duration. Groups:
@@ -122,6 +199,10 @@ export default {
    * ("<", "<=", ">", ">=", "==" or "===") or a number. The second is a number.
    * @param currentValue {number} The current value
    * @param comparator {Array} Array that contains two elements. The first is a string that corresponding to an operator
+   * which can be "<", "<=", ">", ">=", "==" or "===".
+   * It can also be a number that corresponding to the lower bound (included).
+   * The second parameter is always an Integer, if the first parameter is a string, this parameter corresponding to
+   * the value to check. If the first parameter is a number, this parameter corresponding to the upper bound (included)
    * @param type {string} Type of the result value (must be 'int' or 'float')
    * @returns {object} Return an object that contains a "state" attribute for every cases (the type is {#FormCheck}),
    * and for VALID state, it return a "value" attribute.
@@ -129,7 +210,33 @@ export default {
   checkFormNumeric(value, currentValue, comparator, type = "int") {
     let valid = false;
 
-    if (!isNaN(value)) {
+    if (!comparator || comparator.length !== 2) {
+      throw InvalidComparatorSize;
+    }
+
+    if (typeof comparator[0] === "string") {
+      if (["<", "<=", ">", ">=", "==", "==="].indexOf(comparator[0]) < 0) {
+        throw InvalidComparatorError(true, comparator[0]);
+      }
+    } else if (typeof comparator[0] !== "number") {
+      throw InvalidComparatorError(true, typeof comparator[0]);
+    }
+
+    if (typeof comparator[1] !== "number") {
+      throw InvalidComparatorError(false, typeof comparator[1]);
+    }
+
+    if (["int", "float"].indexOf(type) < 0) {
+      throw InvalidTypeError(["int", "float"], type);
+    }
+
+    if (!(comparator instanceof Array)) {
+      throw new Error(
+        `Unexpected type for parameter "comparator" in checkFormNumeric. Expect array, found ${typeof comparator}.`
+      );
+    }
+
+    if (!isNaN(value) && !isNaN(currentValue)) {
       let resultValue;
       switch (type.toLowerCase()) {
         case "int":
@@ -138,57 +245,31 @@ export default {
         case "float":
           resultValue = parseFloat(value);
           break;
-        default:
-          throw new Error('Unexpected type for parameter "type" in checkFormNumeric.');
       }
 
-      if (comparator instanceof Array) {
-        if (comparator.length !== 2) {
-          throw new Error(
-            'Unexpected size array for parameter "comparator" in checkFormNumeric. ' +
-              "The comparator array must contain only two numbers."
-          );
-        } else if (typeof comparator[0] === typeof comparator[1] && typeof comparator[0] === "number") {
-          valid = this.inRange(value, comparator[0], comparator[1]);
-        } else if (typeof comparator[0] === "string" && typeof comparator[1] === "number") {
-          switch (comparator[0]) {
-            case "<":
-              valid = resultValue < comparator[1];
-              break;
-            case "<=":
-              valid = resultValue <= comparator[1];
-              break;
-            case ">":
-              valid = resultValue > comparator[1];
-              break;
-            case ">=":
-              valid = resultValue >= comparator[1];
-              break;
-            case "==":
-              valid = resultValue == comparator[1];
-              break;
-            case "===":
-              valid = resultValue === comparator[1];
-              break;
-            default:
-              throw new Error(
-                'Unexpected value for parameter "comparator" in checkFormNumeric. ' +
-                  'Expected a string version of number comparator: "<", "<=", ">", ">=", "==" or "===".'
-              );
-          }
-        } else {
-          throw new Error(
-            'Unexpected value for parameter "comparator" in checkFormNumeric. ' +
-              "The comparator array must contain a number or a string for the fist element " +
-              "and a number for the second."
-          );
-        }
+      if (typeof comparator[0] === typeof comparator[1] && typeof comparator[0] === "number") {
+        valid = this.inRange(resultValue, comparator[0], comparator[1]);
       } else {
-        throw new Error(
-          'Unexpected type for parameter "comparator" in checkFormNumeric. Expect array, found ' +
-            typeof comparator +
-            "."
-        );
+        switch (comparator[0]) {
+          case "<":
+            valid = resultValue < comparator[1];
+            break;
+          case "<=":
+            valid = resultValue <= comparator[1];
+            break;
+          case ">":
+            valid = resultValue > comparator[1];
+            break;
+          case ">=":
+            valid = resultValue >= comparator[1];
+            break;
+          case "==":
+            valid = resultValue == comparator[1];
+            break;
+          case "===":
+            valid = resultValue === comparator[1];
+            break;
+        }
       }
 
       if (valid) {
@@ -208,20 +289,36 @@ export default {
   /**
    * Split an array into sub-array
    * @param arrayList {Array} Array to split
-   * @param chunck {number} Number of elements by sub-array
+   * @param chunk {number} Number of elements by sub-array
    * @param sameSize {boolean} True to fill the last sub-array with 'null' value to have the same size of others,
    * False otherwise (default: False)
-   * @returns {Array} Return an Array that contains @chunck sub-array
+   * @returns {Array} Return an Array that contains @chunk sub-array
    */
-  splitArray(arrayList, chunck, sameSize = false) {
+  splitArray(arrayList, chunk, sameSize = false) {
+    if (!(arrayList instanceof Array)) {
+      throw InvalidTypeError(
+        "Array",
+        typeof arrayList,
+        'for parameter "arrayList" of splitArray(arrayList, chunk, sameSize = false)'
+      );
+    }
+
+    if (typeof chunk !== "number") {
+      throw InvalidTypeError(
+        "number",
+        typeof chunk,
+        'for parameter "chunk" of splitArray(arrayList, chunk, sameSize = false)'
+      );
+    }
+
     let result = [];
 
-    for (let i = 0, j = arrayList.length; i < j; i += chunck) {
-      result.push(arrayList.slice(i, i + chunck));
+    for (let i = 0, j = arrayList.length; i < j; i += chunk) {
+      result.push(arrayList.slice(i, i + chunk));
     }
 
     if (sameSize) {
-      while (result[result.length - 1].length < chunck) {
+      while (result[result.length - 1].length < chunk) {
         result[result.length - 1].push(null);
       }
     }
@@ -253,6 +350,30 @@ export default {
    * @return {FormCheck} Return the state of the data ("VALID", "INVALID", "NO_CHANGE")
    */
   handlerForm(ctx, key, value, currentValue, comparator, saveCookie = false, cookiePath = "", type = "int") {
+    if (
+      !ctx ||
+      ctx === null ||
+      !ctx.$data ||
+      ctx.$data === null ||
+      !ctx.$data.errors ||
+      ctx.$data.errors === null ||
+      !ctx.$cookies ||
+      ctx.$cookies === null ||
+      !ctx.$cookies.set ||
+      ctx.$data.$cookies === null
+    ) {
+      throw FieldNullError("ctx", "handlerForm");
+    }
+
+    if (typeof cookiePath !== "string") {
+      throw InvalidTypeError(
+        "string",
+        typeof cookiePath,
+        'for parameter "cookiePath" of handlerForm(ctx, key, value, currentValue, comparator, saveCookie = false, ' +
+          'cookiePath = "", type = "int")'
+      );
+    }
+
     let result = this.checkFormNumeric(value, currentValue, comparator, type);
     ctx.$data.errors[key] = result.state === FormCheck.INVALID;
     if (saveCookie && result.state === FormCheck.VALID) {
@@ -265,12 +386,20 @@ export default {
   },
 
   /**
-   * Copyed here: https://stackoverflow.com/a/13542669
-   * @param color {string} Color to shade/light with format: rga(red,green,blue)
+   * Copied here: https://stackoverflow.com/a/13542669
+   * @param color {string} Color to shade/light with format: rgb(red,green,blue)
    * @param {number} percent Percent to shade (between -1.0 (dark) and 1.0 (light))
    * @returns {string} Return shade color in same format that input
    */
   shadeRGBColor(color, percent) {
+    if (!/rgb\s*\(\s*[0-9]+,\s*[0-9]+,\s*[0-9]+\s*\)/.test(color)) {
+      throw InvalidColorError("rgb(0, 12, 123)", color);
+    }
+
+    if (!this.inRange(percent, -1.0, 1.0)) {
+      throw NotInBoundsError(percent, -1.0, 1.0, '(parameter "percent" of shadeRGBColor(color, percent))');
+    }
+
     const f = color.split(",");
     const t = percent < 0 ? 0 : 255;
     const p = percent < 0 ? percent * -1 : percent;
@@ -283,11 +412,18 @@ export default {
   /**
    * Round a number to n digits.
    * Copyed here: https://stackoverflow.com/a/12830454
-   * @param num Number to round
-   * @param scale Number of digits
+   * @param {number} num Number to round
+   * @param {number} scale Number of digits
    * @returns {number} Return the number rounded
    */
   roundTo(num, scale) {
+    if (typeof num !== "number" || typeof scale !== "number") {
+      throw InvalidTypeError("number", {
+        num: typeof num,
+        scale: typeof scale
+      });
+    }
+
     if (!("" + num).includes("e")) {
       return +(Math.round(num + "e+" + scale) + "e-" + scale);
     } else {
