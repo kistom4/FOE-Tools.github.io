@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.3"></a>
+## [2.20.3](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.2...v2.20.3) (2018-12-02)
+
+
+### Bug Fixes
+
+* **l10n-en:** correction of grammatical errors ([2c476e3](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/2c476e3))
+
+
+
+<a name="2.20.2"></a>
+## [2.20.2](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.1...v2.20.2) (2018-12-01)
+
+
+### Bug Fixes
+
+* **foe-data:** Fix level cost ([3036fcd](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/3036fcd))
+
+
+
+<a name="2.20.1"></a>
+## [2.20.1](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.0...v2.20.1) (2018-11-30)
+
+
+### Bug Fixes
+
+* **campaign-cost:** Fix JcJ towers images overflows ([bb147f5](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/bb147f5))
+
+
+
+<a name="2.20.0"></a>
+# [2.20.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.19.0...v2.20.0) (2018-11-30)
+
+
+### Features
+
+* **foe-data:** :package: Add levels of several ages ([a3695e5](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/a3695e5))
+
+
+
 <a name="2.19.0"></a>
 # [2.19.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.18.0...v2.19.0) (2018-11-18)
 
