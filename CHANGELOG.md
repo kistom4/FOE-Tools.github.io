@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.3"></a>
+## [2.20.3](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.2...v2.20.3) (2018-12-02)
+
+
+### Bug Fixes
+
+* **l10n-en:** correction of grammatical errors ([2c476e3](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/2c476e3))
+
+
+
 <a name="2.20.2"></a>
 ## [2.20.2](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.1...v2.20.2) (2018-12-01)
 
