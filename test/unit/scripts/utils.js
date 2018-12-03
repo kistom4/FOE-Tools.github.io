@@ -134,6 +134,10 @@ describe("Utils", () => {
       expect(Utils.inRange(2, 1, 3)).toBe(true);
     });
 
+    test("2 in range [3;1]", () => {
+      expect(Utils.inRange(2, 3, 1)).toBe(true);
+    });
+
     test("4 not in range [1;3]", () => {
       expect(Utils.inRange(4, 1, 3)).toBe(false);
     });
@@ -170,14 +174,18 @@ describe("Utils", () => {
   });
 
   describe("checkFormNumeric", () => {
-    test("Valid value with change", () => {
-      const result = Utils.checkFormNumeric(5, 4, [">", 2]);
+    const inputComparatorValues = [["<", 6], ["<=", 5], [">", 4], [">=", 5], ["==", 5], ["===", 5]];
 
-      expect(result).toMatchObject({
-        value: 5,
-        state: Utils.FormCheck.VALID
+    for (const value of inputComparatorValues) {
+      test(`[LOOP] Valid value with change, checkFormNumeric(5, 4, ${JSON.stringify(value)})`, () => {
+        const result = Utils.checkFormNumeric(5, 4, value);
+
+        expect(result).toMatchObject({
+          value: 5,
+          state: Utils.FormCheck.VALID
+        });
       });
-    });
+    }
 
     test("Valid float value with change", () => {
       const result = Utils.checkFormNumeric(5.3, 4, [">", 2], "float");
@@ -255,6 +263,12 @@ describe("Utils", () => {
       expect(() => Utils.checkFormNumeric(5, 4, [">", "a"])).toThrow(Utils.InvalidComparatorError(false, "string"));
     });
 
+    test("Throw error when comparator is not an Array", () => {
+      expect(() => Utils.checkFormNumeric(5, 4, 3)).toThrow(
+        new Error(`Unexpected type for parameter "comparator" in checkFormNumeric. Expect array, found number.`)
+      );
+    });
+
     test("Throw invalid error type when type is invalid", () => {
       expect(() => Utils.checkFormNumeric(5, 4, [">", 2], "string")).toThrow(
         Utils.InvalidTypeError(["int", "float"], "string")
@@ -269,11 +283,14 @@ describe("Utils", () => {
       expect(result).toEqual([[1, 2, 3], [4, 5]]);
     });
 
-    test("Valid value split [1, 2, 3, 4, 5] into arrays with max size of 3 with all arrays have the same length", () => {
-      const result = Utils.splitArray([1, 2, 3, 4, 5], 3, true);
+    test(
+      "Valid value split [1, 2, 3, 4, 5] into arrays with max size of 3 with " + "all arrays have the same length",
+      () => {
+        const result = Utils.splitArray([1, 2, 3, 4, 5], 3, true);
 
-      expect(result).toEqual([[1, 2, 3], [4, 5, null]]);
-    });
+        expect(result).toEqual([[1, 2, 3], [4, 5, null]]);
+      }
+    );
 
     test("Throw invalid type error when arrayList is not an array", () => {
       expect(() => Utils.splitArray("a", 3)).toThrow(
@@ -418,7 +435,7 @@ describe("Utils", () => {
 
     test("Throw invalid color error when color is not in format rgb(0, 12, 123)", () => {
       expect(() => Utils.shadeRGBColor("rgb(0, 12, red)", 0.3)).toThrow(
-        Utils.InvalidColorError("rgb(0, 12, 123)", "rgb(0, 12, red)")
+        Utils.InvalidRegexMatchError("rgb(0, 12, red)", /rgb\s*\(\s*[0-9]+,\s*[0-9]+,\s*[0-9]+\s*\)/.toString())
       );
     });
 
@@ -435,27 +452,28 @@ describe("Utils", () => {
       expect(result).toStrictEqual(0.33);
     });
 
+    test("Valid value with string value", () => {
+      const result = Utils.roundTo("3e-1", 2);
+      expect(result).toStrictEqual(0.3);
+    });
+
     test("Valid value with scientific notation", () => {
       const result = Utils.roundTo(2e-2, 2);
       expect(result).toStrictEqual(0.02);
     });
 
-    test("Throw invalid type error when num is not a number", () => {
+    test("Throw invalid type error when num is not a number or string", () => {
+      expect(() => Utils.roundTo({}, 2)).toThrow(Utils.InvalidTypeError(["number", "string"], "object"));
+    });
+
+    test("Throw invalid type error when num is not a valid string", () => {
       expect(() => Utils.roundTo("a", 2)).toThrow(
-        Utils.InvalidTypeError("number", {
-          num: "string",
-          scale: "number"
-        })
+        Utils.InvalidRegexMatchError("a", /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/.toString())
       );
     });
 
     test("Throw invalid type error when scale is not a number", () => {
-      expect(() => Utils.roundTo(1 / 3, "a")).toThrow(
-        Utils.InvalidTypeError("number", {
-          num: "number",
-          scale: "string"
-        })
-      );
+      expect(() => Utils.roundTo(1 / 3, "a")).toThrow(Utils.InvalidTypeError("number", "string"));
     });
   });
 });

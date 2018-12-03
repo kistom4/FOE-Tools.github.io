@@ -17,9 +17,9 @@ const InvalidTypeError = (expected, actual, additionalMessage = undefined) => {
   }
   return {
     name: "InvalidTypeError",
-    message: `Invalid type${
-      additionalMessage ? " " + additionalMessage : ""
-    }, expected ${expectedType} but was "${typeof actual === 'object' ? JSON.stringify(actual) : actual}"`
+    message: `Invalid type${additionalMessage ? " " + additionalMessage : ""}, expected ${expectedType} but was "${
+      typeof actual === "object" ? JSON.stringify(actual) : actual
+    }"`
   };
 };
 
@@ -48,19 +48,19 @@ const FieldNullError = (field, funcName) => {
   };
 };
 
-const InvalidColorError = (expectedFormat, color) => {
-  return {
-    name: "InvalidColorError",
-    message: `Invalid color, expected format like "${expectedFormat}" but was "${color}"`
-  };
-};
-
 const NotInBoundsError = (value, lowerBound, upperBound, additionalMessage = undefined) => {
   return {
     name: "NotInBoundsError",
     message: `Value "${value}" is not between ${lowerBound} and ${upperBound}${
       additionalMessage ? " " + additionalMessage : ""
     }`
+  };
+};
+
+const InvalidRegexMatchError = (value, regex, additionalMessage = undefined) => {
+  return {
+    name: "InvalidRegexMatchError",
+    message: `Value "${value}" is not allowed. Should match ${regex}${additionalMessage ? " " + additionalMessage : ""}`
   };
 };
 
@@ -104,14 +104,14 @@ export default {
   FieldNullError,
 
   /**
-   * Error throw when the format of the color are invalid
-   */
-  InvalidColorError,
-
-  /**
    * Error throw when a value is not between bounds
    */
   NotInBoundsError,
+
+  /**
+   * Error throw when a value are not matched by a regex test.
+   */
+  InvalidRegexMatchError,
 
   /**
    * Regex used to get duration. Groups:
@@ -210,7 +210,11 @@ export default {
   checkFormNumeric(value, currentValue, comparator, type = "int") {
     let valid = false;
 
-    if (!comparator || comparator.length !== 2) {
+    if (!(comparator instanceof Array)) {
+      throw new Error(
+        `Unexpected type for parameter "comparator" in checkFormNumeric. Expect array, found ${typeof comparator}.`
+      );
+    } else if (comparator.length !== 2) {
       throw InvalidComparatorSize;
     }
 
@@ -228,12 +232,6 @@ export default {
 
     if (["int", "float"].indexOf(type) < 0) {
       throw InvalidTypeError(["int", "float"], type);
-    }
-
-    if (!(comparator instanceof Array)) {
-      throw new Error(
-        `Unexpected type for parameter "comparator" in checkFormNumeric. Expect array, found ${typeof comparator}.`
-      );
     }
 
     if (!isNaN(value) && !isNaN(currentValue)) {
@@ -392,8 +390,9 @@ export default {
    * @returns {string} Return shade color in same format that input
    */
   shadeRGBColor(color, percent) {
-    if (!/rgb\s*\(\s*[0-9]+,\s*[0-9]+,\s*[0-9]+\s*\)/.test(color)) {
-      throw InvalidColorError("rgb(0, 12, 123)", color);
+    const regexColor = /rgb\s*\(\s*[0-9]+,\s*[0-9]+,\s*[0-9]+\s*\)/;
+    if (!regexColor.test(color)) {
+      throw InvalidRegexMatchError(color, regexColor.toString());
     }
 
     if (!this.inRange(percent, -1.0, 1.0)) {
@@ -417,11 +416,17 @@ export default {
    * @returns {number} Return the number rounded
    */
   roundTo(num, scale) {
-    if (typeof num !== "number" || typeof scale !== "number") {
-      throw InvalidTypeError("number", {
-        num: typeof num,
-        scale: typeof scale
-      });
+    if (["number", "string"].indexOf(typeof num) < 0) {
+      throw InvalidTypeError(["number", "string"], typeof num);
+    }
+
+    if (typeof scale !== "number") {
+      throw InvalidTypeError("number", typeof scale);
+    }
+
+    const inputNumRegex = /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/;
+    if (!inputNumRegex.test(num)) {
+      throw InvalidRegexMatchError(num, inputNumRegex.toString());
     }
 
     if (!("" + num).includes("e")) {
