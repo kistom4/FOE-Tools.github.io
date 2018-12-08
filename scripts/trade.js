@@ -1,5 +1,6 @@
 const PriorityQueue = require("js-priority-queue");
 const goods = require("~/lib/foe-data/goods");
+const Errors = require("./errors");
 
 /**
  * Compute total cost (coins plus supplies) for a good. From "Modern Era" it
@@ -171,17 +172,45 @@ function uniformCostSearch(graph, start, goal) {
 }
 
 /**
- * Split goods in in a subset
+ * Check if one parameter of splitGoods are valid. Throw an error if the value are not valid.
+ * @param paramName {string} Name of the parameter
+ * @param value Value of this parameter
+ */
+function splitGoodsCheckParameter(paramName, value) {
+  if (typeof value !== "number") {
+    console.log("value: ", value, typeof value);
+    throw Errors.InvalidTypeError(
+      "number",
+      typeof value,
+      `for parameter "${paramName}" of splitGoods(toValue, splitValue, ratioFromTo, ratioToFrom)`
+    );
+  } else if (value <= 0) {
+    throw Errors.BoundExceededError(
+      Errors.AvailableBoundTypes["<="],
+      value,
+      0,
+      `for parameter "${paramName}" of splitGoods(toValue, splitValue, ratioFromTo, ratioToFrom)`
+    );
+  }
+}
+
+/**
+ * Split goods in a subset
  *
  * @param toValue Amount of goods in target age
  * @param splitValue Max goods by subset
- * @param ratioToFrom Ratio to go from "toValue" to "fromValue"
  * @param ratioFromTo Ratio to go from "fromValue" to "toValue"
+ * @param ratioToFrom Ratio to go from "toValue" to "fromValue"
  * @returns {*} Return an toValue if toValue amount of goods (from and to) < splitValue,
  * an array otherwise. This array contains to object. The first one contains "from", "to"
  * and "times", the second contains only "from" and "to"
  */
 export function splitGoods(toValue, splitValue, ratioFromTo, ratioToFrom) {
+  splitGoodsCheckParameter("toValue", toValue);
+  splitGoodsCheckParameter("splitValue", splitValue);
+  splitGoodsCheckParameter("ratioFromTo", ratioFromTo);
+  splitGoodsCheckParameter("ratioToFrom", ratioToFrom);
+
   const fromValue = Math.ceil(toValue * ratioToFrom);
   const max = ratioFromTo < 1 ? fromValue : toValue;
   const result = [];
@@ -208,7 +237,7 @@ export function splitGoods(toValue, splitValue, ratioFromTo, ratioToFrom) {
 }
 
 /**
- * Get bests offers to go from a ressource to another
+ * Get bests offers to go from a resource to another
  * @param tradeInput Reference of the matrix cost
  * @param iHave The resource where I start
  * @param iWant The resource where I go
@@ -231,7 +260,7 @@ export function getBestOffers(tradeInput, iHave, iWant, amount) {
 }
 
 /**
- * Get bests offers to go from a ressource to another and split it to subset of offers
+ * Get bests offers to go from a resource to another and split it to subset of offers
  * @param tradeInput Reference of the matrix cost
  * @param iHave The resource where I start
  * @param iWant The resource where I go

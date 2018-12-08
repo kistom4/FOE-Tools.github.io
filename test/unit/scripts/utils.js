@@ -1,5 +1,6 @@
 import i18n from "../../../scripts/i18n";
 import Utils from "../../../scripts/utils";
+import Errors from "../../../scripts/errors";
 import * as moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
 
@@ -88,15 +89,15 @@ describe("Utils", () => {
     });
 
     test("Throw error when null duration", () => {
-      expect(() => Utils.getFormatedDuration(null, i18n.i18next)).toThrow(Utils.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration(null, i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when empty duration string", () => {
-      expect(() => Utils.getFormatedDuration("", i18n.i18next)).toThrow(Utils.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration("", i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when empty duration object", () => {
-      expect(() => Utils.getFormatedDuration({}, i18n.i18next)).toThrow(Utils.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration({}, i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when duration is an invalid object", () => {
@@ -113,19 +114,19 @@ describe("Utils", () => {
           },
           i18n.i18next
         )
-      ).toThrow(Utils.InvalidTypeError("Duration", "Object"));
+      ).toThrow(Errors.InvalidTypeError("Duration", "Object"));
     });
 
     test("Throw error when null i18next", () => {
-      expect(() => Utils.getFormatedDuration(null, i18n.i18next)).toThrow(Utils.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration(null, i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when empty i18next string", () => {
-      expect(() => Utils.getFormatedDuration("", i18n.i18next)).toThrow(Utils.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration("", i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when empty i18next object", () => {
-      expect(() => Utils.getFormatedDuration({}, i18n.i18next)).toThrow(Utils.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration({}, i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
   });
 
@@ -144,7 +145,7 @@ describe("Utils", () => {
 
     test("Throw invalid type error when value is not a number", () => {
       expect(() => Utils.inRange("1", 2, 3)).toThrow(
-        Utils.InvalidTypeError("number", {
+        Errors.InvalidTypeError("number", {
           value: "string",
           lowerBound: "number",
           upperBound: "number"
@@ -154,7 +155,7 @@ describe("Utils", () => {
 
     test("Throw invalid type error when lowerBound is null", () => {
       expect(() => Utils.inRange(1, null, 3)).toThrow(
-        Utils.InvalidTypeError("number", {
+        Errors.InvalidTypeError("number", {
           value: "number",
           lowerBound: "object",
           upperBound: "number"
@@ -164,7 +165,7 @@ describe("Utils", () => {
 
     test("Throw invalid type error when upperBound is not a number", () => {
       expect(() => Utils.inRange(1, 2, () => false)).toThrow(
-        Utils.InvalidTypeError("number", {
+        Errors.InvalidTypeError("number", {
           value: "number",
           lowerBound: "number",
           upperBound: "function"
@@ -248,19 +249,19 @@ describe("Utils", () => {
     });
 
     test("Throw invalid comparator size when size of comparator array is not equal to 2", () => {
-      expect(() => Utils.checkFormNumeric(5, 4, [">", ">", 2])).toThrow(Utils.InvalidComparatorSize);
+      expect(() => Utils.checkFormNumeric(5, 4, [">", ">", 2])).toThrow(Errors.InvalidComparatorSize);
     });
 
     test("Throw invalid comparator error when first parameter of comparator is not a valid string", () => {
-      expect(() => Utils.checkFormNumeric(5, 4, ["a", 2])).toThrow(Utils.InvalidComparatorError(true, "a"));
+      expect(() => Utils.checkFormNumeric(5, 4, ["a", 2])).toThrow(Errors.InvalidComparatorError(true, "a"));
     });
 
     test("Throw invalid comparator error when first parameter of comparator is not a number or a string", () => {
-      expect(() => Utils.checkFormNumeric(5, 4, [[], 2])).toThrow(Utils.InvalidComparatorError(true, "object"));
+      expect(() => Utils.checkFormNumeric(5, 4, [[], 2])).toThrow(Errors.InvalidComparatorError(true, "object"));
     });
 
     test("Throw invalid comparator error when second parameter of comparator is not a number", () => {
-      expect(() => Utils.checkFormNumeric(5, 4, [">", "a"])).toThrow(Utils.InvalidComparatorError(false, "string"));
+      expect(() => Utils.checkFormNumeric(5, 4, [">", "a"])).toThrow(Errors.InvalidComparatorError(false, "string"));
     });
 
     test("Throw error when comparator is not an Array", () => {
@@ -271,7 +272,7 @@ describe("Utils", () => {
 
     test("Throw invalid error type when type is invalid", () => {
       expect(() => Utils.checkFormNumeric(5, 4, [">", 2], "string")).toThrow(
-        Utils.InvalidTypeError(["int", "float"], "string")
+        Errors.InvalidTypeError(["int", "float"], "string")
       );
     });
   });
@@ -294,7 +295,7 @@ describe("Utils", () => {
 
     test("Throw invalid type error when arrayList is not an array", () => {
       expect(() => Utils.splitArray("a", 3)).toThrow(
-        Utils.InvalidTypeError(
+        Errors.InvalidTypeError(
           "Array",
           "string",
           'for parameter "arrayList" of splitArray(arrayList, chunk, sameSize = false)'
@@ -304,7 +305,7 @@ describe("Utils", () => {
 
     test("Throw invalid type error when chunk is not a number", () => {
       expect(() => Utils.splitArray([1, 2, 3, 4, 5], "a")).toThrow(
-        Utils.InvalidTypeError(
+        Errors.InvalidTypeError(
           "number",
           "string",
           'for parameter "chunk" of splitArray(arrayList, chunk, sameSize = false)'
@@ -405,18 +406,18 @@ describe("Utils", () => {
     });
 
     test("Throw invalid type error when ctx is not a valid object", () => {
-      expect(() => Utils.handlerForm("a", "myKey", 5, 4, [">", 3])).toThrow(Utils.FieldNullError("ctx", "handlerForm"));
+      expect(() => Utils.handlerForm("a", "myKey", 5, 4, [">", 3])).toThrow(Errors.FieldNullError("ctx", "handlerForm"));
     });
 
     test("Throw field null error when ctx is null", () => {
       expect(() => Utils.handlerForm(null, "myKey", 5, 4, [">", 3])).toThrow(
-        Utils.FieldNullError("ctx", "handlerForm")
+        Errors.FieldNullError("ctx", "handlerForm")
       );
     });
 
     test("Throw invalid type error when cookiePath is not a string", () => {
       expect(() => Utils.handlerForm(ctx, "myKey", 5, 4, [">", 3], true, 2)).toThrow(
-        Utils.InvalidTypeError(
+        Errors.InvalidTypeError(
           "string",
           "number",
           'for parameter "cookiePath" of handlerForm(ctx, key, value, currentValue, comparator, saveCookie = false, ' +
@@ -435,13 +436,13 @@ describe("Utils", () => {
 
     test("Throw invalid color error when color is not in format rgb(0, 12, 123)", () => {
       expect(() => Utils.shadeRGBColor("rgb(0, 12, red)", 0.3)).toThrow(
-        Utils.InvalidRegexMatchError("rgb(0, 12, red)", /rgb\s*\(\s*[0-9]+,\s*[0-9]+,\s*[0-9]+\s*\)/.toString())
+        Errors.InvalidRegexMatchError("rgb(0, 12, red)", /rgb\s*\(\s*[0-9]+,\s*[0-9]+,\s*[0-9]+\s*\)/.toString())
       );
     });
 
     test("Throw not in bounds error when percent is not between -1.0 and 1.0", () => {
       expect(() => Utils.shadeRGBColor("rgb(0, 12, 123)", 10.3)).toThrow(
-        Utils.NotInBoundsError(10.3, -1.0, 1.0, '(parameter "percent" of shadeRGBColor(color, percent))')
+        Errors.NotInBoundsError(10.3, -1.0, 1.0, '(parameter "percent" of shadeRGBColor(color, percent))')
       );
     });
   });
@@ -463,17 +464,17 @@ describe("Utils", () => {
     });
 
     test("Throw invalid type error when num is not a number or string", () => {
-      expect(() => Utils.roundTo({}, 2)).toThrow(Utils.InvalidTypeError(["number", "string"], "object"));
+      expect(() => Utils.roundTo({}, 2)).toThrow(Errors.InvalidTypeError(["number", "string"], "object"));
     });
 
     test("Throw invalid type error when num is not a valid string", () => {
       expect(() => Utils.roundTo("a", 2)).toThrow(
-        Utils.InvalidRegexMatchError("a", /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/.toString())
+        Errors.InvalidRegexMatchError("a", /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/.toString())
       );
     });
 
     test("Throw invalid type error when scale is not a number", () => {
-      expect(() => Utils.roundTo(1 / 3, "a")).toThrow(Utils.InvalidTypeError("number", "string"));
+      expect(() => Utils.roundTo(1 / 3, "a")).toThrow(Errors.InvalidTypeError("number", "string"));
     });
   });
 });

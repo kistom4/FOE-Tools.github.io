@@ -1,68 +1,11 @@
 import { Enum } from "enumify";
+import Errors from "./errors";
+
 class FormCheck extends Enum {}
 FormCheck.initEnum(["VALID", "INVALID", "NO_CHANGE"]);
 
 class MenuRecordType extends Enum {}
 MenuRecordType.initEnum(["PAGE", "SEPARATOR", "MENU_ENTRY"]);
-
-const NullOrEmptyArgError = { name: "NullOrEmptyArgError", message: "At least one argument is null or empty" };
-const InvalidComparatorSize = { name: "InvalidComparatorSize", message: "Comparator should contains only two values" };
-
-const InvalidTypeError = (expected, actual, additionalMessage = undefined) => {
-  let expectedType;
-  if (expected.constructor.name === "Array") {
-    expectedType = '["' + expected.join('","') + '"]';
-  } else {
-    expectedType = `"${expected}"`;
-  }
-  return {
-    name: "InvalidTypeError",
-    message: `Invalid type${additionalMessage ? " " + additionalMessage : ""}, expected ${expectedType} but was "${
-      typeof actual === "object" ? JSON.stringify(actual) : actual
-    }"`
-  };
-};
-
-const InvalidComparatorError = (firstParam, value) => {
-  let message;
-  if (firstParam) {
-    message =
-      "Invalid value or type for the first comparator value, " +
-      'expected string with value "<", "<=", ">", ">=", "==" or "===" or a number but was "' +
-      value +
-      '"';
-  } else {
-    message = `Invalid type for the second comparator value, expected "number" but was "${value}"`;
-  }
-
-  return {
-    name: "InvalidComparatorError",
-    message
-  };
-};
-
-const FieldNullError = (field, funcName) => {
-  return {
-    name: "FieldNullError",
-    message: `The field "${field}" in "${funcName}" cannot be null`
-  };
-};
-
-const NotInBoundsError = (value, lowerBound, upperBound, additionalMessage = undefined) => {
-  return {
-    name: "NotInBoundsError",
-    message: `Value "${value}" is not between ${lowerBound} and ${upperBound}${
-      additionalMessage ? " " + additionalMessage : ""
-    }`
-  };
-};
-
-const InvalidRegexMatchError = (value, regex, additionalMessage = undefined) => {
-  return {
-    name: "InvalidRegexMatchError",
-    message: `Value "${value}" is not allowed. Should match ${regex}${additionalMessage ? " " + additionalMessage : ""}`
-  };
-};
 
 export default {
   /**
@@ -74,44 +17,6 @@ export default {
    * Enum of the different type of menu record
    */
   MenuRecordType,
-
-  /**
-   * Error throw when argument are null or empty
-   */
-  NullOrEmptyArgError,
-
-  /**
-   * Error throw when the comparator size are invalid
-   * @see {#checkFormNumeric}
-   */
-  InvalidComparatorSize,
-
-  /**
-   * Error throw when the comparator are invalid
-   * @see {#checkFormNumeric}
-   */
-  InvalidComparatorError,
-
-  /**
-   * Error throw when the type are invalid
-   * @constructor
-   */
-  InvalidTypeError,
-
-  /**
-   * Error throw when a field is null
-   */
-  FieldNullError,
-
-  /**
-   * Error throw when a value is not between bounds
-   */
-  NotInBoundsError,
-
-  /**
-   * Error throw when a value are not matched by a regex test.
-   */
-  InvalidRegexMatchError,
 
   /**
    * Regex used to get duration. Groups:
@@ -128,11 +33,11 @@ export default {
    */
   getFormatedDuration(duration, i18next) {
     if (!duration || Object.keys(duration).length === 0 || !i18next || !i18next.t) {
-      throw NullOrEmptyArgError;
+      throw Errors.NullOrEmptyArgError;
     }
 
     if (!(duration.constructor.name === "Duration")) {
-      throw InvalidTypeError("Duration", duration.constructor.name);
+      throw Errors.InvalidTypeError("Duration", duration.constructor.name);
     }
 
     let match = this.regex_duration.exec(
@@ -179,7 +84,7 @@ export default {
    */
   inRange(value, lowerBound, upperBound) {
     if (typeof value !== "number" || typeof lowerBound !== "number" || typeof upperBound !== "number") {
-      throw InvalidTypeError("number", {
+      throw Errors.InvalidTypeError("number", {
         value: typeof value,
         lowerBound: typeof lowerBound,
         upperBound: typeof upperBound
@@ -215,23 +120,23 @@ export default {
         `Unexpected type for parameter "comparator" in checkFormNumeric. Expect array, found ${typeof comparator}.`
       );
     } else if (comparator.length !== 2) {
-      throw InvalidComparatorSize;
+      throw Errors.InvalidComparatorSize;
     }
 
     if (typeof comparator[0] === "string") {
       if (["<", "<=", ">", ">=", "==", "==="].indexOf(comparator[0]) < 0) {
-        throw InvalidComparatorError(true, comparator[0]);
+        throw Errors.InvalidComparatorError(true, comparator[0]);
       }
     } else if (typeof comparator[0] !== "number") {
-      throw InvalidComparatorError(true, typeof comparator[0]);
+      throw Errors.InvalidComparatorError(true, typeof comparator[0]);
     }
 
     if (typeof comparator[1] !== "number") {
-      throw InvalidComparatorError(false, typeof comparator[1]);
+      throw Errors.InvalidComparatorError(false, typeof comparator[1]);
     }
 
     if (["int", "float"].indexOf(type) < 0) {
-      throw InvalidTypeError(["int", "float"], type);
+      throw Errors.InvalidTypeError(["int", "float"], type);
     }
 
     if (!isNaN(value) && !isNaN(currentValue)) {
@@ -294,7 +199,7 @@ export default {
    */
   splitArray(arrayList, chunk, sameSize = false) {
     if (!(arrayList instanceof Array)) {
-      throw InvalidTypeError(
+      throw Errors.InvalidTypeError(
         "Array",
         typeof arrayList,
         'for parameter "arrayList" of splitArray(arrayList, chunk, sameSize = false)'
@@ -302,7 +207,7 @@ export default {
     }
 
     if (typeof chunk !== "number") {
-      throw InvalidTypeError(
+      throw Errors.InvalidTypeError(
         "number",
         typeof chunk,
         'for parameter "chunk" of splitArray(arrayList, chunk, sameSize = false)'
@@ -360,11 +265,11 @@ export default {
       !ctx.$cookies.set ||
       ctx.$data.$cookies === null
     ) {
-      throw FieldNullError("ctx", "handlerForm");
+      throw Errors.FieldNullError("ctx", "handlerForm");
     }
 
     if (typeof cookiePath !== "string") {
-      throw InvalidTypeError(
+      throw Errors.InvalidTypeError(
         "string",
         typeof cookiePath,
         'for parameter "cookiePath" of handlerForm(ctx, key, value, currentValue, comparator, saveCookie = false, ' +
@@ -392,11 +297,11 @@ export default {
   shadeRGBColor(color, percent) {
     const regexColor = /rgb\s*\(\s*[0-9]+,\s*[0-9]+,\s*[0-9]+\s*\)/;
     if (!regexColor.test(color)) {
-      throw InvalidRegexMatchError(color, regexColor.toString());
+      throw Errors.InvalidRegexMatchError(color, regexColor.toString());
     }
 
     if (!this.inRange(percent, -1.0, 1.0)) {
-      throw NotInBoundsError(percent, -1.0, 1.0, '(parameter "percent" of shadeRGBColor(color, percent))');
+      throw Errors.NotInBoundsError(percent, -1.0, 1.0, '(parameter "percent" of shadeRGBColor(color, percent))');
     }
 
     const f = color.split(",");
@@ -417,16 +322,16 @@ export default {
    */
   roundTo(num, scale) {
     if (["number", "string"].indexOf(typeof num) < 0) {
-      throw InvalidTypeError(["number", "string"], typeof num);
+      throw Errors.InvalidTypeError(["number", "string"], typeof num);
     }
 
     if (typeof scale !== "number") {
-      throw InvalidTypeError("number", typeof scale);
+      throw Errors.InvalidTypeError("number", typeof scale);
     }
 
     const inputNumRegex = /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/;
     if (!inputNumRegex.test(num)) {
-      throw InvalidRegexMatchError(num, inputNumRegex.toString());
+      throw Errors.InvalidRegexMatchError(num, inputNumRegex.toString());
     }
 
     if (!("" + num).includes("e")) {

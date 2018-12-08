@@ -13,7 +13,8 @@ module.exports = {
   },
   // support the same @ -> src alias mapping in source code
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1"
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^~/(.*)$": "<rootDir>/$1"
   },
   setupFiles: ["<rootDir>/test/unit/setup"],
   snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
