@@ -125,20 +125,6 @@ export default {
   },
 
   /**
-   * Error throw when a value are not matched by a regex test.
-   *
-   * @param value Value that cause the error
-   * @param additionalMessage Additional message to provide more detail about the error (like parameter or methods name)
-   * @returns {{name: string, message: string}}
-   */
-  NotPositiveValueError: (value, additionalMessage = undefined) => {
-    return {
-      name: "NotPositiveValueError",
-      message: `Invalid value "${value}". Should a positive value${additionalMessage ? " " + additionalMessage : ""}`
-    };
-  },
-
-  /**
    * Error throw when the value is [<,<=,=,!=,>,>=] than boundValue
    * @param type {AvailableBoundTypes} Type of the comparison, should be one of: [<,<=,=,!=,>,>=]
    * @param value Value that cause the error
@@ -147,13 +133,6 @@ export default {
    * @returns {{name: string, message: string}}
    */
   BoundExceededError(type, value, boundValue, additionalMessage) {
-    if (!(type instanceof AvailableBoundTypes)) {
-      throw this.InvalidTypeError(
-        AvailableBoundTypes.constructor.name,
-        typeof type,
-        'for parameter "type" of BoundExceededError(type, value, boundValue, additionalMessage)'
-      );
-    }
     return {
       name: "BoundExceededError",
       message: `"${value}" should not be ${type.name} than ${boundValue}${
