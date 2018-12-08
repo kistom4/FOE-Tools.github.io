@@ -178,7 +178,6 @@ function uniformCostSearch(graph, start, goal) {
  */
 function splitGoodsCheckParameter(paramName, value) {
   if (typeof value !== "number") {
-    console.log("value: ", value, typeof value);
     throw Errors.InvalidTypeError(
       "number",
       typeof value,
