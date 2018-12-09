@@ -9,6 +9,7 @@ const nl = require("../locales/nl.json");
 // Requires al packages
 const i18next = require("i18next");
 let numeral = require("numeral");
+require("numeral/locales/nl-nl");
 
 // Constant used
 const defaultLocale = "en";
