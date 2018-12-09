@@ -23,7 +23,7 @@ describe("GB Data", () => {
     describe(`${value}`, () => {
       let gbCost = [
         ...gbs.agesCost[value]
-          .filter(function(_, i) {
+          .filter((_, i) => {
             return i < 10;
           })
           .map(obj => {
