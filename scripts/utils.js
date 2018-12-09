@@ -116,8 +116,10 @@ export default {
     let valid = false;
 
     if (!(comparator instanceof Array)) {
-      throw new Error(
-        `Unexpected type for parameter "comparator" in checkFormNumeric. Expect array, found ${typeof comparator}.`
+      throw Errors.InvalidTypeError(
+        "Array",
+        typeof comparator,
+        'for parameter "comparator" of checkFormNumeric(value, currentValue, comparator, type = "int")'
       );
     } else if (comparator.length !== 2) {
       throw Errors.InvalidComparatorSize;
@@ -301,7 +303,7 @@ export default {
     }
 
     if (!this.inRange(percent, -1.0, 1.0)) {
-      throw Errors.NotInBoundsError(percent, -1.0, 1.0, '(parameter "percent" of shadeRGBColor(color, percent))');
+      throw Errors.NotInBoundsError(percent, -1.0, 1.0, 'for parameter "percent" of shadeRGBColor(color, percent)');
     }
 
     const f = color.split(",");

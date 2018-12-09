@@ -6,6 +6,7 @@ AvailableBoundTypes.initEnum(["<", "<=", "=", "!=", ">", ">="]);
 export default {
   /**
    * Enum of the different available values for BoundExceededError
+   *
    * @see {#BoundExceededError}
    */
   AvailableBoundTypes,
@@ -126,6 +127,7 @@ export default {
 
   /**
    * Error throw when the value is [<,<=,=,!=,>,>=] than boundValue
+   *
    * @param type {AvailableBoundTypes} Type of the comparison, should be one of: [<,<=,=,!=,>,>=]
    * @param value Value that cause the error
    * @param boundValue Bound exceeded
@@ -138,6 +140,37 @@ export default {
       message: `"${value}" should not be ${type.name} than ${boundValue}${
         additionalMessage ? " " + additionalMessage : ""
       }`
+    };
+  },
+
+  /**
+   * Error throw when an object does not contain a key it should have.
+   *
+   * @param key {string} Type of the comparison, should be one of: [<,<=,=,!=,>,>=]
+   * @param objectName {string} Value that cause the error
+   * @param additionalMessage Additional message to provide more detail about the error (like parameter or methods name)
+   * @returns {{name: string, message: string}}
+   */
+  KeyNotFoundError(key, objectName, additionalMessage) {
+    return {
+      name: "KeyNotFoundError",
+      message: `"${key}" not found in ${objectName}${
+        additionalMessage ? " " + additionalMessage : ""
+      }`
+    };
+  },
+
+  /**
+   * Error throw when the value of the participation for the current place is greater than the previous place.
+   * @param index Index of the place
+   *
+   * @see {foe-gb-investment#getValues}
+   */
+  InvalidParticipationException(index) {
+    return {
+      name: "InvalidParticipationException",
+      message: `The value at index ${index} should not be greater than the previous place participation`,
+      index: index
     };
   }
 };

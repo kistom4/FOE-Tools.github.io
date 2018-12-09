@@ -266,7 +266,11 @@ describe("Utils", () => {
 
     test("Throw error when comparator is not an Array", () => {
       expect(() => Utils.checkFormNumeric(5, 4, 3)).toThrow(
-        new Error(`Unexpected type for parameter "comparator" in checkFormNumeric. Expect array, found number.`)
+        Errors.InvalidTypeError(
+          "Array",
+          "number",
+          'for parameter "comparator" of checkFormNumeric(value, currentValue, comparator, type = "int")'
+        )
       );
     });
 
@@ -406,7 +410,9 @@ describe("Utils", () => {
     });
 
     test("Throw invalid type error when ctx is not a valid object", () => {
-      expect(() => Utils.handlerForm("a", "myKey", 5, 4, [">", 3])).toThrow(Errors.FieldNullError("ctx", "handlerForm"));
+      expect(() => Utils.handlerForm("a", "myKey", 5, 4, [">", 3])).toThrow(
+        Errors.FieldNullError("ctx", "handlerForm")
+      );
     });
 
     test("Throw field null error when ctx is null", () => {
@@ -442,7 +448,7 @@ describe("Utils", () => {
 
     test("Throw not in bounds error when percent is not between -1.0 and 1.0", () => {
       expect(() => Utils.shadeRGBColor("rgb(0, 12, 123)", 10.3)).toThrow(
-        Errors.NotInBoundsError(10.3, -1.0, 1.0, '(parameter "percent" of shadeRGBColor(color, percent))')
+        Errors.NotInBoundsError(10.3, -1.0, 1.0, 'for parameter "percent" of shadeRGBColor(color, percent)')
       );
     });
   });
