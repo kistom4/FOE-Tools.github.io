@@ -32,7 +32,7 @@ describe("GB Data", () => {
         ...generateExpectedValues(gbs.agesCost[value][9].cost, gbs.agesCost[value].length)
       ];
 
-      for (let i = 1; i < gbs.agesCost[value].length; i++) {
+      for (let i = 0; i < gbs.agesCost[value].length; i++) {
         test(`cost of level ${i} should be: ${gbCost[i]}`, () => {
           expect(gbs.agesCost[value][i].cost).toBe(gbCost[i]);
         });
