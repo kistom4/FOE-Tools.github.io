@@ -23,7 +23,7 @@ export default {
    * @param additionalMessage Additional message to provide more detail about the error (like parameter or methods name)
    * @returns {{name: string, message: string}}
    */
-  InvalidTypeError: (expected, actual, additionalMessage = undefined) => {
+  InvalidTypeError(expected, actual, additionalMessage = undefined) {
     let expectedType;
     if (expected.constructor.name === "Array") {
       expectedType = '["' + expected.join('","') + '"]';
@@ -57,7 +57,7 @@ export default {
    *
    * @see {utils#checkFormNumeric}
    */
-  InvalidComparatorError: (firstParam, value) => {
+  InvalidComparatorError(firstParam, value) {
     let message;
     if (firstParam) {
       message =
@@ -82,7 +82,7 @@ export default {
    * @param funcName Name of the function
    * @returns {{name: string, message: string}}
    */
-  FieldNullError: (field, funcName) => {
+  FieldNullError(field, funcName) {
     return {
       name: "FieldNullError",
       message: `The field "${field}" in "${funcName}" cannot be null`
@@ -98,7 +98,7 @@ export default {
    * @param additionalMessage Additional message to provide more detail about the error (like parameter or methods name)
    * @returns {{name: string, message: string}}
    */
-  NotInBoundsError: (value, lowerBound, upperBound, additionalMessage = undefined) => {
+  NotInBoundsError(value, lowerBound, upperBound, additionalMessage = undefined) {
     return {
       name: "NotInBoundsError",
       message: `Value "${value}" is not between ${lowerBound} and ${upperBound}${
@@ -115,7 +115,7 @@ export default {
    * @param additionalMessage Additional message to provide more detail about the error (like parameter or methods name)
    * @returns {{name: string, message: string}}
    */
-  InvalidRegexMatchError: (value, regex, additionalMessage = undefined) => {
+  InvalidRegexMatchError(value, regex, additionalMessage = undefined) {
     return {
       name: "InvalidRegexMatchError",
       message: `Value "${value}" is not allowed. Should match ${regex}${

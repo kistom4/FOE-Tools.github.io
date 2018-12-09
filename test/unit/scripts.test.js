@@ -1,5 +1,5 @@
 describe("Scripts", () => {
-  var normalizedPath = require("path").join(__dirname, "scripts");
+  const normalizedPath = require("path").join(__dirname, "scripts");
 
   require("fs")
     .readdirSync(normalizedPath)
