@@ -1,4 +1,4 @@
-import i18n from "../../../scripts/i18n";
+import { i18next } from "../../../scripts/i18n";
 import Utils from "../../../scripts/utils";
 import Errors from "../../../scripts/errors";
 import * as moment from "moment";
@@ -19,7 +19,7 @@ describe("Utils", () => {
         years: 1
       });
 
-      const result = Utils.getFormatedDuration(duration, i18n.i18next);
+      const result = Utils.getFormatedDuration(duration, i18next);
 
       expect(result).toBe("1 year 2 months 25 days");
     });
@@ -35,7 +35,7 @@ describe("Utils", () => {
         years: 2
       });
 
-      const result = Utils.getFormatedDuration(duration, i18n.i18next);
+      const result = Utils.getFormatedDuration(duration, i18next);
 
       expect(result).toBe("2 years 1 month 1 day");
     });
@@ -51,7 +51,7 @@ describe("Utils", () => {
         years: 3
       });
 
-      const result = Utils.getFormatedDuration(duration, i18n.i18next);
+      const result = Utils.getFormatedDuration(duration, i18next);
 
       expect(result).toBe("3 years 2 days");
     });
@@ -67,7 +67,7 @@ describe("Utils", () => {
         years: 0
       });
 
-      const result = Utils.getFormatedDuration(duration, i18n.i18next);
+      const result = Utils.getFormatedDuration(duration, i18next);
 
       expect(result).toBe("1 month");
     });
@@ -83,21 +83,21 @@ describe("Utils", () => {
         years: 0
       });
 
-      const result = Utils.getFormatedDuration(duration, i18n.i18next);
+      const result = Utils.getFormatedDuration(duration, i18next);
 
       expect(result).toBe("21 days");
     });
 
     test("Throw error when null duration", () => {
-      expect(() => Utils.getFormatedDuration(null, i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration(null, i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when empty duration string", () => {
-      expect(() => Utils.getFormatedDuration("", i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration("", i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when empty duration object", () => {
-      expect(() => Utils.getFormatedDuration({}, i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration({}, i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when duration is an invalid object", () => {
@@ -112,21 +112,21 @@ describe("Utils", () => {
             months: 2,
             years: 1
           },
-          i18n.i18next
+          i18next
         )
       ).toThrow(Errors.InvalidTypeError("Duration", "Object"));
     });
 
     test("Throw error when null i18next", () => {
-      expect(() => Utils.getFormatedDuration(null, i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration(null, i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when empty i18next string", () => {
-      expect(() => Utils.getFormatedDuration("", i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration("", i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
 
     test("Throw error when empty i18next object", () => {
-      expect(() => Utils.getFormatedDuration({}, i18n.i18next)).toThrow(Errors.NullOrEmptyArgError);
+      expect(() => Utils.getFormatedDuration({}, i18next)).toThrow(Errors.NullOrEmptyArgError);
     });
   });
 

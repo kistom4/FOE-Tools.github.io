@@ -3,7 +3,7 @@ import Utils from "~/scripts/utils";
 import Vue from "vue";
 import VueI18Next from "@panter/vue-i18next";
 
-import { i18next, defaultLocale, supportedLocales } from "@/scripts/i18n";
+import { i18next, defaultLocale, supportedLocales } from "~/scripts/i18n";
 
 Vue.use(VueI18Next);
 

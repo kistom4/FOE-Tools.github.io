@@ -284,7 +284,12 @@ export default {
       for (let i = 0; i < this.$props.gb.levels.length; i++) {
         const currentLevel = Object.assign(
           JSON.parse(JSON.stringify(this.$props.gb.levels[i])),
-          gbProcess.Submit(i + 1, Array.apply(null, Array(5)).map(() => this.$data.yourArcBonus), this.$props.gb.levels)
+          gbProcess.Submit(
+            i + 1,
+            Array.apply(null, Array(5)).map(() => this.$data.yourArcBonus),
+            this.$props.gb.levels,
+            Array(5).map(() => 0)
+          )
         );
 
         let currentDeposits = 0;

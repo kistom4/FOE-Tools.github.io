@@ -1,9 +1,7 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+import { JSDOM } from "jsdom";
 
-const i18n = require("./scripts/i18n");
-const { i18next, defaultLocale, supportedLocales } = i18n;
-const { gbs } = require("./lib/foe-data/gbs");
+import { i18next, defaultLocale, supportedLocales } from "./scripts/i18n";
+import { gbs } from "./lib/foe-data/gbs";
 
 /**
  * Return locale based on route

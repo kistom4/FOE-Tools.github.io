@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Enum } from "enumify";
 import Errors from "./errors";
 
@@ -36,7 +37,7 @@ export default {
       throw Errors.NullOrEmptyArgError;
     }
 
-    if (!(duration.constructor.name === "Duration")) {
+    if (!moment.isDuration(duration)) {
       throw Errors.InvalidTypeError("Duration", duration.constructor.name);
     }
 
