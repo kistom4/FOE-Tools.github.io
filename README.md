@@ -58,6 +58,7 @@ yarn run dev
 
 
 ## Build a static site
+
 Build the project in production mode:
 
 Using npm:
@@ -92,6 +93,46 @@ yarn run generate:gh
 
 
 > _**Note**: You need an HTTP server to test with generated. You can use [http-serve](https://www.npmjs.com/package/http-serve)._
+
+
+
+## Tests
+
+
+
+To run all test just execute this command:
+
+```bash
+npm run test
+```
+
+
+
+### Unit test
+
+You can run unit test with:
+
+```bash
+npm run test:unit
+```
+
+
+
+If you want to run in watch mode just add `:watcth`:
+
+```bash
+npm run test:unit:watch
+```
+
+
+
+### End-to-end
+
+You can run unit test with:
+
+```bash
+npm run test:e2e
+```
 
 
 
