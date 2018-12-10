@@ -1,6 +1,6 @@
 import SimpleTrade from "~/components/simple-trade/index";
 import Trade from "~/components/trade/index";
-import { fairTradeArray, simpleTradeArray } from "~/scripts/trade";
+import { TradeArrayType, fairTradeArray, simpleTradeArray } from "~/scripts/trade";
 
 const i18nPrefix = "routes.trade.";
 
@@ -18,7 +18,8 @@ export default {
     this.$store.commit("RESTORE_HERO");
 
     return {
-      i18nPrefix: i18nPrefix,
+      i18nPrefix,
+      TradeArrayType,
       tab: 1,
       fairTradeArray,
       simpleTradeArray

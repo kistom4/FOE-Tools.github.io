@@ -1,5 +1,11 @@
+const { Enum } = require("enumify");
 const PriorityQueue = require("js-priority-queue");
+const ages = require("~/lib/foe-data/ages");
 const goods = require("~/lib/foe-data/goods");
+const Errors = require("./errors");
+
+class TradeArray extends Enum {}
+TradeArray.initEnum(["SIMPLE", "FAIR"]);
 
 /**
  * Compute total cost (coins plus supplies) for a good. From "Modern Era" it
@@ -69,6 +75,11 @@ function getSimpleTradeArray() {
   return simpleTradeObj;
 }
 
+const tradeArrayValues = {
+  SIMPLE: getSimpleTradeArray(),
+  FAIR: getFairTradeArray()
+};
+
 /**
  * Get neighbors of a node
  *
@@ -128,7 +139,7 @@ function reconstructPath(graph, start, goal) {
  * @see {@link https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Practical_optimizations_and_infinite_graphs}
  */
 function uniformCostSearch(graph, start, goal) {
-  const ageArray = Object.keys(graph);
+  const ageArray = Object.keys(tradeArrayValues[graph.name]);
   const iHaveIndex = ageArray.indexOf(start);
   const iWantIndex = ageArray.indexOf(goal);
 
@@ -136,10 +147,8 @@ function uniformCostSearch(graph, start, goal) {
     comparator: (u, v) => {
       if (iHaveIndex < iWantIndex) {
         return u.cost < v.cost ? -1 : u.cost > v.cost ? 1 : 0;
-      } else if (iHaveIndex > iWantIndex) {
-        return u.cost > v.cost ? -1 : u.cost < v.cost ? 1 : 0;
       } else {
-        return u.cost === v.cost ? -1 : u.cost < v.cost ? 1 : 0;
+        return u.cost > v.cost ? -1 : 1;
       }
     }
   });
@@ -154,14 +163,11 @@ function uniformCostSearch(graph, start, goal) {
   }
 
   do {
-    if (frontier.length === 0) {
-      throw new Error("PriorityQueue need to contains at least one value");
-    }
     node = frontier.dequeue();
     if (node.key === goal) {
       return reconstructPath(explored, start, goal);
     }
-    for (let neighbor of neighbors(graph, node.key)) {
+    for (let neighbor of neighbors(tradeArrayValues[graph.name], node.key)) {
       if (Object.keys(explored).indexOf(neighbor.key) < 0) {
         frontier.queue({ key: neighbor.key, cost: neighbor.cost + node.cost });
         explored[neighbor.key] = { key: neighbor.key, cost: neighbor.cost + node.cost, parent: node.key };
@@ -171,17 +177,81 @@ function uniformCostSearch(graph, start, goal) {
 }
 
 /**
- * Split goods in in a subset
+ * Get bests offers to go from a resource to another
+ * @param tradeInput {TradeArray} Reference of the matrix cost
+ * @param iHave {string} The resource where I start
+ * @param iWant {string} The resource where I go
+ * @param amount {string} The amount of the resource that I want
+ * @returns {*[]}
+ *
+ * @see {#uniformCostSearch}
+ */
+function getBestOffers(tradeInput, iHave, iWant, amount) {
+  const bestOffers = uniformCostSearch(tradeInput, iHave, iWant);
+  const result = [{ key: bestOffers[0], amount: amount }];
+
+  for (let i = 1; i < bestOffers.length; i++) {
+    result.push({
+      key: bestOffers[i],
+      amount: Math.ceil(result[i - 1].amount * tradeArrayValues[tradeInput.name][bestOffers[i - 1]][bestOffers[i]])
+    });
+  }
+
+  return result.reverse();
+}
+
+/**
+ * Check if a numeric parameter are valid. Throw an error if the value are not valid.
+ *
+ * @param paramName {string} Name of the parameter
+ * @param funcName {string} Name of the function
+ * @param value Value of this parameter
+ */
+function checkValidNumberInputParameter(paramName, funcName, value) {
+  if (typeof value !== "number") {
+    throw Errors.InvalidTypeError("number", typeof value, `for parameter "${paramName}" of ${funcName}`);
+  } else if (value <= 0) {
+    throw Errors.BoundExceededError(
+      Errors.AvailableBoundTypes["<="],
+      value,
+      0,
+      `for parameter "${paramName}" of ${funcName}`
+    );
+  }
+}
+
+/**
+ * Chceck if the value are a valid age name. Throw an error if the value are not valid.
+ *
+ * @param paramName {string} Name of the parameter
+ * @param funcName {string} Name of the function
+ * @param value Value of this parameter
+ */
+function checkAge(paramName, funcName, value) {
+  const validAges = Object.keys(ages).slice(1);
+  if (validAges.indexOf(value) < 0) {
+    throw Errors.InvalidTypeError(validAges, value, `for parameter "${paramName}" of ${funcName}`);
+  }
+}
+
+/**
+ * Split goods in a subset
  *
  * @param toValue Amount of goods in target age
  * @param splitValue Max goods by subset
- * @param ratioToFrom Ratio to go from "toValue" to "fromValue"
  * @param ratioFromTo Ratio to go from "fromValue" to "toValue"
+ * @param ratioToFrom Ratio to go from "toValue" to "fromValue"
  * @returns {*} Return an toValue if toValue amount of goods (from and to) < splitValue,
  * an array otherwise. This array contains to object. The first one contains "from", "to"
  * and "times", the second contains only "from" and "to"
  */
 export function splitGoods(toValue, splitValue, ratioFromTo, ratioToFrom) {
+  const funcName = "splitGoods(toValue, splitValue, ratioFromTo, ratioToFrom)";
+  checkValidNumberInputParameter("toValue", funcName, toValue);
+  checkValidNumberInputParameter("splitValue", funcName, splitValue);
+  checkValidNumberInputParameter("ratioFromTo", funcName, ratioFromTo);
+  checkValidNumberInputParameter("ratioToFrom", funcName, ratioToFrom);
+
   const fromValue = Math.ceil(toValue * ratioToFrom);
   const max = ratioFromTo < 1 ? fromValue : toValue;
   const result = [];
@@ -208,39 +278,27 @@ export function splitGoods(toValue, splitValue, ratioFromTo, ratioToFrom) {
 }
 
 /**
- * Get bests offers to go from a ressource to another
- * @param tradeInput Reference of the matrix cost
- * @param iHave The resource where I start
- * @param iWant The resource where I go
- * @param amount The amount of the resource that I want
- * @returns {*[]}
- * @see {#uniformCostSearch}
- */
-export function getBestOffers(tradeInput, iHave, iWant, amount) {
-  const bestOffers = uniformCostSearch(tradeInput, iHave, iWant);
-  const result = [{ key: bestOffers[0], amount: amount }];
-
-  for (let i = 1; i < bestOffers.length; i++) {
-    result.push({
-      key: bestOffers[i],
-      amount: Math.ceil(result[i - 1].amount * tradeInput[bestOffers[i - 1]][bestOffers[i]])
-    });
-  }
-
-  return result.reverse();
-}
-
-/**
- * Get bests offers to go from a ressource to another and split it to subset of offers
- * @param tradeInput Reference of the matrix cost
- * @param iHave The resource where I start
- * @param iWant The resource where I go
- * @param amount The amount of the resource that I want
- * @param splitValue Max size of an offer
+ * Get bests offers to go from a resource to another and split it to subset of offers
+ * @param tradeInput {TradeArray} Reference of the matrix cost
+ * @param iHave {string} The resource where I start
+ * @param iWant {string} The resource where I go
+ * @param amount {number} The amount of the resource that I want
+ * @param splitValue {number} Max size of an offer
  * @returns {array} Return an array of object
+ *
  * @see {#splitGoods}
  */
 export function getBestOffersSplitted(tradeInput, iHave, iWant, amount, splitValue) {
+  const funcName = "getBestOffersSplitted(tradeInput, iHave, iWant, amount, splitValue)";
+  if (!(tradeInput instanceof TradeArray)) {
+    throw Errors.InvalidTypeError("TradeArray", typeof tradeInput, `for parameter "tradeInput" of ${funcName}`);
+  }
+
+  checkAge("iHave", funcName, iHave);
+  checkAge("iWant", funcName, iWant);
+  checkValidNumberInputParameter("amount", funcName, amount);
+  checkValidNumberInputParameter("splitValue", funcName, splitValue);
+
   const bestOffers = getBestOffers(tradeInput, iHave, iWant, amount);
 
   if (bestOffers.length === 1) {
@@ -252,8 +310,8 @@ export function getBestOffersSplitted(tradeInput, iHave, iWant, amount, splitVal
     bestOffers[i].split = splitGoods(
       bestOffers[i + 1].amount,
       splitValue,
-      tradeInput[bestOffers[i].key][bestOffers[i + 1].key],
-      tradeInput[bestOffers[i + 1].key][bestOffers[i].key]
+      tradeArrayValues[tradeInput.name][bestOffers[i].key][bestOffers[i + 1].key],
+      tradeArrayValues[tradeInput.name][bestOffers[i + 1].key][bestOffers[i].key]
     );
     if (bestOffers[i].split instanceof Array) {
       let r = 0;
@@ -275,5 +333,6 @@ export function getBestOffersSplitted(tradeInput, iHave, iWant, amount, splitVal
   return bestOffers;
 }
 
-export const fairTradeArray = getFairTradeArray();
-export const simpleTradeArray = getSimpleTradeArray();
+export const fairTradeArray = tradeArrayValues.FAIR;
+export const simpleTradeArray = tradeArrayValues.SIMPLE;
+export const TradeArrayType = TradeArray;

@@ -94,7 +94,7 @@ export default {
           this.$data,
           "result",
           getBestOffersSplitted(
-            this.$props.tradeInput.value,
+            this.$props.tradeInput.type,
             this.$data.iHave,
             this.$data.iWant,
             this.$data.value,

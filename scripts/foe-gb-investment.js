@@ -1,11 +1,5 @@
-/**
- * Error throw when the value of the participation for the current place is greater than the previous place.
- * @param index Index of the place
- */
-function InvalidParticipationException(index) {
-  this.message = `The value at index ${index} should not be greater than the previous place participation`;
-  this.index = index;
-}
+import Utils from "./utils";
+import Errors from "./errors";
 
 /**
  * Get all data from GB for a specific level
@@ -21,9 +15,6 @@ function getValues(gb, currentLevel, investorPercentage, defaultParticipation) {
   const obj = {};
   obj.cost = gb[currentLevel - 1].cost;
   obj.investment = [];
-  if (!defaultParticipation) {
-    defaultParticipation = Array.apply(null, Array(gb[currentLevel - 1].reward.length)).map(() => 0);
-  }
 
   let levelCostReached = false;
   let cumulativeParticipation = 0;
@@ -40,7 +31,7 @@ function getValues(gb, currentLevel, investorPercentage, defaultParticipation) {
       investment.participation = Math.round(investment.reward * factor);
     } else if (!levelCostReached) {
       if (defaultParticipation[i] > obj.investment[obj.investment.length - 1].participation) {
-        throw new InvalidParticipationException(i);
+        throw Errors.InvalidParticipationException(i);
       }
       investment.participation = defaultParticipation[i];
     }
@@ -69,6 +60,67 @@ function getValues(gb, currentLevel, investorPercentage, defaultParticipation) {
   return obj;
 }
 
+/**
+ * Check if a numeric parameter are valid. Throw an error if the value are not valid.
+ *
+ * @param paramName {string} Name of the parameter
+ * @param funcName {string} Name of the function
+ * @param value Value of this parameter
+ */
+function checkValidNumberInputParameter(paramName, funcName, value) {
+  if (typeof value !== "number") {
+    throw Errors.InvalidTypeError("number", typeof value, `for parameter "${paramName}" of ${funcName}`);
+  } else if (value < 0) {
+    throw Errors.BoundExceededError(
+      Errors.AvailableBoundTypes["<"],
+      value,
+      0,
+      `for parameter "${paramName}" of ${funcName}`
+    );
+  }
+}
+
+/**
+ * Check if a numeric array are valid. Throw an error if the array are not valid.
+ *
+ * @param paramName {string} Name of the parameter
+ * @param funcName {string} Name of the function
+ * @param array Array of this parameter that should contains only numeric values >= 0
+ */
+function checkNumericArray(paramName, funcName, array) {
+  if (!(array instanceof Array)) {
+    throw Errors.InvalidTypeError("Array", typeof array, `for parameter "${paramName}" of ${funcName}`);
+  }
+
+  array.forEach((value, index) => {
+    checkValidNumberInputParameter(`${paramName}[${index}]`, funcName, value);
+  });
+}
+
+/**
+ * Check if a gb array are valid. Throw an error if the gb array are not valid.
+ *
+ * @param paramName {string} Name of the parameter
+ * @param funcName {string} Name of the function
+ * @param gb GB array of this parameter
+ */
+function checkGbData(paramName, funcName, gb) {
+  if (!(gb instanceof Array)) {
+    throw Errors.InvalidTypeError("Array", typeof gb, `for parameter "${paramName}" of ${funcName}`);
+  }
+
+  gb.forEach((value, index) => {
+    if (!("cost" in value)) {
+      throw Errors.KeyNotFoundError("cost", `${paramName}[${index}]`, `in "checkGbData" called by ${funcName}`);
+    }
+    if (!("reward" in value)) {
+      throw Errors.KeyNotFoundError("reward", `${paramName}[${index}]`, `in "checkGbData" called by ${funcName}`);
+    }
+    checkValidNumberInputParameter(`${paramName}[${index}].cost`, funcName, value.cost);
+    checkNumericArray(`${paramName}[${index}].reward`, funcName, value.reward);
+  });
+}
+
 export default {
   /**
    * Get all data from GB for a specific level
@@ -81,10 +133,14 @@ export default {
    * @return {object}
    */
   Submit(currentLevel, investorPercentage, gb, defaultParticipation) {
-    if (currentLevel < 1 || currentLevel > gb.length) {
-      // Triggering an error
-      return;
+    const funcName = "Submit(currentLevel, investorPercentage, gb, defaultParticipation)";
+
+    checkGbData("gb", funcName, gb);
+    if (!Utils.inRange(currentLevel, 1, gb.length)) {
+      throw Errors.NotInBoundsError(currentLevel, 1, gb.length, `for parameter "currentLevel" of ${funcName}`);
     }
+    checkNumericArray("investorPercentage", funcName, investorPercentage);
+    checkNumericArray("defaultParticipation", funcName, defaultParticipation);
 
     return getValues(gb, currentLevel, investorPercentage, defaultParticipation);
   },
@@ -99,9 +155,25 @@ export default {
    * @return {object}
    */
   SubmitRange(from, to, investorPercentage, gb) {
-    if (from < 1 || from > gb.length || to < 1 || to > gb.length || from > to) {
-      // Triggering an error
-      return;
+    const funcName = "SubmitRange(from, to, investorPercentage, gb)";
+    checkGbData("gb", funcName, gb);
+    if (!Utils.inRange(from, 1, gb.length)) {
+      throw Errors.NotInBoundsError(from, 1, gb.length, `for parameter "from" of ${funcName}`);
+    }
+    if (!Utils.inRange(to, 1, gb.length)) {
+      throw Errors.NotInBoundsError(to, 1, gb.length, `for parameter "to" of ${funcName}`);
+    }
+    checkNumericArray("investorPercentage", funcName, investorPercentage);
+
+    let start;
+    let end;
+
+    if (from > to) {
+      start = to;
+      end = from;
+    } else {
+      start = from;
+      end = to;
     }
 
     let result = {
@@ -112,8 +184,10 @@ export default {
       levels: []
     };
 
-    for (let i = from; i <= to; i++) {
-      result.levels.push(this.Submit(i, investorPercentage, gb, null));
+    for (let i = start; i <= end; i++) {
+      result.levels.push(
+        this.Submit(i, investorPercentage, gb, Array.apply(null, Array(gb[i - 1].reward.length)).map(() => 0))
+      );
       result.global.cost += result.levels[result.levels.length - 1].cost;
       result.global.totalPreparations += result.levels[result.levels.length - 1].totalPreparations;
     }
@@ -134,6 +208,16 @@ export default {
    *  - roi: Return of investment (if yourArcBonus >= 0 && fpTargetReward > 0), otherwise it is set to 0
    */
   ComputeSecurePlace(levelCost, currentDeposits, yourParticipation, otherParticipation, yourArcBonus, fpTargetReward) {
+    const funcName =
+      "ComputeSecurePlace(levelCost, currentDeposits, yourParticipation, otherParticipation, " +
+      "yourArcBonus, fpTargetReward)";
+    checkValidNumberInputParameter("levelCost", funcName, levelCost);
+    checkValidNumberInputParameter("currentDeposits", funcName, currentDeposits);
+    checkValidNumberInputParameter("yourParticipation", funcName, yourParticipation);
+    checkValidNumberInputParameter("otherParticipation", funcName, otherParticipation);
+    checkValidNumberInputParameter("yourArcBonus", funcName, yourArcBonus);
+    checkValidNumberInputParameter("fpTargetReward", funcName, fpTargetReward);
+
     let result =
       Math.ceil((levelCost - currentDeposits - (otherParticipation - yourParticipation)) / 2) + otherParticipation;
 

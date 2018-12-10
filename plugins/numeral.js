@@ -1,6 +1,5 @@
 import numeral from "numeral";
 import { numeralSpecialLocales } from "~/scripts/i18n";
-import "numeral/min/locales.min";
 
 const VueNumeral = {
   install(Vue) {

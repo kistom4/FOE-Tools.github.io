@@ -1,8 +1,21 @@
 {
   "presets": [
-    "env",
+    ["env", {
+      "modules": false,
+      "targets": "> 0.5%, last 2 versions, Firefox ESR, not dead, ie >=11"
+    }],
+    "vue",
     "stage-0"
   ],
+  "env": {
+    "test": {
+      "presets": [
+        ["env", { "targets": { "node": "current" }}],
+        "stage-0"
+      ],
+      "plugins": ["transform-vue-jsx", "transform-es2015-modules-commonjs", "dynamic-import-node"]
+    }
+  },
   "plugins": [
     "add-module-exports",
     "transform-es2015-template-literals",
@@ -25,6 +38,8 @@
     "transform-es2015-modules-commonjs",
     "transform-es2015-block-scoping",
     "transform-es2015-typeof-symbol",
-    "transform-regenerator"
+    "transform-vue-jsx",
+    "transform-regenerator",
+    "transform-runtime"
   ]
 }
