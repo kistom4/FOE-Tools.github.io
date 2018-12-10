@@ -257,7 +257,10 @@ module.exports = {
   },
 
   router: {
-    middleware: "i18next"
+    middleware: "i18next",
+    scrollBehavior() {
+      return { x: 0, y: 0 };
+    }
   },
   plugins: [{ src: "~/plugins/i18next.js" }, { src: "~/plugins/clipboard.js" }, { src: "~/plugins/numeral-plugin.js" }],
   generate: {
