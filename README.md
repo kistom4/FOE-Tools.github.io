@@ -118,7 +118,7 @@ npm run test:unit
 
 
 
-If you want to run in watch mode just add `:watcth`:
+If you want to run in watch mode just add `:watch`:
 
 ```bash
 npm run test:unit:watch
