@@ -81,9 +81,26 @@ section.hero.is-dark-blue .subtitle a:hover {
   font-size: 1.5rem;
 }
 
-.is-48xauto {
+.is-30xauto {
   height: auto;
   width: 30px;
+}
+
+.is-48xauto {
+  height: auto;
+  width: 48px;
+}
+
+.contributor-avatar {
+  max-height: 48px;
+}
+
+.contributor-icons {
+  height: 20px;
+}
+
+.contributor-media {
+  height: 54px;
 }
 
 /**
