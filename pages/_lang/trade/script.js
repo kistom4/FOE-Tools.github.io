@@ -1,5 +1,5 @@
-import SimpleTrade from "~/components/simple-trade/index";
-import Trade from "~/components/trade/index";
+import SimpleTrade from "~/components/simple-trade/SimpleTrade";
+import Trade from "~/components/trade/Trade";
 import { TradeArrayType, fairTradeArray, simpleTradeArray } from "~/scripts/trade";
 
 const i18nPrefix = "routes.trade.";

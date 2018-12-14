@@ -1,4 +1,4 @@
 <script>
-import Page from "~/pages/_lang/gb-forecast-cost/index";
+import Page from "~/pages/_lang/gb-forecast-cost/GbForecastCost";
 export default Page;
 </script>

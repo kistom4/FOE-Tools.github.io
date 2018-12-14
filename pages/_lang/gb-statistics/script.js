@@ -1,4 +1,4 @@
-import gbStatistics from "~/components/gb-statistics/index";
+import gbStatistics from "~/components/gb-statistics/GbStatistics";
 
 const i18nPrefix = "routes.gb_statistics.";
 

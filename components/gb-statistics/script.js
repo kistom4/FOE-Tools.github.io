@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Utils from "~/scripts/utils";
-import graphCanvas from "~/components/graph-canvas/index";
+import graphCanvas from "~/components/graph-canvas/GraphCanvas";
 
 import { agesCost, gbsData } from "~/lib/foe-data/gbs";
 

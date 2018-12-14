@@ -1,7 +1,7 @@
 import Utils from "~/scripts/utils";
 import gbProcess from "~/scripts/foe-gb-investment";
-import gbListSelect from "~/components/gb-list-select/index";
-import yesNo from "~/components/yes-no/index";
+import gbListSelect from "~/components/gb-list-select/GbListSelect";
+import yesNo from "~/components/yes-no/YesNo";
 
 const i18nPrefix = "components.gb_investment.";
 

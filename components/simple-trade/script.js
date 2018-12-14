@@ -3,7 +3,7 @@ import Utils from "~/scripts/utils";
 import { splitGoods } from "~/scripts/trade";
 import { agesGoods } from "~/lib/foe-data/goods";
 import ages from "~/lib/foe-data/ages";
-import YesNo from "~/components/yes-no/index";
+import YesNo from "~/components/yes-no/YesNo";
 
 const i18nPrefix = "components.simple_trade.";
 const MAX_TRADE = 1000;

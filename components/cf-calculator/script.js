@@ -1,6 +1,6 @@
 import questData from "~/lib/foe-data/rq-quests";
 import Utils from "~/scripts/utils";
-import YesNo from "~/components/yes-no/index";
+import YesNo from "~/components/yes-no/YesNo";
 
 const i18nPrefix = "components.cf_calculator.";
 const urlPrefix = "cfc_";

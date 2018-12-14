@@ -1,5 +1,5 @@
 import Vue from "vue";
-import languageSelector from "~/components/language-selector";
+import languageSelector from "~/components/language-selector/LanguageSelector";
 import packageConfig from "~/package.json";
 import Utils from "~/scripts/utils";
 import * as moment from "moment";

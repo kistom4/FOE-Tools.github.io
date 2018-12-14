@@ -1,4 +1,4 @@
-import Remark from "~/components/remark/index";
+import Remark from "~/components/remark/Remark";
 
 const i18nPrefix = "routes.changelog.";
 

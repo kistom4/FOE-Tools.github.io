@@ -1,4 +1,4 @@
-import securePosition from "~/components/secure-position";
+import securePosition from "~/components/secure-position/SecurePosition";
 
 const i18nPrefix = "routes.secure_position.";
 
