@@ -1,7 +1,7 @@
 import { gbs } from "~/lib/foe-data/gbs";
-import gbInvestment from "~/components/gb-investment/index";
-import gbInvestmentInvestors from "~/components/gb-investment-inverstors/index";
-import securePosition from "~/components/secure-position/index";
+import gbInvestment from "~/components/gb-investment/GbInvestment";
+import gbInvestmentInvestors from "~/components/gb-investment-inverstors/GbInvestmentInverstors";
+import securePosition from "~/components/secure-position/SecurePosition";
 import Utils from "~/scripts/utils";
 
 const i18nPrefix = "routes.gb_investment.";

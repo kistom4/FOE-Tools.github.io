@@ -1,4 +1,4 @@
-import cfCalculator from "~/components/cf-calculator/index";
+import cfCalculator from "~/components/cf-calculator/CfCalculator";
 
 const i18nPrefix = "routes.cf_calculator.";
 

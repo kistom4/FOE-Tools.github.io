@@ -1,4 +1,4 @@
-import campaignCost from "~/components/campaign-cost/index";
+import campaignCost from "~/components/campaign-cost/CampaignCost";
 
 const i18nPrefix = "routes.campaign_cost.";
 

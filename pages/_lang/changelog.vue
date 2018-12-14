@@ -1,4 +1,4 @@
 <script>
-import Page from "~/pages/_lang/changelog/index";
+import Page from "~/pages/_lang/changelog/Changelog";
 export default Page;
 </script>

@@ -1,4 +1,4 @@
-import gbForecastCost from "~/components/gb-forecast-cost/index";
+import gbForecastCost from "~/components/gb-forecast-cost/GbForecastCost";
 
 const i18nPrefix = "routes.gb_forecast_cost.";
 

@@ -1,4 +1,4 @@
 <script>
-import Page from "~/pages/_lang/trade/index";
+import Page from "~/pages/_lang/trade/Trade";
 export default Page;
 </script>
