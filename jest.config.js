@@ -23,7 +23,9 @@ module.exports = {
     "**/*.{js,vue}",
     "!**/coverage/**",
     "!**/node_modules/**",
+    "!**/pages/**",
     "!**/test/**",
+    "!**/*.config.js",
     "!**/components/**/script.js",
     "!**/layouts/**/script.js",
     "!**/pages/**/script.js"
