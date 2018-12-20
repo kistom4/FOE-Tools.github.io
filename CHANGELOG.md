@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.21.0"></a>
+# [2.21.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.3...v2.21.0) (2018-12-20)
+
+
+### Bug Fixes
+
+* **about:** Fix cookie table overflow on small screen ([3eb4f3d](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/3eb4f3d))
+* **about:** Improve ergonomic on mobile ([532f1e3](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/532f1e3))
+
+
+### Features
+
+* **foe-data:** :package: Add levels of several ages ([1fffc54](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/1fffc54))
+* **ui:** Improve contributors list ([1aaa33a](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/1aaa33a))
+* **ui:** Improve contributors list ([02bf7fd](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/02bf7fd))
+* **ux:** Change scrollBehavior ([96f147e](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/96f147e))
+* **ux:** Change scrollBehavior ([63b1279](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/63b1279))
+
+
+
 <a name="2.20.3"></a>
 ## [2.20.3](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.20.2...v2.20.3) (2018-12-02)
 
