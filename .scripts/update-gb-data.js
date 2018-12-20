@@ -25,9 +25,17 @@ const ages = [
   "VirtualFuture"
 ];
 
+const promises = [];
+
 let diff = {};
 
-function updateAge(index, resolve) {
+/**
+ * Download csv file of GB Data and update files
+ *
+ * @param index Index of age in ages
+ * @returns {Promise<any>} Return a promise than should be resolved when the csv file are downloaded and GB cost file updated
+ */
+function updateAge(index) {
   const age = ages[index];
 
   let results = [];
@@ -35,46 +43,51 @@ function updateAge(index, resolve) {
 
 module.exports = [
 `;
-  return download(urlConfig.url + urlConfig[age])
-    .pipe(csv(["level", null, "cost", "reward"]))
-    .on('data', (value) => results.push(value))
-    .on('end', () => {
-      let counter = 0;
+  return new Promise((resolve) => {
+    download(urlConfig.url + urlConfig[age])
+      .pipe(csv(["level", null, "cost", "reward"]))
+      .on('data', (value) => results.push(value))
+      .on('end', () => {
+        let counter = 0;
 
-      for (var i =  age !== "HighMiddleAges" ? 1 : 10; i < results.length; i++) {
-        if (!results[i].reward) {
-          break;
+        for (var i =  age !== "HighMiddleAges" ? 1 : 10; i < results.length; i++) {
+          if (!results[i].reward) {
+            break;
+          }
+          result += `  { cost: ${results[i].cost}, reward: generateReward(${results[i].reward}) },\n`;
+          counter++;
         }
-        result += `  { cost: ${results[i].cost}, reward: generateReward(${results[i].reward}) },\n`;
-        counter++;
-      }
 
-      result += `];\n`;
+        result += `];\n`;
 
-      if (counter > config[age]) {
-        fs.writeFileSync(path.join(__dirname, `../lib/foe-data/ages-cost/${age !== "HighMiddleAges" ? age : 'defaultCost'}.js`), result);
+        if (counter > config[age]) {
+          fs.writeFileSync(path.join(__dirname, `../lib/foe-data/ages-cost/${age !== "HighMiddleAges" ? age : 'defaultCost'}.js`), result);
 
-        diff[age] = {
-          age,
-          from: config[age] + 1
-        };
-        if ((counter - config[age]) > 1) {
-          diff[age].to = counter;
+          diff[age] = {
+            age,
+            from: config[age] + 1
+          };
+          if ((counter - config[age]) > 1) {
+            diff[age].to = counter;
+          }
         }
-        return resolve(main(index + 1));
-      }
-    });
+        resolve();
+      });
+  });
 }
 
-function main(index) {
-  if (index >= ages.length) {
-    return diff;
-  }
-  return new Promise((resolve) => updateAge(index, resolve));
-}
-
-main(0).then((value) => {
-  if (Object.keys(value).length === 0) {
+/**
+ * Generate the commit message according to new update
+ *
+ * @param value {object} contains an object like:
+ * key: age name
+ * value: object
+ *   - age: age name
+ *   - from: add from level
+ *   - to : (optional) to level if is a range
+ */
+function generateCommitMessage(value) {
+    if (Object.keys(value).length === 0) {
     console.log("Nothing to do.");
     return;
   }
@@ -82,7 +95,10 @@ main(0).then((value) => {
 
 Add GB levels (cost and reward) of:\n`;
 
-  for (let age in value) {
+  for (let age of ages) {
+    if  (!(age in value)) {
+      continue;
+    }
     config[age] = value[age].to ? value[age].to : value[age].from;
     if (age === "HighMiddleAges") {
       commitMessage += `- ${locale.translation.foe_data.age.HighMiddleAges} / ${locale.translation.foe_data.age.NoAge}: ${value.HighMiddleAges.to ?
@@ -94,7 +110,18 @@ Add GB levels (cost and reward) of:\n`;
   }
 
   fs.writeFileSync(path.join(__dirname, "./config.json"), JSON.stringify(config, null, 2));
-  console.log("commitMessage:\n", commitMessage);
-}).catch((reason) => {
-  console.error("reason: ", reason);
+  console.log(`commitMessage:
+${commitMessage}`);
+}
+
+// Main
+
+for (let i = 0; i < ages.length; i++) {
+  promises.push(updateAge(i));
+}
+
+return Promise.all(promises).then(() => {
+  generateCommitMessage(diff);
+}).catch((error) => {
+  console.error("error: ", error);
 });

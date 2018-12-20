@@ -312,6 +312,28 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Mighte2 FOE",
+      "name": "Mighte2 FOE",
+      "avatar_url": "https://yt3.ggpht.com/a-/AN66SAyC9Mfjo5Zlf4NEwDALsLSwNetA6tVuqzQOqg=s288-mo-c-c0xffffffff-rj-k-no",
+      "profile": "https://www.youtube.com/watch?v=eSEQ2-Oi708",
+      "contributions": [
+        "tutorial",
+        "video",
+        "talk"
+      ]
+    },
+    {
+      "login": "Dawid -Tieru- Saworski",
+      "name": "Dawid -Tieru- Saworski",
+      "avatar_url": "https://yt3.ggpht.com/a-/AN66SAx4uNhP4u3JvoQQOFij58F9tp6U_JAm7HrTGA=s288-mo-c-c0xffffffff-rj-k-no",
+      "profile": "https://www.youtube.com/watch?v=kcy-bo70GRE",
+      "contributions": [
+        "tutorial",
+        "video",
+        "talk"
+      ]
     }
   ]
 }

@@ -154,9 +154,7 @@ export default {
   KeyNotFoundError(key, objectName, additionalMessage) {
     return {
       name: "KeyNotFoundError",
-      message: `"${key}" not found in ${objectName}${
-        additionalMessage ? " " + additionalMessage : ""
-      }`
+      message: `"${key}" not found in ${objectName}${additionalMessage ? " " + additionalMessage : ""}`
     };
   },
 
