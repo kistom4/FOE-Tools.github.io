@@ -95,7 +95,10 @@ function generateCommitMessage(value) {
 
 Add GB levels (cost and reward) of:\n`;
 
-  for (let age in value) {
+  for (let age of ages) {
+    if  (!(age in value)) {
+      continue;
+    }
     config[age] = value[age].to ? value[age].to : value[age].from;
     if (age === "HighMiddleAges") {
       commitMessage += `- ${locale.translation.foe_data.age.HighMiddleAges} / ${locale.translation.foe_data.age.NoAge}: ${value.HighMiddleAges.to ?
