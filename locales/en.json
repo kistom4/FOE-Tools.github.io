@@ -233,8 +233,8 @@
           "link": "More information"
         },
         "new_year": {
-          "message": "$t(common:site_title) celebrates these {{count, number}} year",
-          "message_plural": "$t(common:site_title) celebrates these {{count, number}} years"
+          "message": "$t(common:site_title) celebrates its {{count, number}} year",
+          "message_plural": "$t(common:site_title) celebrates its {{count, number}} years"
         },
         "permalink_info": "You visit a permalink. Consequently, any changes made will not be saved in cookies.",
         "footer": {
