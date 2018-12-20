@@ -6,6 +6,16 @@ All notable changes to this project will be documented in this file. See [standa
 ## [2.21.2](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.21.1...v2.21.2) (2018-12-20)
 
 
+### Bug Fixes
+
+* **typo:** Fix typo in english ([fcd97a6](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/fcd97a6))
+
+
+
+<a name="2.21.2"></a>
+## [2.21.2](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.21.1...v2.21.2) (2018-12-20)
+
+
 
 <a name="2.21.1"></a>
 ## [2.21.1](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.21.0...v2.21.1) (2018-12-20)
