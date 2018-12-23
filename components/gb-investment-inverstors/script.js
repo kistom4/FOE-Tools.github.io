@@ -140,6 +140,10 @@ export default {
       }
     },
     yourArcBonus(val, oldVal) {
+      if (typeof val !== "number") {
+        return;
+      }
+
       if (
         Utils.handlerForm(
           this,
@@ -193,7 +197,7 @@ export default {
         expires: Utils.getDefaultCookieExpireTime()
       });
     },
-    showP14(val) {
+    showP4(val) {
       this.$store.commit("UPDATE_URL_QUERY", {
         key: QUERY_KEY.showP4,
         value: val ? 1 : 0,

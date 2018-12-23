@@ -258,6 +258,10 @@ export default {
       }
     },
     investorPercentageGlobal(val, oldVal) {
+      if (typeof val !== "number") {
+        return;
+      }
+
       if (
         Utils.handlerForm(
           this,
@@ -287,6 +291,9 @@ export default {
     investorPercentageCustom(val) {
       let result = Utils.FormCheck.VALID;
       for (let index = 0; index < val.length; index++) {
+        if (typeof val[index] !== "number") {
+          return;
+        }
         if (
           Utils.handlerForm(
             this,
