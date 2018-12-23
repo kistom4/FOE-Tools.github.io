@@ -334,6 +334,24 @@
         "video",
         "talk"
       ]
+    },
+    {
+      "login": "Iron Phip (FR)",
+      "name": "Iron Phip (FR)",
+      "avatar_url": "https://forum.fr.forgeofempires.com/styles/foe_mx/xenforo/avatars/avatar_l.png",
+      "profile": "",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "Equinox The Great (EN)",
+      "name": "Equinox The Great (EN)",
+      "avatar_url": "https://forum.fr.forgeofempires.com/styles/foe_mx/xenforo/avatars/avatar_l.png",
+      "profile": "",
+      "contributions": [
+        "ideas"
+      ]
     }
   ]
 }
