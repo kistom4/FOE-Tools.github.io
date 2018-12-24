@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.21.4"></a>
+## [2.21.4](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.21.3...v2.21.4) (2018-12-24)
+
+
+### Bug Fixes
+
+* **secure-position:** :bug: Fix crash when remote last char in input ([b6f5278](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/b6f5278))
+
+
+
 <a name="2.21.3"></a>
 ## [2.21.3](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.21.2...v2.21.3) (2018-12-23)
 
