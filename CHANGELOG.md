@@ -79,7 +79,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* **campaign-cost:** Fix JcJ towers images overflows ([bb147f5](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/bb147f5))
+* **campaign-cost:** Fix PvP towers images overflows ([bb147f5](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/bb147f5))
 
 
 
@@ -169,7 +169,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * **foe-data:** Add missing level 71 of Iron Age ([233d2e5](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/233d2e5))
-* **secure-place:** Fix calculation of ROI ([8d3d496](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/8d3d496))
+* **secure-position:** Fix calculation of ROI ([8d3d496](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/8d3d496))
 
 
 ### Features
