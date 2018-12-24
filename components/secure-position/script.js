@@ -113,6 +113,9 @@ export default {
       this.$data.levelCost = val.cost;
     },
     levelCost(val, oldVal) {
+      if (typeof val !== "number") {
+        return;
+      }
       this.$data.change = true;
       if (
         Utils.handlerForm(
@@ -132,6 +135,9 @@ export default {
       }
     },
     currentDeposits(val, oldVal) {
+      if (typeof val !== "number") {
+        return;
+      }
       this.$data.change = true;
       if (
         Utils.handlerForm(
@@ -151,6 +157,9 @@ export default {
       }
     },
     yourParticipation(val, oldVal) {
+      if (typeof val !== "number") {
+        return;
+      }
       this.$data.change = true;
       if (
         Utils.handlerForm(
@@ -170,6 +179,9 @@ export default {
       }
     },
     otherParticipation(val, oldVal) {
+      if (typeof val !== "number") {
+        return;
+      }
       this.$data.change = true;
       if (val === "") {
         this.$data.otherParticipation = 0;
@@ -191,6 +203,9 @@ export default {
       }
     },
     yourArcBonus(val, oldVal) {
+      if (typeof val !== "number") {
+        return;
+      }
       this.$data.change = true;
       if (
         Utils.handlerForm(
@@ -213,6 +228,9 @@ export default {
       }
     },
     fpTargetReward(val, oldVal) {
+      if (typeof val !== "number") {
+        return;
+      }
       this.$data.change = true;
       if (this.haveInputLevelCost()) {
         if (this.$props.levelData.investment.map(k => k.reward).indexOf(val) >= 0) {
@@ -284,6 +302,17 @@ export default {
       this.$data.errors["currentDeposits"] = false;
       this.$data.errors["yourParticipation"] = false;
       this.$data.errors["otherParticipation"] = false;
+
+      if (
+        !(typeof this.$data["levelCost"] === "number") ||
+        !(typeof this.$data["currentDeposits"] === "number") ||
+        !(typeof this.$data["yourParticipation"] === "number") ||
+        !(typeof this.$data["otherParticipation"] === "number") ||
+        !(typeof this.$data["yourArcBonus"] === "number") ||
+        !(typeof this.$data["fpTargetReward"] === "number")
+      ) {
+        return false;
+      }
 
       if (
         ((this.$data["levelCost"] === this.$data["currentDeposits"]) === this.$data["yourParticipation"]) ===
