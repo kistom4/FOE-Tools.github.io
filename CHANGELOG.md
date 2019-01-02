@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.22.0"></a>
+# [2.22.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.21.4...v2.22.0) (2019-01-02)
+
+
+### Features
+
+* **foe-data:** :package: Add last provinces of Virtual Future ([f05dc5a](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/f05dc5a))
+
+
+
 <a name="2.21.4"></a>
 ## [2.21.4](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.21.3...v2.21.4) (2018-12-24)
 
