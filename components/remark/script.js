@@ -17,17 +17,31 @@ export default {
   },
   watch: {
     markdown() {
+      this.updateMarkdown();
+    }
+  },
+  methods: {
+    updateMarkdown() {
       let self = this;
       remark()
         .use(emoji)
         .use(html)
-        .process(this.$props.markdown, function(err, file) {
+        .process(this.$props.markdown, (err, file) => {
+          /*
+           * We ignore `if` statement from coverage because if we have an error
+           * here, it is due to remark and not to input.
+           */
+          /* istanbul ignore if  */
           if (err) {
             console.error(err);
           } else {
             self.$data.value = file.contents;
+            this.$emit("md-update", file.contents);
           }
         });
     }
+  },
+  mounted() {
+    this.updateMarkdown();
   }
 };
