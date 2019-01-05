@@ -18,17 +18,18 @@ module.exports = {
   },
   setupFiles: ["<rootDir>/test/unit/setup"],
   snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     "**/*.{js,vue}",
+    "!**/components/graph-canvas/**",
     "!**/coverage/**",
     "!**/node_modules/**",
     "!**/pages/**",
     "!**/test/**",
+    "!**/scripts/errors.js",
     "!**/*.config.js",
     "!**/components/**/script.js",
-    "!**/layouts/**/script.js",
-    "!**/pages/**/script.js"
+    "!**/layouts/**/script.js"
   ],
   coverageReporters: ["html", "text", "text-summary"]
 };
