@@ -10,9 +10,9 @@
       "trade": "$t(routes.trade.hero.title)"
     },
     "footer_menu": {
-      "about": "About",
-      "contributors": "Contributors",
-      "changelog": "Changelog"
+      "about": "Rólunk",
+      "contributors": "Közreműködők",
+      "changelog": "Változási napló"
     },
     "components": {
       "campaign_cost": {
@@ -457,12 +457,12 @@
         "VirtualFuture": "VF"
       },
       "gb": {
-        "Observatory": "Observatory",
+        "Observatory": "Obszervatórium",
         "Temple_of_Relics": "Temple of Relics",
         "Oracle_of_Delphi": "Oracle of Delphi",
-        "Tower_of_Babel": "Tower of Babel",
-        "Statue_of_Zeus": "Statue of Zeus",
-        "Colosseum": "Colosseum",
+        "Tower_of_Babel": "Bábel tornya",
+        "Statue_of_Zeus": "Zeusz szobra",
+        "Colosseum": "Kolosszeum",
         "Lighthouse_of_Alexandria": "Lighthouse of Alexandria",
         "Hagia_Sophia": "Hagia Sophia",
         "Cathedral_of_Aachen": "Cathedral of Aachen",
@@ -484,7 +484,7 @@
         "Innovation_Tower": "Innovation Tower",
         "Dynamic_Tower": "Dynamic Tower",
         "Voyager_V1": "Voyager V1",
-        "The_Arc": "The Arc",
+        "The_Arc": "A Bárka",
         "Rain_Forest_Project": "Rain Forest Project",
         "Gaea_Statue": "Gaea Statue",
         "Arctic_Orangery": "Arctic Orangery",
@@ -533,7 +533,7 @@
         "Terracotta_Army": "TA"
       },
       "goods": {
-        "dye": "Dye",
+        "dye": "Festőanyag",
         "lumber": "Lumber",
         "marble": "Marble",
         "stone": "Stone",
