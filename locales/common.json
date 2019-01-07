@@ -6,14 +6,16 @@
       "fr": { "en": "French", "original": "Français" },
       "de": { "en": "German", "original": "Deutsch" },
       "ru": { "en": "Russian", "original": "Русский" },
-      "nl": { "en": "Dutch", "original": "Nederlands" } 
+      "nl": { "en": "Dutch", "original": "Nederlands" },
+      "hu": { "en": "Hungarian", "original": "Magyar" }
     },
     "language_selector": {
       "en": "$t(common:lang.en.original)",
       "fr": "$t(common:lang.fr.en) ($t(common:lang.fr.original))",
       "de": "$t(common:lang.de.en) ($t(common:lang.de.original))",
       "ru": "$t(common:lang.ru.en) ($t(common:lang.ru.original))",
-      "nl": "$t(common:lang.nl.en) ($t(common:lang.nl.original))"
+      "nl": "$t(common:lang.nl.en) ($t(common:lang.nl.original))",
+      "hu": "$t(common:lang.hu.en) ($t(common:lang.hu.original))"
     },
     "links": {
       "foe": "<a href=\"https://forgeofempires.com\">Forge Of Empire</a>",
