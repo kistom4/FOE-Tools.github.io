@@ -66,46 +66,46 @@
       },
       "gb_investment": {
         "gb_list_select": {
-          "label": "Switch Great Building"
+          "label": "Válassz nevezetes épületet"
         },
         "gb_investment": {
           "title": "$t(routes.gb_investment_gb_chooser.hero.title)",
           "description": {
-            "p1": "Enter the values for level and bonus percentage. The values in the table update automatically.",
+            "p1": "Add meg a szintet és a bónusz százalék értékeit. A táblázatban szereplő értékek automatikusan frissülnek.",
             "p2_html": "<strong>Note</strong>: If the update is not done automatically, first set the GB level and the overall investment value and click on \"$t(components.gb_investment.gb_investment.form.submit_global)\". If you want to adjust the values of each place, adjust to your convenience and click on \"$t(components.gb_investment.gb_investment.form.submit_custom)\"."
           },
           "form": {
-            "level": "Level {{fromLevel, number}} → {{level, number}} (between 1 and {{max, number}})",
-            "investor_percentage": "% of global investors bonus (arc bonus)",
+            "level": "Szint {{fromLevel, number}} → {{level, number}} (1 és {{max, number}} között)",
+            "investor_percentage": "A befektetők bónuszának százléka (Bárka bónusz)",
             "submit_global": "Global calculation",
             "submit_custom": "Custom calculation",
-            "owner_investment": "Number of FPs currently put by the owner"
+            "owner_investment": "Forge pontok száma, amit a tulajdonos már betett"
           },
           "table": {
-            "title": "$t({{gb_key}}) level {{fromLevel, number}} → {{level, number}}",
+            "title": "$t({{gb_key}}) szint {{fromLevel, number}} → {{level, number}}",
             "thead": {
-              "th1": "Places",
-              "th2": "Default rewards",
-              "th3": "FP to put by the owner to secure the place",
-              "th4": "Rewards with rate",
-              "th5": "% of investors bonus (arc bonus)",
-              "th6": "Place free"
+              "th1": "Hely",
+              "th2": "Alap jutalom",
+              "th3": "A tulajdonos által beteendő FP a hely biztosításához",
+              "th4": "Összes jutalom",
+              "th5": "befektetők bónuszának százléka (Bárka bónusz)",
+              "th6": "Szabad a hely"
             },
             "tbody": {
               "tooltip_owner_investment": "FPs remaining to be put by the owner to secure the place"
             },
             "tfoot": {
-              "total_preparation": "Total investment of the owner",
-              "level_cost": "Level cost"
+              "total_preparation": "Tulajdonos költsége",
+              "level_cost": "Szint költsége"
             }
           },
-          "use_short_name": "Use short name ?",
-          "show_level": "Show level ?"
+          "use_short_name": "Rödig nevek használata ?",
+          "show_level": "Szint megjelenítése ?"
         },
         "promotion": {
-          "title": "Promotion message",
-          "prefix_placeholder": "text before the promotion message",
-          "suffix_placeholder": "text after the promotion message",
+          "title": "Promóciós üzenet",
+          "prefix_placeholder": "szöveg a promóciós üzenet előtt",
+          "suffix_placeholder": "szöveg a promóciós üzenet után",
           "promo": [
             "P1({{investment}})",
             "P2({{investment}})",
@@ -178,7 +178,7 @@
       "secure_position": {
         "block_place": {
           "title": "Block his place",
-          "level_cost": "Level cost",
+          "level_cost": "Szint költsége",
           "current_deposits": "Sum of current deposits",
           "your_participation": "Your current participation",
           "other_participation": "Participation of the player to overtake",
@@ -354,21 +354,21 @@
         },
         "tab": {
           "owner_view": {
-            "title": "Owner view"
+            "title": "Tulajdonos nézete"
           },
           "investors_view": {
-            "title": "Investors view"
+            "title": "Befektetők nézete"
           }
         }
       },
       "gb_investment_gb_chooser": {
         "title": "$t(routes.gb_investment_gb_chooser.hero.title) | $t(common:site_title)",
         "hero": {
-          "title": "GB Investment",
-          "subtitle": "This tool makes it possible to calculate the number of points that a player must put on his GB to secure the first 5 places following a rate (arc bonus)."
+          "title": "Nevezetes épület befektetés",
+          "subtitle": "Ez az eszköz lehetővé teszi, hogy kiszámítsuk azt a pontszámot, amelyet egy játékosnak be kell helyeznie a nevezetes épületbe, hogy az első 5 helyet (Bárka bónusz) biztosítsa."
         },
         "choose_gb": {
-          "title": "Choose a Great Building"
+          "title": "Válassz egy nevezetes épületet!"
         }
       },
       "gb_forecast_cost": {
