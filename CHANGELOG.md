@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.24.0"></a>
+# [2.24.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.23.0...v2.24.0) (2019-02-05)
+
+
+### Features
+
+* **foe-data:** Add Himeji Castle (Virtual Future) ([0b443a1](https://github.com/FOE-Tools/FOE-Tools.github.io/commit/0b443a1))
+
+
+
 <a name="2.23.0"></a>
 # [2.23.0](https://github.com/FOE-Tools/FOE-Tools.github.io/compare/v2.22.1...v2.23.0) (2019-01-29)
 
