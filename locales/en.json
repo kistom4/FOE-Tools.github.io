@@ -492,7 +492,8 @@
         "Atlantis_Museum": "Atlantis Museum",
         "The_Kraken": "The Kraken",
         "The_Blue_Galaxy": "The Blue Galaxy",
-        "Terracotta_Army": "Terracotta Army"
+        "Terracotta_Army": "Terracotta Army",
+        "Himeji_Castle": "Himeji Castle"
       },
       "gb_short": {
         "Observatory": "Obs",
@@ -530,7 +531,8 @@
         "Atlantis_Museum": "Museum",
         "The_Kraken": "Kraken",
         "The_Blue_Galaxy": "Galaxy",
-        "Terracotta_Army": "TA"
+        "Terracotta_Army": "TA",
+        "Himeji_Castle": "Himeji"
       },
       "goods": {
         "dye": "Dye",
