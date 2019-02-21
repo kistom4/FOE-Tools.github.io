@@ -5,6 +5,7 @@ import fr from "../locales/fr.json";
 import de from "../locales/de.json";
 import ru from "../locales/ru.json";
 import nl from "../locales/nl.json";
+import hu from "../locales/hu.json";
 
 // Requires al packages
 export const i18next = require("i18next");
@@ -16,9 +17,9 @@ import "numeral/locales/nl-nl";
 
 // Constant used
 export const defaultLocale = "en";
-export const supportedLocales = ["en", "fr", "de", "ru", "nl"];
+export const supportedLocales = ["en", "fr", "de", "ru", "nl", "hu"];
 const languageList = ["common"].concat(supportedLocales);
-const resources = { common, en, fr, de, ru, nl };
+const resources = { common, en, fr, de, ru, nl, hu };
 
 export const numeralSpecialLocales = {
   nl: "nl-nl"
