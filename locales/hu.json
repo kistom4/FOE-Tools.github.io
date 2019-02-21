@@ -30,7 +30,7 @@
           "coins_to_use": "Coins to use on UBQ",
           "supplies_to_use": "Supplies to use on UBQ",
           "gb_plunder_goods": "GB & Plunder Goods",
-          "fp_by_24h": "24 Hour FP Production",
+          "fp_by_24h": "1 napi FP termelésed",
           "other_rq": "Other Daily RQ's",
           "second_rq": "2nd RQ Giver ?",
           "supplies_gathered": "Supplies Gathered",
@@ -99,8 +99,8 @@
               "level_cost": "Szint költsége"
             }
           },
-          "use_short_name": "Rödig nevek használata ?",
-          "show_level": "Szint megjelenítése ?"
+          "use_short_name": "Rödig nevek használata?",
+          "show_level": "Szint megjelenítése?"
         },
         "promotion": {
           "title": "Promóciós üzenet",
@@ -141,26 +141,26 @@
         }
       },
       "gb_forecast_cost": {
-        "title": "Forecast",
-        "p1": "Determine the number of FPs to go from one level to another, with or without Ark's bonuses.",
-        "custom_percentage": "Custom Arc bonus (for each place)",
-        "estimated_time": "Estimate time to reach the level",
+        "title": "Előrejelzés",
+        "p1": "Megmutatja a bekerülési költséget az egyik szintről a másik szintre jutáshoz A bárka bónuszok figyelembevételével és nélküle.",
+        "custom_percentage": "Egyedi bónusz százalékok (minden helyezésnél)",
+        "estimated_time": "Várható időtartam, amíg eléred a kívánt szintet",
         "message": {
-          "single": "To complete the level {{level}} of \"$t({{gb}})\", the owner has to invest {{preparation, number}} FPs. Total cost of level: {{cost, number}} FPs.",
-          "multi": "To complete the level {{level}} of \"$t({{gb}})\", the owner has to invest {{preparation, number}} FPs. Total cost of levels: {{cost, number}} FPs.",
-          "diff": "With bonus investments, you'll save {{count}} FP",
-          "diff_plural": "With bonus investments, you'll save {{count, number}} FPs",
-          "estimated_time": "Estimated time to reach the level: {{time}}"
+          "single": "Hogy elérd a(z) \"$t({{gb}})\" {{level}}. szintjét, a tulajdonosnak {{preparation, number}} FP-jébe kerül. Teljes bekerülés: {{cost, number}} FP.",
+          "multi": "Hogy elérd a(z) \"$t({{gb}})\" {{level}}. szintjét, a tulajdonosnak {{preparation, number}} FP-jébe kerül. Teljes bekerülés: {{cost, number}} FP.",
+          "diff": "A bónuszokkal megtakarításod: {{count}} FP",
+          "diff_plural": "A bónuszokkal megtakarításod: {{count, number}} FP",
+          "estimated_time": "Várható időtartam, amíg eléred a kívánt szintet: {{time}}"
         },
-        "prop_already_invested": "FPs already invested by the owner on the current level",
+        "prop_already_invested": "FP mennyisége, amit a tulaj már betett az aktuális szinre",
         "graph": {
-          "title": "Forecast of the owner's preparation amount for \"$t({{gb}})\"",
+          "title": "A tulajdonos által várható költségek (\"$t({{gb}})\")",
           "x_axes_label": "$t(utils.graph.gb_level)",
           "y_axes_label": "$t(utils.graph.gb_level_cost)",
           "label": {
-            "default": "Gross cost of the level",
-            "default_preparation": "Amount of preparation without bonus",
-            "custom_preparation": "Amount of preparation with bonus"
+            "default": "Szint teljes költsége",
+            "default_preparation": "Bónusz nélküli saját költség",
+            "custom_preparation": "Bónusszal kiegészített saját költség"
           }
         }
       },
@@ -245,9 +245,9 @@
       "trade": {
         "title": "Form version",
         "label": {
-          "i_have": "I have",
-          "i_want": "I want",
-          "amount": "Amount"
+          "i_have": "Nekem van",
+          "i_want": "Szeretnék",
+          "amount": "Mennyiség"
         },
         "split_value": "Maximum size of an offer (max {{count}})",
         "split_message": {
@@ -374,8 +374,8 @@
       "gb_forecast_cost": {
         "title": "$t(routes.gb_forecast_cost.hero.title) | $t(common:site_title)",
         "hero": {
-          "title": "Forecast cost GB",
-          "subtitle": "This tool determine the number of FPs to go from one level to another of a GB, with or without Ark's bonuses."
+          "title": "Nevezetesek költségeinek előrejelzése",
+          "subtitle": "Ez az eszköz megmutatja, hogy mennyi FP-be kerül eljutni az egyik szintről a másikra A bárka bónuszokkal vagy nélkülük."
         }
       },
       "gb_statistics": {
@@ -1042,23 +1042,23 @@
     "utils": {
       "content": {
         "tools": "Tools",
-        "statistics": "Statistics"
+        "statistics": "Statisztika"
       },
       "btn_calculate": "Calculate",
       "description": {
         "p1": "Enter the different values. The result is updated automatically.",
         "p2_html": "<strong>Note</strong>: If the update is not done automatically, click on \"$t(utils.btn_calculate)\"."
       },
-      "choose_age": "Choose an Age",
-      "permalink": "Permalink",
-      "Yes": "Yes",
-      "No": "No",
+      "choose_age": "Válaszd ki a kort",
+      "permalink": "Hivatkozás",
+      "Yes": "Igen",
+      "No": "Nem",
       "Ok": "Ok",
-      "Copy": "Copy",
-      "Copyed": "Copyed !",
-      "Information": "Information",
-      "From": "From",
-      "To": "To (max {{max}})",
+      "Copy": "Másol",
+      "Copyed": "Másolva!",
+      "Information": "Információ",
+      "From": "-tól",
+      "To": "-ig (max {{max}})",
       "Prefix": "Prefix",
       "Suffix": "Suffix",
       "Path": "Path",
@@ -1070,12 +1070,12 @@
       "Total": "Total",
       "Secured": "Secured",
       "moment": {
-        "year": "{{count}} year",
-        "year_plural": "{{count, number}} years",
-        "month": "{{count}} month",
-        "month_plural": "{{count}} months",
-        "day": "{{count}} day",
-        "day_plural": "{{count}} days"
+        "year": "{{count}} év",
+        "year_plural": "{{count, number}} év",
+        "month": "{{count}} hónap",
+        "month_plural": "{{count}} hónap",
+        "day": "{{count}} nap",
+        "day_plural": "{{count}} nap"
       },
       "graph": {
         "gb_level": "Level",
