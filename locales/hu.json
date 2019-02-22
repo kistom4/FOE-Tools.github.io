@@ -92,7 +92,7 @@
               "th6": "Szabad a hely"
             },
             "tbody": {
-              "tooltip_owner_investment": "FPs remaining to be put by the owner to secure the place"
+              "tooltip_owner_investment": "FP amennyit még a tulajdonosnak be kell tennie, hogy védje a poziciót"
             },
             "tfoot": {
               "total_preparation": "Tulajdonos költsége",
@@ -245,9 +245,9 @@
       "trade": {
         "title": "Form version",
         "label": {
-          "i_have": "I have",
-          "i_want": "I want",
-          "amount": "Amount"
+          "i_have": "Nekem van",
+          "i_want": "Szeretnék",
+          "amount": "Mennyiség"
         },
         "split_value": "Maximum size of an offer (max {{count}})",
         "split_message": {
@@ -411,8 +411,8 @@
       },
       "error": {
         "404": {
-          "title": "Page not found | $t(common:site_title)",
-          "message": "Sorry, the page you are looking for does not exist or no more"
+          "title": "Az oldal nem található | $t(common:site_title)",
+          "message": "Sajnáljuk, de az oldal, amit keresel nem létezik"
         }
       }
     },
@@ -535,87 +535,87 @@
       },
       "goods": {
         "dye": "Festőanyag",
-        "lumber": "Lumber",
-        "marble": "Marble",
-        "stone": "Stone",
-        "wine": "Wine",
-        "cloth": "Cloth",
-        "ebony": "Ebony",
-        "iron": "Iron",
-        "jewelry": "Jewelry",
-        "limestone": "Limestone",
-        "alabaster": "Alabaster",
-        "copper": "Copper",
-        "gold": "Gold",
-        "granite": "Granite",
-        "honey": "Honey",
-        "brick": "Brick",
-        "dried_herbs": "Dried Herbs",
-        "glass": "Glass",
-        "rope": "Rope",
-        "salt": "Salt",
-        "basalt": "Basalt",
-        "brass": "Brass",
-        "gunpowder": "Gunpowder",
-        "silk": "Silk",
-        "talc_powder": "Talc Powder",
-        "coffee": "Coffee",
-        "porcelain": "Porcelain",
-        "paper": "Paper",
-        "tar": "Tar",
-        "wire": "Wire",
-        "coke": "Coke",
-        "fertilizer": "Fertilizer",
-        "rubber": "Rubber",
-        "textiles": "Textiles",
-        "whale_oil": "Whale Oil",
-        "asbestos": "Asbestos",
-        "explosives": "Explosives",
-        "gasoline": "Gasoline",
-        "machine_parts": "Machine Parts",
-        "tinplate": "Tinplate",
-        "convenience_food": "Convenience Food",
-        "ferroconcrete": "Ferroconcrete",
-        "flavorants": "Flavorants",
-        "luxury_materials": "Luxury Materials",
-        "packaging": "Packaging",
-        "genome_data": "Genome Data",
-        "industrial_filters": "Industrial Filters",
-        "renewable_resources": "Renewable Resources",
-        "semiconductors": "Semiconductors",
-        "steel": "Steel",
-        "bionics_data": "Bionics Data",
-        "electromagnets": "Electromagnets",
-        "gas": "Gas",
-        "plastics": "Plastics",
-        "robots": "Robots",
-        "nutrition_research": "Nutrition Research",
-        "papercrete": "Papercrete",
-        "preservatives": "Preservatives",
-        "smart_materials": "Smart Materials",
-        "translucent_concrete": "Translucent Concrete",
-        "algae": "Algae",
-        "biogeochemical_data": "Biogeochemical Data",
-        "nanoparticles": "Nanoparticles",
-        "purified_water": "Purified Water",
-        "superconductors": "Superconductors",
-        "ai_data": "A.I. Data",
-        "bioplastics": "Bioplastics",
-        "nanowire": "Nanowire",
-        "paper_batteries": "Paper Batteries",
-        "transester_gas": "Transester Gas",
-        "artificial_scales": "Artificial Scales",
-        "biolight": "Biolight",
-        "corals": "Corals",
-        "pearls": "Pearls",
+        "lumber": "Faanyag",
+        "marble": "Márvány",
+        "stone": "Kő",
+        "wine": "Bor",
+        "cloth": "Posztó",
+        "ebony": "Ében",
+        "iron": "Vas",
+        "jewelry": "Drágakő",
+        "limestone": "Mészkő",
+        "alabaster": "Alabástrom",
+        "copper": "Réz",
+        "gold": "Arany",
+        "granite": "Gránit",
+        "honey": "Méz",
+        "brick": "Tégla",
+        "dried_herbs": "Szárított gyógynövény",
+        "glass": "Üveg",
+        "rope": "Kötél",
+        "salt": "Só",
+        "basalt": "Bazalt",
+        "brass": "Sárgaréz",
+        "gunpowder": "Puskapor",
+        "silk": "Selyem",
+        "talc_powder": "Csillámpor",
+        "coffee": "Kávé",
+        "porcelain": "Porcelán",
+        "paper": "Papír",
+        "tar": "Kátrány",
+        "wire": "Huzal",
+        "coke": "Szén",
+        "fertilizer": "Műtrágya",
+        "rubber": "Gumi",
+        "textiles": "Textil",
+        "whale_oil": "Bálnaolaj",
+        "asbestos": "Azbeszt",
+        "explosives": "Robbanószerek",
+        "gasoline": "Benzin",
+        "machine_parts": "Gépalkatrész",
+        "tinplate": "Ónlemez",
+        "convenience_food": "Készétel",
+        "ferroconcrete": "Vasbeton",
+        "flavorants": "Ízesítőszerek",
+        "luxury_materials": "Luxus anyagok",
+        "packaging": "Csomagolás",
+        "genome_data": "Genetikai adatok",
+        "industrial_filters": "Ipari szűrők",
+        "renewable_resources": "Megújuló erőforrások",
+        "semiconductors": "Félvezetők",
+        "steel": "Acél",
+        "bionics_data": "Bionikus adatok",
+        "electromagnets": "Elektromágnes",
+        "gas": "Gáz",
+        "plastics": "Műanyag",
+        "robots": "Robotok",
+        "nutrition_research": "Élelmezés kutatás",
+        "papercrete": "Papírbeton",
+        "preservatives": "Tartósítószerek",
+        "smart_materials": "Okosanyagok",
+        "translucent_concrete": "Üvegbeton",
+        "algae": "Alga",
+        "biogeochemical_data": "Biogeokémiai adatok",
+        "nanoparticles": "Nanorészecskék",
+        "purified_water": "Tisztított víz",
+        "superconductors": "Szupravezetők",
+        "ai_data": "MI adatok",
+        "bioplastics": "Bioműanyagok",
+        "nanowire": "Nanovezeték",
+        "paper_batteries": "Papír akkumulátorok",
+        "transester_gas": "Transzészter gáz",
+        "artificial_scales": "Mesterséges pikkely",
+        "biolight": "Biolámpa",
+        "corals": "Korall",
+        "pearls": "Igazgyöngy",
         "plankton": "Plankton",
         "promethium": "Promethium",
         "orichalcum": "Orichalcum",
-        "cryptocash": "Cryptocash",
-        "data_crystals": "Data Crystals",
-        "golden_rice": "Golden Rice",
-        "nanites": "Nanites",
-        "tea_silk": "Tea Silk"
+        "cryptocash": "Kriptovaluta",
+        "data_crystals": "Adatkristály",
+        "golden_rice": "Aranyrizs",
+        "nanites": "Nanit",
+        "tea_silk": "Teaselyem"
       },
       "province": {
         "Dunarsund": "Dunarsund",
@@ -908,13 +908,13 @@
       },
       "bonus": {
         "coin": {
-          "name": "Coin"
+          "name": "Pénz"
         },
         "supply": {
-          "name": "Supply"
+          "name": "Alapnyag"
         },
         "good": {
-          "name": "Good"
+          "name": "Termék"
         },
         "special_good": {
           "name": "Special Goods"
@@ -923,19 +923,19 @@
           "name": "Production bonus"
         },
         "expansion": {
-          "name": "Expansion"
+          "name": "Terjeszkedés"
         },
         "medal": {
-          "name": "Medal"
+          "name": "Medál"
         },
         "diamond": {
-          "name": "Diamond"
+          "name": "Gyémánt"
         },
         "pvp_tower": {
           "name": "PvP Tower"
         },
         "blueprint": {
-          "name": "Blueprint"
+          "name": "Tervrajz"
         },
         "military_boost": {
           "name": "Military boost",
@@ -1042,7 +1042,7 @@
     "utils": {
       "content": {
         "tools": "Tools",
-        "statistics": "Statistics"
+        "statistics": "Statisztika"
       },
       "btn_calculate": "Calculate",
       "description": {
@@ -1050,32 +1050,32 @@
         "p2_html": "<strong>Note</strong>: If the update is not done automatically, click on \"$t(utils.btn_calculate)\"."
       },
       "choose_age": "Choose an Age",
-      "permalink": "Permalink",
-      "Yes": "Yes",
-      "No": "No",
+      "permalink": "Hivatkozás",
+      "Yes": "Igen",
+      "No": "Nem",
       "Ok": "Ok",
-      "Copy": "Copy",
-      "Copyed": "Copyed !",
-      "Information": "Information",
-      "From": "From",
-      "To": "To (max {{max}})",
+      "Copy": "Másol",
+      "Copyed": "Másolva!",
+      "Information": "Információ",
+      "From": "-tól",
+      "To": "-ig (max {{max}})",
       "Prefix": "Prefix",
       "Suffix": "Suffix",
       "Path": "Path",
       "Name": "Name",
       "Description": "Description",
       "Rewards": "Rewards",
-      "Cost": "Cost",
+      "Cost": "Költség",
       "Conquered": "Conquered",
-      "Total": "Total",
-      "Secured": "Secured",
+      "Total": "Összesen",
+      "Secured": "Védett",
       "moment": {
-        "year": "{{count}} year",
-        "year_plural": "{{count, number}} years",
-        "month": "{{count}} month",
-        "month_plural": "{{count}} months",
-        "day": "{{count}} day",
-        "day_plural": "{{count}} days"
+        "year": "{{count}} év",
+        "year_plural": "{{count, number}} év",
+        "month": "{{count}} hónap",
+        "month_plural": "{{count}} hónap",
+        "day": "{{count}} nap",
+        "day_plural": "{{count}} nap"
       },
       "graph": {
         "gb_level": "Level",
@@ -1111,11 +1111,11 @@
     },
     "seo": {
       "keywords": {
-        "gb": "gb",
-        "great_building": "great building",
+        "gb": "nevi",
+        "great_building": "nevezetes épület",
         "fp": "fp",
-        "forge_point": "forge point",
-        "medals": "medals",
+        "forge_point": "forge pont",
+        "medals": "medál,
         "military_units": "military units"
       }
     }
